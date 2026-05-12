@@ -1,8 +1,8 @@
 # Dependencies
 node_modules/
 
-# Build output (regenerated from src/input.css via `npm run build`)
-dist/
+# Build output — committed so GitHub Pages can serve dist/output.css
+# Run `npm run build` locally before pushing to regenerate
 
 # OS-generated files
 Thumbs.db
