@@ -38,6 +38,119 @@ function gtag_report_conversion(url) {
   return false;
 }
 </script>
+
+<!-- Schema Markup -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "A&G Renovations Ltd",
+  "description": "London bathroom, kitchen and full apartment renovation specialists since 2014.",
+  "url": "https://ag-renovations.co.uk",
+  "telephone": "+442036218527",
+  "email": "sales@ag-renovations.co.uk",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "31 Castle Avenue",
+    "addressLocality": "London",
+    "postalCode": "RM13 7TD",
+    "addressCountry": "GB"
+  },
+  "openingHoursSpecification": [{
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+    "opens": "08:00",
+    "closes": "19:00"
+  }],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5.0",
+    "reviewCount": "41",
+    "bestRating": "5"
+  },
+  "priceRange": "££££"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Bathroom Renovation",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "A&G Renovations Ltd"
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "London"
+  },
+  "description": "Professional bathroom renovation and refurbishment across London. In-house team, 12-month guarantee, free site visit."
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How long does a bathroom renovation take?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most bathroom renovations take between 1 and 3 weeks depending on the size and scope of the project. A standard bathroom refurbishment typically takes 7 to 10 working days. A larger bathroom or one involving a wet room, underfloor heating, or significant plumbing changes may take 2 to 3 weeks. Syed will give you a clear timeline estimate during your free site visit before any work begins."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does a bathroom renovation cost in London?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Bathroom renovation costs in London typically range from £6,000 to £22,000 depending on the size of the bathroom, the fixtures and finishes chosen, and the scope of work involved. We provide a clear, itemised quote after Syed visits your home — so you know exactly what you're paying for before committing to anything."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need to supply my own bathroom fixtures and tiles?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No — we handle everything. Through our network of trusted suppliers we source and coordinate the delivery of all required materials, store them securely, and carry out quality checks before installation begins. You choose what you want and we take care of the rest. We work with suppliers including Victorian Plumbing, Drench, Topps Tiles and Mandarin Stone, and we seek trade discounts wherever possible to pass savings directly on to you."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the work guaranteed?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. All workmanship is covered by a 12-month guarantee against faulty labour as standard on every project. If anything falls short of your expectations within the first year, we will return and put it right at no additional cost to you. This guarantee is backed by our £5M Public Liability Insurance for complete peace of mind."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you use subcontractors or your own team?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Our installers are in-house specialists who work exclusively for A&G Renovations — not subcontracted strangers. They arrive on time, work a full day between 8AM and 5PM, and follow A&G's standards on every project. For specialist trades such as gas and electrical work, we work with vetted, certified partners — Gas Safe registered engineers and NICEIC certified electricians — who are familiar with how we operate."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What areas of London do you cover?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We work across all areas of London and the surrounding regions. Our team is based in East London and regularly completes projects across Central, North, South, East and West London. If you are unsure whether we cover your area, call us on 020 3621 8527 or fill in the enquiry form and we will confirm."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens after I submit an enquiry?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Once you submit an enquiry, Gintare from our team will be in touch to confirm a convenient time for a free site visit. Syed, our estimator, will come to your home, take precise measurements, listen to your vision, and answer every question. A clear, itemised proposal is then prepared and sent to you for review — with no obligation to proceed. Most clients receive their proposal within a few days of the site visit."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body class="min-h-screen bg-white">
 
@@ -551,6 +664,98 @@ function gtag_report_conversion(url) {
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ SECTION -->
+<section class="bg-[#f5f6f4] py-20 md:py-24">
+  <div class="max-w-[1120px] mx-auto px-6">
+    <div class="text-center mb-16">
+      <span class="inline-block px-4 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-[1.5px] border bg-[rgba(0,182,122,0.12)] border-[rgba(0,182,122,0.25)] text-[#00b67a]">FAQ</span>
+      <h2 class="font-bold leading-tight tracking-tight mt-5 mb-4 text-[#111418]" style="font-size:clamp(26px,3.5vw,42px)">Frequently Asked Questions</h2>
+      <div class="flex items-center gap-4 justify-center my-5">
+        <div class="flex-1 max-w-[100px] h-px bg-[#00b67a] opacity-30"></div>
+        <div class="w-1.5 h-1.5 rounded-full bg-[#00b67a]"></div>
+        <div class="flex-1 max-w-[100px] h-px bg-[#00b67a] opacity-30"></div>
+      </div>
+      <p class="max-w-[580px] mx-auto text-lg text-[#3d4550]">Everything you need to know before booking your free site visit.</p>
+    </div>
+    <div class="max-w-[840px] mx-auto flex flex-col gap-3">
+
+      <details class="bg-white rounded-xl border border-[#d4d8d5] overflow-hidden group">
+        <summary class="flex items-center justify-between p-6 cursor-pointer list-none font-semibold text-[#111418] text-[16px] hover:text-[#00b67a] transition-colors">
+          How long does a bathroom renovation take?
+          <span class="text-[#00b67a] text-xl font-light flex-shrink-0 ml-4 transition-transform group-open:rotate-45">+</span>
+        </summary>
+        <div class="px-6 pb-6 text-[15px] text-[#3d4550] leading-relaxed border-t border-[#d4d8d5] pt-4">
+          Most bathroom renovations take between 1 and 3 weeks depending on the size and scope of the project. A standard bathroom refurbishment typically takes 7 to 10 working days. A larger bathroom or one involving a wet room, underfloor heating, or significant plumbing changes may take 2 to 3 weeks. Syed will give you a clear timeline estimate during your free site visit before any work begins.
+        </div>
+      </details>
+
+      <details class="bg-white rounded-xl border border-[#d4d8d5] overflow-hidden group">
+        <summary class="flex items-center justify-between p-6 cursor-pointer list-none font-semibold text-[#111418] text-[16px] hover:text-[#00b67a] transition-colors">
+          How much does a bathroom renovation cost in London?
+          <span class="text-[#00b67a] text-xl font-light flex-shrink-0 ml-4 transition-transform group-open:rotate-45">+</span>
+        </summary>
+        <div class="px-6 pb-6 text-[15px] text-[#3d4550] leading-relaxed border-t border-[#d4d8d5] pt-4">
+          Bathroom renovation costs in London typically range from £6,000 to £22,000 depending on the size of the bathroom, the fixtures and finishes chosen, and the scope of work involved. We provide a clear, itemised quote after Syed visits your home — so you know exactly what you're paying for before committing to anything.
+        </div>
+      </details>
+
+      <details class="bg-white rounded-xl border border-[#d4d8d5] overflow-hidden group">
+        <summary class="flex items-center justify-between p-6 cursor-pointer list-none font-semibold text-[#111418] text-[16px] hover:text-[#00b67a] transition-colors">
+          Do I need to supply my own bathroom fixtures and tiles?
+          <span class="text-[#00b67a] text-xl font-light flex-shrink-0 ml-4 transition-transform group-open:rotate-45">+</span>
+        </summary>
+        <div class="px-6 pb-6 text-[15px] text-[#3d4550] leading-relaxed border-t border-[#d4d8d5] pt-4">
+          No — we handle everything. Through our network of trusted suppliers we source and coordinate the delivery of all required materials, store them securely, and carry out quality checks before installation begins. You choose what you want and we take care of the rest. We work with suppliers including Victorian Plumbing, Drench, Topps Tiles and Mandarin Stone, and we seek trade discounts wherever possible to pass savings directly on to you.
+        </div>
+      </details>
+
+      <details class="bg-white rounded-xl border border-[#d4d8d5] overflow-hidden group">
+        <summary class="flex items-center justify-between p-6 cursor-pointer list-none font-semibold text-[#111418] text-[16px] hover:text-[#00b67a] transition-colors">
+          Is the work guaranteed?
+          <span class="text-[#00b67a] text-xl font-light flex-shrink-0 ml-4 transition-transform group-open:rotate-45">+</span>
+        </summary>
+        <div class="px-6 pb-6 text-[15px] text-[#3d4550] leading-relaxed border-t border-[#d4d8d5] pt-4">
+          Yes. All workmanship is covered by a 12-month guarantee against faulty labour as standard on every project. If anything falls short of your expectations within the first year, we will return and put it right at no additional cost to you. This guarantee is backed by our £5M Public Liability Insurance for complete peace of mind.
+        </div>
+      </details>
+
+      <details class="bg-white rounded-xl border border-[#d4d8d5] overflow-hidden group">
+        <summary class="flex items-center justify-between p-6 cursor-pointer list-none font-semibold text-[#111418] text-[16px] hover:text-[#00b67a] transition-colors">
+          Do you use subcontractors or your own team?
+          <span class="text-[#00b67a] text-xl font-light flex-shrink-0 ml-4 transition-transform group-open:rotate-45">+</span>
+        </summary>
+        <div class="px-6 pb-6 text-[15px] text-[#3d4550] leading-relaxed border-t border-[#d4d8d5] pt-4">
+          Our installers are in-house specialists who work exclusively for A&G Renovations — not subcontracted strangers. They arrive on time, work a full day between 8AM and 5PM, and follow A&G's standards on every project. For specialist trades such as gas and electrical work, we work with vetted, certified partners — Gas Safe registered engineers and NICEIC certified electricians — who are familiar with how we operate.
+        </div>
+      </details>
+
+      <details class="bg-white rounded-xl border border-[#d4d8d5] overflow-hidden group">
+        <summary class="flex items-center justify-between p-6 cursor-pointer list-none font-semibold text-[#111418] text-[16px] hover:text-[#00b67a] transition-colors">
+          What areas of London do you cover?
+          <span class="text-[#00b67a] text-xl font-light flex-shrink-0 ml-4 transition-transform group-open:rotate-45">+</span>
+        </summary>
+        <div class="px-6 pb-6 text-[15px] text-[#3d4550] leading-relaxed border-t border-[#d4d8d5] pt-4">
+          We work across all areas of London and the surrounding regions. Our team is based in East London and regularly completes projects across Central, North, South, East and West London. If you are unsure whether we cover your area, call us on 020 3621 8527 or fill in the enquiry form and we will confirm.
+        </div>
+      </details>
+
+      <details class="bg-white rounded-xl border border-[#d4d8d5] overflow-hidden group">
+        <summary class="flex items-center justify-between p-6 cursor-pointer list-none font-semibold text-[#111418] text-[16px] hover:text-[#00b67a] transition-colors">
+          What happens after I submit an enquiry?
+          <span class="text-[#00b67a] text-xl font-light flex-shrink-0 ml-4 transition-transform group-open:rotate-45">+</span>
+        </summary>
+        <div class="px-6 pb-6 text-[15px] text-[#3d4550] leading-relaxed border-t border-[#d4d8d5] pt-4">
+          Once you submit an enquiry, Gintare from our team will be in touch to confirm a convenient time for a free site visit. Syed, our estimator, will come to your home, take precise measurements, listen to your vision, and answer every question. A clear, itemised proposal is then prepared and sent to you for review — with no obligation to proceed. Most clients receive their proposal within a few days of the site visit.
+        </div>
+      </details>
+
+    </div>
+    <div class="text-center mt-10">
+      <a href="#enquiry" class="inline-flex items-center gap-2.5 bg-[#00b67a] text-white px-10 py-5 rounded-md text-[17px] font-semibold hover:bg-[#009664] transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_28px_rgba(0,182,122,0.35)]">Book My Free Site Visit &rarr;</a>
     </div>
   </div>
 </section>
