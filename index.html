@@ -1681,8 +1681,7 @@
     try {
       await fetch('https://hooks.zapier.com/hooks/catch/27822859/4bkdgjs/', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ full_name, email, phone, address, city, post_code, message })
+        body: new URLSearchParams({ full_name, email, phone, address, city, post_code, message })
       });
     } catch (err) {
       console.warn('Zapier webhook:', err);
