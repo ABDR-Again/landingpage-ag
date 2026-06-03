@@ -1103,126 +1103,216 @@
         </div>
         <div>
           <div class="bg-white rounded-2xl p-3 sm:p-5 md:p-10 shadow-[0_12px_56px_rgba(0,0,0,0.08)]">
-<!-- ── FORM HTML (replaces the iframe div) ─────────────────── -->
-<div class="w-full">
+<!-- ── STYLE BLOCK (self-contained, no Tailwind needed) ─── -->
+<style>
+  .agf-wrap { font-family: 'DM Sans', sans-serif; }
+  .agf-group { margin-bottom: 14px; }
+  .agf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+  .agf-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    color: #111418;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  .agf-label-opt {
+    font-size: 11px;
+    font-weight: 400;
+    color: #9ca3af;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+  .agf-req { color: #dc3545; }
+  .agf-input {
+    width: 100%;
+    padding: 13px 15px;
+    border-radius: 8px;
+    border: 1.5px solid #d4d8d5;
+    font-size: 14px;
+    color: #111418;
+    background: #fafafa;
+    font-family: 'DM Sans', sans-serif;
+    box-sizing: border-box;
+    transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+    outline: none;
+    -webkit-appearance: none;
+  }
+  .agf-input::placeholder { color: #b0b8c1; }
+  .agf-input:focus {
+    border-color: #00b67a;
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(0, 182, 122, 0.12);
+  }
+  .agf-textarea {
+    resize: none;
+    height: 116px;
+  }
+  .agf-error {
+    display: none;
+    padding: 11px 15px;
+    border-radius: 8px;
+    background: #fff5f5;
+    border: 1.5px solid #fca5a5;
+    font-size: 13px;
+    color: #dc3545;
+    margin-bottom: 14px;
+    line-height: 1.45;
+  }
+  .agf-error.agf-visible { display: block; }
+  .agf-btn {
+    width: 100%;
+    background: #00b67a;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 15px 24px;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    transition: background 0.15s, transform 0.15s, box-shadow 0.15s;
+    margin-top: 4px;
+  }
+  .agf-btn:hover {
+    background: #009664;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(0, 182, 122, 0.35);
+  }
+  .agf-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+  .agf-note {
+    text-align: center;
+    font-size: 11px;
+    color: #9ca3af;
+    margin-top: 10px;
+    line-height: 1.5;
+  }
+  /* Success state */
+  .agf-success {
+    display: none;
+    text-align: center;
+    padding: 48px 16px;
+  }
+  .agf-success.agf-visible { display: block; }
+  .agf-success-icon {
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    background: rgba(0, 182, 122, 0.1);
+    border: 1px solid rgba(0, 182, 122, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 22px;
+  }
+  .agf-success h3 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #111418;
+    margin: 0 0 10px;
+    line-height: 1.3;
+  }
+  .agf-success p {
+    font-size: 15px;
+    color: #3d4550;
+    line-height: 1.6;
+    margin: 0;
+  }
+  .agf-success-note {
+    font-size: 13px;
+    color: #9ca3af;
+    margin-top: 16px;
+  }
+  .agf-success-note a {
+    color: #00b67a;
+    font-weight: 600;
+    text-decoration: none;
+  }
+</style>
+
+<!-- ── FORM HTML ────────────────────────────────────────────── -->
+<div class="agf-wrap">
 
   <!-- Form state -->
   <div id="ag-form">
-    <div class="space-y-4">
 
-      <!-- Full Name -->
-      <div>
-        <label for="ag-name"
-          class="block text-[11px] font-bold text-[#111418] uppercase tracking-[1px] mb-1.5">
-          Full Name <span class="text-[#dc3545]">*</span>
-        </label>
-        <input type="text" id="ag-name" autocomplete="name" placeholder="e.g. John Smith"
-          class="w-full px-4 py-3.5 rounded-lg border border-[#d4d8d5] text-[14px] text-[#111418] bg-[#fafafa] placeholder:text-[#b0b8c1] focus:outline-none focus:border-[#00b67a] focus:ring-2 focus:ring-[rgba(0,182,122,0.12)] focus:bg-white transition-all">
-      </div>
-
-      <!-- Email -->
-      <div>
-        <label for="ag-email"
-          class="block text-[11px] font-bold text-[#111418] uppercase tracking-[1px] mb-1.5">
-          Email Address <span class="text-[#dc3545]">*</span>
-        </label>
-        <input type="email" id="ag-email" autocomplete="email" placeholder="e.g. john@email.com"
-          class="w-full px-4 py-3.5 rounded-lg border border-[#d4d8d5] text-[14px] text-[#111418] bg-[#fafafa] placeholder:text-[#b0b8c1] focus:outline-none focus:border-[#00b67a] focus:ring-2 focus:ring-[rgba(0,182,122,0.12)] focus:bg-white transition-all">
-      </div>
-
-      <!-- Phone -->
-      <div>
-        <label for="ag-phone"
-          class="block text-[11px] font-bold text-[#111418] uppercase tracking-[1px] mb-1.5">
-          Phone Number <span class="text-[#dc3545]">*</span>
-        </label>
-        <input type="tel" id="ag-phone" autocomplete="tel" placeholder="e.g. 07700 900000"
-          class="w-full px-4 py-3.5 rounded-lg border border-[#d4d8d5] text-[14px] text-[#111418] bg-[#fafafa] placeholder:text-[#b0b8c1] focus:outline-none focus:border-[#00b67a] focus:ring-2 focus:ring-[rgba(0,182,122,0.12)] focus:bg-white transition-all">
-      </div>
-
-      <!-- Address -->
-      <div>
-        <label for="ag-address"
-          class="block text-[11px] font-bold text-[#111418] uppercase tracking-[1px] mb-1.5">
-          Address
-          <span class="text-[#9ca3af] font-normal normal-case tracking-normal text-[11px]">(optional)</span>
-        </label>
-        <input type="text" id="ag-address" autocomplete="street-address"
-          placeholder="e.g. 12 High Street"
-          class="w-full px-4 py-3.5 rounded-lg border border-[#d4d8d5] text-[14px] text-[#111418] bg-[#fafafa] placeholder:text-[#b0b8c1] focus:outline-none focus:border-[#00b67a] focus:ring-2 focus:ring-[rgba(0,182,122,0.12)] focus:bg-white transition-all">
-      </div>
-
-      <!-- City + Postcode -->
-      <div class="grid grid-cols-2 gap-3">
-        <div>
-          <label for="ag-city"
-            class="block text-[11px] font-bold text-[#111418] uppercase tracking-[1px] mb-1.5">
-            City
-            <span class="text-[#9ca3af] font-normal normal-case tracking-normal text-[11px]">(optional)</span>
-          </label>
-          <input type="text" id="ag-city" autocomplete="address-level2" placeholder="London"
-            class="w-full px-4 py-3.5 rounded-lg border border-[#d4d8d5] text-[14px] text-[#111418] bg-[#fafafa] placeholder:text-[#b0b8c1] focus:outline-none focus:border-[#00b67a] focus:ring-2 focus:ring-[rgba(0,182,122,0.12)] focus:bg-white transition-all">
-        </div>
-        <div>
-          <label for="ag-postcode"
-            class="block text-[11px] font-bold text-[#111418] uppercase tracking-[1px] mb-1.5">
-            Postcode <span class="text-[#dc3545]">*</span>
-          </label>
-          <input type="text" id="ag-postcode" autocomplete="postal-code"
-            placeholder="e.g. SW1A 1AA"
-            class="w-full px-4 py-3.5 rounded-lg border border-[#d4d8d5] text-[14px] text-[#111418] bg-[#fafafa] placeholder:text-[#b0b8c1] focus:outline-none focus:border-[#00b67a] focus:ring-2 focus:ring-[rgba(0,182,122,0.12)] focus:bg-white transition-all">
-        </div>
-      </div>
-
-      <!-- Message -->
-      <div>
-        <label for="ag-message"
-          class="block text-[11px] font-bold text-[#111418] uppercase tracking-[1px] mb-1.5">
-          Tell Us About Your Project <span class="text-[#dc3545]">*</span>
-        </label>
-        <textarea id="ag-message" rows="4"
-          placeholder="e.g. We'd like to remove the bath and install a walk-in shower, update the tiling and vanity unit…"
-          class="w-full px-4 py-3.5 rounded-lg border border-[#d4d8d5] text-[14px] text-[#111418] bg-[#fafafa] placeholder:text-[#b0b8c1] focus:outline-none focus:border-[#00b67a] focus:ring-2 focus:ring-[rgba(0,182,122,0.12)] focus:bg-white transition-all resize-none"></textarea>
-      </div>
-
-      <!-- Error message -->
-      <div id="ag-error"
-        class="hidden px-4 py-3 rounded-lg bg-red-50 border border-red-200 text-[13px] text-red-600 leading-snug">
-      </div>
-
-      <!-- Submit button -->
-      <button id="ag-submit" type="button" onclick="agSubmitForm()"
-        class="w-full bg-[#00b67a] text-white px-6 py-4 rounded-lg text-[15px] font-semibold hover:bg-[#009664] transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_28px_rgba(0,182,122,0.35)] flex items-center justify-center gap-2.5 disabled:opacity-60 disabled:cursor-not-allowed disabled:translate-y-0 disabled:shadow-none">
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" id="ag-btn-icon">
-          <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-        </svg>
-        <span id="ag-btn-label">Book My Free Site Visit</span>
-      </button>
-
-      <p class="text-center text-[11px] text-[#9ca3af] leading-relaxed">
-        No commitment. No hard sell. Gintare will be in touch to arrange your free visit.
-      </p>
-
+    <div class="agf-group">
+      <label for="ag-name" class="agf-label">Full Name <span class="agf-req">*</span></label>
+      <input type="text" id="ag-name" class="agf-input" autocomplete="name" placeholder="e.g. John Smith">
     </div>
+
+    <div class="agf-group">
+      <label for="ag-email" class="agf-label">Email Address <span class="agf-req">*</span></label>
+      <input type="email" id="ag-email" class="agf-input" autocomplete="email" placeholder="e.g. john@email.com">
+    </div>
+
+    <div class="agf-group">
+      <label for="ag-phone" class="agf-label">Phone Number <span class="agf-req">*</span></label>
+      <input type="tel" id="ag-phone" class="agf-input" autocomplete="tel" placeholder="e.g. 07700 900000">
+    </div>
+
+    <div class="agf-group">
+      <label for="ag-address" class="agf-label">
+        Address <span class="agf-label-opt">(optional)</span>
+      </label>
+      <input type="text" id="ag-address" class="agf-input" autocomplete="street-address" placeholder="e.g. 12 High Street">
+    </div>
+
+    <div class="agf-row">
+      <div>
+        <label for="ag-city" class="agf-label">
+          City <span class="agf-label-opt">(optional)</span>
+        </label>
+        <input type="text" id="ag-city" class="agf-input" autocomplete="address-level2" placeholder="London">
+      </div>
+      <div>
+        <label for="ag-postcode" class="agf-label">Postcode <span class="agf-req">*</span></label>
+        <input type="text" id="ag-postcode" class="agf-input" autocomplete="postal-code" placeholder="e.g. SW1A 1AA">
+      </div>
+    </div>
+
+    <div class="agf-group">
+      <label for="ag-message" class="agf-label">Tell Us About Your Project <span class="agf-req">*</span></label>
+      <textarea id="ag-message" class="agf-input agf-textarea"
+        placeholder="e.g. We'd like to remove the bath and install a walk-in shower, update the tiling and vanity unit…"></textarea>
+    </div>
+
+    <div id="ag-error" class="agf-error"></div>
+
+    <button id="ag-submit" type="button" class="agf-btn" onclick="agSubmitForm()">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+      </svg>
+      <span id="ag-btn-label">Book My Free Site Visit</span>
+    </button>
+
+    <p class="agf-note">No commitment. No hard sell. Gintare will be in touch to arrange your free visit.</p>
+
   </div>
 
-  <!-- Success state (shown after submission) -->
-  <div id="ag-success" class="hidden text-center py-10 px-4">
-    <div
-      class="w-[68px] h-[68px] rounded-full bg-[rgba(0,182,122,0.1)] border border-[rgba(0,182,122,0.2)] flex items-center justify-center mx-auto mb-6">
-      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#00b67a" stroke-width="2.5"
-        stroke-linecap="round" stroke-linejoin="round">
-        <polyline points="20 6 9 17 4 12" />
+  <!-- Success state -->
+  <div id="ag-success" class="agf-success">
+    <div class="agf-success-icon">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#00b67a"
+        stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="20 6 9 17 4 12"/>
       </svg>
     </div>
-    <h3 class="text-[22px] font-bold text-[#111418] mb-3 leading-tight">Enquiry Received</h3>
-    <p class="text-[#3d4550] leading-relaxed text-[15px] mb-1.5">
-      Thank you — Gintare will be in touch shortly to arrange your free site visit with Syed.
-    </p>
-    <p class="text-[13px] text-[#9ca3af] mt-4">
+    <h3>Enquiry Received</h3>
+    <p>Thank you — Gintare will be in touch shortly to arrange your free site visit with Syed.</p>
+    <p class="agf-success-note">
       Questions in the meantime? Call us on
-      <a href="tel:02036218527" onclick="return gtag_report_conversion('tel:02036218527');"
-        class="text-[#00b67a] font-semibold">020 3621 8527</a>
+      <a href="tel:02036218527" onclick="return gtag_report_conversion('tel:02036218527');">020 3621 8527</a>
     </p>
   </div>
 
@@ -1553,14 +1643,13 @@
     })();
   </script>
 
-<!-- ── SCRIPT (paste just before </body>) ────────────────────── -->
+<!-- ── SCRIPT (replace the existing agSubmitForm script) ─── -->
 <script>
   async function agSubmitForm() {
-    const btn      = document.getElementById('ag-submit');
-    const label    = document.getElementById('ag-btn-label');
-    const errorEl  = document.getElementById('ag-error');
+    const btn     = document.getElementById('ag-submit');
+    const label   = document.getElementById('ag-btn-label');
+    const errorEl = document.getElementById('ag-error');
 
-    // Collect values
     const full_name = document.getElementById('ag-name').value.trim();
     const email     = document.getElementById('ag-email').value.trim();
     const phone     = document.getElementById('ag-phone').value.trim();
@@ -1569,19 +1658,16 @@
     const post_code = document.getElementById('ag-postcode').value.trim();
     const message   = document.getElementById('ag-message').value.trim();
 
-    // Reset error
-    errorEl.classList.add('hidden');
+    errorEl.classList.remove('agf-visible');
     errorEl.textContent = '';
 
-    // Validation helper
     function showError(msg) {
       errorEl.textContent = msg;
-      errorEl.classList.remove('hidden');
+      errorEl.classList.add('agf-visible');
       btn.disabled = false;
       label.textContent = 'Book My Free Site Visit';
     }
 
-    // Required field checks
     if (!full_name)  return showError('Please enter your full name.');
     if (!email)      return showError('Please enter your email address.');
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return showError('Please enter a valid email address.');
@@ -1589,11 +1675,9 @@
     if (!post_code)  return showError('Please enter your postcode.');
     if (!message)    return showError('Please tell us a little about your project.');
 
-    // Loading state
     btn.disabled = true;
     label.textContent = 'Sending…';
 
-    // Send to Zapier → Houzz Pro
     try {
       await fetch('https://hooks.zapier.com/hooks/catch/27822859/4bkdgjs/', {
         method: 'POST',
@@ -1601,16 +1685,11 @@
         body: JSON.stringify({ full_name, email, phone, address, city, post_code, message })
       });
     } catch (err) {
-      // Webhook is reliable — proceed to success regardless
       console.warn('Zapier webhook:', err);
     }
 
-    // ── Google Ads form submission conversion ──────────────────
-    // ACTION NEEDED: Replace REPLACE_WITH_FORM_LABEL with your
-    // form submission conversion label from Google Ads.
-    // Google Ads → Goals → Conversions → + New conversion action
-    // → Website → Category: Submit lead form
-    // The label looks like: AW-17907613995/xxxxxxxxxxxx
+    // Google Ads form submission conversion
+    // Replace REPLACE_WITH_FORM_LABEL once you've created the conversion action in Google Ads
     if (typeof gtag !== 'undefined') {
       gtag('event', 'conversion', {
         'send_to': 'AW-17907613995/REPLACE_WITH_FORM_LABEL',
@@ -1618,11 +1697,9 @@
         'currency': 'GBP'
       });
     }
-    // ──────────────────────────────────────────────────────────
 
-    // Show success state
-    document.getElementById('ag-form').classList.add('hidden');
-    document.getElementById('ag-success').classList.remove('hidden');
+    document.getElementById('ag-form').style.display = 'none';
+    document.getElementById('ag-success').classList.add('agf-visible');
     window.scrollTo({ top: document.getElementById('enquiry').offsetTop - 80, behavior: 'smooth' });
   }
 </script>
