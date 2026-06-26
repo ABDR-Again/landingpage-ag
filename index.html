@@ -1685,7 +1685,11 @@
     try {
       await fetch('https://hooks.zapier.com/hooks/catch/27822859/4bkdgjs/', {
         method: 'POST',
-        body: new URLSearchParams({ full_name, email, phone, address, city, post_code, message })
+        body: new URLSearchParams({
+          full_name, email, phone, address, city, post_code, message,
+          lead_source: 'Google Ads Landing Page',
+          project_type: 'Bathroom Renovation'
+        })
       });
     } catch (err) {
       console.warn('Zapier webhook:', err);
