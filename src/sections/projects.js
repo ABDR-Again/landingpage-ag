@@ -1,118 +1,114 @@
 export function initProjects() {
-  const rootSection = document.getElementById("our-projects-section");
+  const rootSection = document.getElementById("ag-pfm-section");
   if (!rootSection || rootSection.dataset.agInitialized === 'true') return;
   rootSection.dataset.agInitialized = 'true';
 
-  const track = document.getElementById('pg-track');
-        const btnPrev = document.getElementById('pg-btn-prev');
-        const btnNext = document.getElementById('pg-btn-next');
-        const cards = document.querySelectorAll('.pg-card');
-        const cursor = document.getElementById('pg-custom-cursor');
+  // Lightbox Elements
+  const lightbox = document.getElementById('ag-pfm-lightbox-modal');
+  const lightboxImg = document.getElementById('ag-pfm-lightbox-img-el');
+  const closeBtn = document.querySelector('.ag-pfm-lightbox-close');
 
-        const lightbox = document.getElementById('pg-lightbox');
-        const lightboxImg = document.getElementById('pg-lightbox-img');
-        const lightboxClose = document.getElementById('pg-lightbox-close');
+  function attachLightboxListeners(cardsNodeList) {
+    cardsNodeList.forEach(card => {
+      if (card.dataset.listenerAttached === 'true') return;
+      card.dataset.listenerAttached = 'true';
 
-        // -- Navigation Arrows Logic --
-        const scrollAmount = () => {
-          // Scroll by the width of one item + gap on desktop, or viewport width on mobile
-          return window.innerWidth < 1024 ? window.innerWidth : 500; 
-        };
+      card.addEventListener('click', () => {
+        const imgEl = card.querySelector('.ag-pfm-img');
+        if (!imgEl) return;
+        
+        // Use original high-res image if available, else thumbnail
+        lightboxImg.src = imgEl.dataset.original || imgEl.src;
+        lightboxImg.alt = imgEl.alt;
+        
+        lightbox.classList.add('ag-active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+  }
 
-        btnPrev.addEventListener('click', () => {
-          track.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
-        });
+  // Initial attachment
+  attachLightboxListeners(document.querySelectorAll('.ag-pfm-card'));
 
-        btnNext.addEventListener('click', () => {
-          track.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
-        });
+  const closeLightbox = () => {
+    lightbox.classList.remove('ag-active');
+    document.body.style.overflow = '';
+    setTimeout(() => { lightboxImg.src = ''; }, 300);
+  };
 
-        // -- Custom Cursor Logic --
-        // Only attach mousemove tracking if we are on a non-touch device (desktop)
-        if (window.matchMedia("(pointer: fine)").matches) {
-          cards.forEach(card => {
-            card.addEventListener('mouseenter', () => {
-              cursor.classList.add('active');
-            });
+  closeBtn.addEventListener('click', closeLightbox);
+  
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
 
-            card.addEventListener('mouseleave', () => {
-              cursor.classList.remove('active');
-            });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && lightbox.classList.contains('ag-active')) closeLightbox();
+  });
 
-            card.addEventListener('mousemove', (e) => {
-              cursor.style.left = `${e.clientX}px`;
-              cursor.style.top = `${e.clientY}px`;
-            });
-          });
+  // Load More Logic
+  const loadMoreBtn = document.getElementById('ag-pfm-load-more');
+  const grid = document.getElementById('ag-pfm-grid');
+  
+  let currentLoadCount = 10; // We initially loaded 10 in index.html
+  let projectsData = null;
+
+  if (loadMoreBtn) {
+    loadMoreBtn.addEventListener('click', async () => {
+      try {
+        if (!projectsData) {
+          const res = await fetch('./projects_data.json');
+          projectsData = await res.json();
         }
 
-        // -- Lightbox Modal Logic --
-        let isDesktopFormat = window.innerWidth >= 1024;
+        if (currentLoadCount >= projectsData.length) {
+          const btnText = loadMoreBtn.querySelector('span');
+          btnText.textContent = "All projects loaded";
+          loadMoreBtn.classList.add('ag-loading');
+          return;
+        }
 
-        const openLightbox = (src) => {
-          lightboxImg.src = src;
-          lightbox.classList.remove('hidden');
+        loadMoreBtn.classList.add('ag-loading');
+        const btnText = loadMoreBtn.querySelector('span');
+        const originalText = btnText.textContent;
+        btnText.textContent = "Loading...";
 
-          // Lock body scroll
-          document.body.style.overflow = 'hidden';
-
-          // Small delay to allow display:block to apply before animating opacity/transform
-          requestAnimationFrame(() => {
-            lightbox.classList.remove('opacity-0');
-            lightbox.classList.add('opacity-100');
-            lightboxImg.classList.remove('scale-95');
-            lightboxImg.classList.add('scale-100');
-          });
-        };
-
-        const closeLightbox = () => {
-          lightbox.classList.remove('opacity-100');
-          lightbox.classList.add('opacity-0');
-          lightboxImg.classList.remove('scale-100');
-          lightboxImg.classList.add('scale-95');
-
-          // Wait for transition to finish before hiding element entirely
-          setTimeout(() => {
-            lightbox.classList.add('hidden');
-            lightboxImg.src = ''; // Clear source
-            document.body.style.overflow = ''; // Unlock body scroll
-          }, 400); // Matches the duration-400 transition
-        };
-
-        cards.forEach(card => {
-          card.addEventListener('click', () => {
-            const img = card.querySelector('img');
-            // Open lightbox only if there's a valid src, or open it anyway to fulfill specs
-            const rawSrc = img.dataset.fullSrc || img.getAttribute('src');
-            if (rawSrc) openLightbox(img.currentSrc || img.src); 
-          });
+        // Add 10 more
+        const nextBatch = projectsData.slice(currentLoadCount, currentLoadCount + 10);
+        
+        // Append
+        nextBatch.forEach((data, i) => {
+          const card = document.createElement('div');
+          card.className = `ag-pfm-card ${data.sizeClass}`;
+          card.setAttribute('role', 'button');
+          
+          const title = data.alt.split(' Image ')[0] || data.alt;
+          
+          card.innerHTML = `
+            <img src="${data.thumbnail}" data-original="${data.original}" alt="${data.alt}" class="ag-pfm-img" loading="lazy" decoding="async">
+            <div class="ag-pfm-overlay"></div>
+            <div class="ag-pfm-content">
+                <h3 class="ag-pfm-card-title">${title}</h3>
+            </div>
+          `;
+          grid.appendChild(card);
         });
 
-        lightboxClose.addEventListener('click', closeLightbox);
+        attachLightboxListeners(document.querySelectorAll('.ag-pfm-card'));
 
-        // Close on background click
-        lightbox.addEventListener('click', (e) => {
-          if (e.target === lightbox || e.target.id === 'pg-lightbox-content') {
-            closeLightbox();
-          }
-        });
-
-        // Handle Device Switch (Resize observer)
-        // Auto-closes modal if crossing the desktop/mobile breakpoint while open
-        window.addEventListener('resize', () => {
-          const newIsDesktopFormat = window.innerWidth >= 1024;
-          if (isDesktopFormat !== newIsDesktopFormat) {
-            isDesktopFormat = newIsDesktopFormat;
-            if (!lightbox.classList.contains('hidden')) {
-              closeLightbox();
-            }
-          }
-        });
-
-        // Escape key to close modal
-        document.addEventListener('keydown', (e) => {
-          if (e.key === 'Escape' && !lightbox.classList.contains('hidden')) {
-            closeLightbox();
-          }
-        });
+        currentLoadCount += 10;
+        
+        if (currentLoadCount >= projectsData.length) {
+          btnText.textContent = "All projects loaded";
+        } else {
+          btnText.textContent = originalText;
+          loadMoreBtn.classList.remove('ag-loading');
+        }
+      } catch (e) {
+        console.error('Failed to load more projects:', e);
+        const btnText = loadMoreBtn.querySelector('span');
+        btnText.textContent = "Error loading";
+      }
+    });
+  }
 }

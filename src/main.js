@@ -19,7 +19,7 @@ const lazySections = [
     loader: () => import('./sections/services.js').then((module) => module.initServices()),
   },
   {
-    selector: "#our-projects-section",
+    selector: "#ag-pfm-section",
     loader: () => import('./sections/projects.js').then((module) => module.initProjects()),
   },
   {

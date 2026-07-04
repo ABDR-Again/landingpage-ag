@@ -9,11 +9,20 @@
   <link rel="preload" href="./assets/fonts/dm-sans-v17-latin-600.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="./assets/fonts/cormorant-garamond-v21-latin-600.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="./critical.css">
-  <link rel="preload" href="./style.css" as="style">
-  <link rel="stylesheet" href="./style.css">
+  <link rel="preload" href="./style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="./style.css"></noscript>
   <script type="module" src="./src/main.js"></script>
 </head>
 <body>
+  <header id="ag-header" style="position: fixed; top: 0; left: 0; width: 100%; z-index: 50; background: transparent; padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; pointer-events: none;">
+    <a href="#" class="ag-logo-link" style="pointer-events: auto;">
+      <img src="./assets/images/optimized/ag_logo2.png" alt="A&G Renovations" style="max-width: 150px; height: auto;">
+    </a>
+    <a href="tel:+4402036218527" class="ag-header-cta" style="pointer-events: auto; background-color: #A68A61; color: white; padding: 12px 24px; border-radius: 4px; font-weight: 600; text-decoration: none; font-size: 14px; display: flex; align-items: center; gap: 8px; transition: background-color 0.3s ease;">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57a1.02 1.02 0 0 0-1.02.24l-2.2 2.2a15.045 15.045 0 0 1-6.59-6.59l2.2-2.21a.96.96 0 0 0 .25-1A11.36 11.36 0 0 1 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/></svg>
+      Call Now
+    </a>
+  </header>
   <main id="ag-page">
     <!-- Hero -->
     <section id="hs-hero-section">
@@ -394,284 +403,132 @@
       </section>
 
     <!-- Projects -->
-    <section id="our-projects-section" class="relative bg-[#FCFAF8] py-24 overflow-hidden text-[#1A1A1A]">
-
-      <!-- Custom Cursor Element -->
-      <div id="pg-custom-cursor" class="gallery-cursor uppercase font-serif hidden lg:flex">
-        View
-      </div>
-
-      <!-- Section Header -->
-      <div class="text-center px-6 mb-16 max-w-4xl mx-auto">
-        <h3 class="text-[11px] font-bold tracking-[0.25em] text-[#A68A61] uppercase mb-6">Our Completed Projects</h3>
-        <h2 class="font-serif text-5xl md:text-6xl lg:text-7xl mb-6 text-[#111]">Craftsmanship You Can See</h2>
-        <p class="text-base md:text-lg text-[#555] font-light leading-relaxed max-w-2xl mx-auto">
-          Explore a selection of our completed renovations across West London.<br class="hidden md:block"> 
-          Every detail thoughtfully designed. Every finish expertly delivered.
-        </p>
-      </div>
-
-      <!-- Gallery Container -->
-      <div class="relative w-full mx-auto max-w-[1920px]">
-
-        <!-- Left Navigation Arrow -->
-        <button id="pg-btn-prev" class="absolute left-4 md:left-12 top-1/2 -translate-y-1/2 z-20 w-14 h-14 bg-white/90 hover:bg-white backdrop-blur-sm rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.08)] flex items-center justify-center text-gray-800 transition-all duration-300 focus:outline-none hover:scale-105 group">
-          <svg class="w-6 h-6 stroke-current transition-transform group-hover:-translate-x-1" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 19l-7-7 7-7"></path></svg>
-        </button>
-
-        <!-- Right Navigation Arrow -->
-        <button id="pg-btn-next" class="absolute right-4 md:right-12 top-1/2 -translate-y-1/2 z-20 w-14 h-14 bg-white/90 hover:bg-white backdrop-blur-sm rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.08)] flex items-center justify-center text-gray-800 transition-all duration-300 focus:outline-none hover:scale-105 group">
-          <svg class="w-6 h-6 stroke-current transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path></svg>
-        </button>
-
-        <!-- Scrollable Gallery Track -->
-        <div id="pg-track" class="flex gap-4 md:gap-6 overflow-x-auto no-scrollbar snap-x snap-mandatory px-4 md:px-12 py-8 items-center scroll-smooth">
-
-          <!-- Project Item 1 -->
-          <div class="pg-card relative flex-shrink-0 snap-center rounded-2xl overflow-hidden cursor-pointer group w-full lg:w-auto h-[60vh] lg:h-[600px] xl:h-[700px] min-h-[400px]">
-            <img data-src="" alt="Holland Park House" class="block w-full h-full lg:w-auto lg:h-full object-cover min-w-[300px] transition-transform duration-[800ms] ease-out group-hover:scale-105" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-            <div class="absolute bottom-0 left-0 w-full p-8 md:p-10 translate-y-6 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out pointer-events-none flex flex-col justify-end">
-              <h4 class="text-white font-serif text-3xl md:text-4xl mb-3 tracking-wide drop-shadow-md">Holland Park House</h4>
-              <p class="text-[#D4C3A3] text-sm md:text-base mb-1 tracking-wide">Full Home Renovation</p>
-              <p class="text-gray-300 text-xs md:text-sm font-light">Holland Park, W11</p>
+    <!-- Projects (Masonry Portfolio) -->
+    <section id="ag-pfm-section">
+        <div class="ag-pfm-container">
+            
+            <!-- Header -->
+            <div class="ag-pfm-header">
+                <div class="ag-pfm-eyebrow">Our Portfolio</div>
+                <h2 class="ag-pfm-title">Beautiful Spaces, Expertly Renovated</h2>
+                <p class="ag-pfm-desc">
+                    Explore a selection of our completed renovations across West London. Every detail thoughtfully designed. Every finish expertly delivered.
+                </p>
             </div>
-          </div>
 
-          <!-- Project Item 2 -->
-          <div class="pg-card relative flex-shrink-0 snap-center rounded-2xl overflow-hidden cursor-pointer group w-full lg:w-auto h-[60vh] lg:h-[600px] xl:h-[700px] min-h-[400px]">
-            <img data-src="" alt="Kensington Townhouse" class="block w-full h-full lg:w-auto lg:h-full object-cover min-w-[300px] transition-transform duration-[800ms] ease-out group-hover:scale-105" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-            <div class="absolute bottom-0 left-0 w-full p-8 md:p-10 translate-y-6 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out pointer-events-none flex flex-col justify-end">
-              <h4 class="text-white font-serif text-3xl md:text-4xl mb-3 tracking-wide drop-shadow-md">Kensington Townhouse</h4>
-              <p class="text-[#D4C3A3] text-sm md:text-base mb-1 tracking-wide">Full Home Renovation</p>
-              <p class="text-gray-300 text-xs md:text-sm font-light">Kensington, W8</p>
-            </div>
-          </div>
+            <!-- Masonry Grid -->
+            <div class="ag-pfm-grid" id="ag-pfm-grid">
 
-          <!-- Project Item 3 (Featured) -->
-          <div class="pg-card relative flex-shrink-0 snap-center rounded-2xl overflow-hidden cursor-pointer group w-full lg:w-auto h-[60vh] lg:h-[650px] xl:h-[750px] min-h-[450px]">
-            <div class="absolute top-6 left-6 z-10 bg-[#C4A478] text-white text-[10px] md:text-xs font-bold tracking-widest uppercase px-4 py-2 rounded-sm shadow-md">
-              Featured Project
+            <!-- Card 1 -->
+            <div class="ag-pfm-card size-large" role="button" aria-label="View Bathroom Project 10">
+                <img src="./assets/images/optimized/Bathroom-Project-10-Image-10_result-scaled.webp" data-original="./assets/images/projects-pics/Bathroom-Project-10-Image-10_result-scaled.webp" alt="Bathroom Project 10 Image 10" class="ag-pfm-img" loading="lazy" decoding="async">
+                <div class="ag-pfm-overlay"></div>
+                <div class="ag-pfm-badge">Featured Project</div>
+                <div class="ag-pfm-content">
+                    <h3 class="ag-pfm-card-title">Bathroom Project 10</h3>
+                </div>
             </div>
-            <img data-src="" alt="Notting Hill Residences" class="block w-full h-full lg:w-auto lg:h-full object-cover min-w-[320px] transition-transform duration-[800ms] ease-out group-hover:scale-105" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-            <div class="absolute bottom-0 left-0 w-full p-8 md:p-12 translate-y-6 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out pointer-events-none flex flex-col justify-end">
-              <h4 class="text-white font-serif text-4xl md:text-5xl mb-3 tracking-wide drop-shadow-lg">Notting Hill Residences</h4>
-              <div class="flex items-center text-[#D4C3A3] text-sm md:text-base tracking-wide space-x-2">
-                <span>Full Home Renovation</span>
-                <span class="text-gray-400 text-xs mb-1">•</span>
-                <span class="text-gray-300">Notting Hill, W11</span>
-              </div>
+            <!-- Card 2 -->
+            <div class="ag-pfm-card size-tall" role="button" aria-label="View Bathroom Project 10">
+                <img src="./assets/images/optimized/Bathroom-Project-10-Image-1_result-scaled.webp" data-original="./assets/images/projects-pics/Bathroom-Project-10-Image-1_result-scaled.webp" alt="Bathroom Project 10 Image 1" class="ag-pfm-img" loading="lazy" decoding="async">
+                <div class="ag-pfm-overlay"></div>
+                
+                <div class="ag-pfm-content">
+                    <h3 class="ag-pfm-card-title">Bathroom Project 10</h3>
+                </div>
             </div>
-          </div>
+            <!-- Card 3 -->
+            <div class="ag-pfm-card size-tall" role="button" aria-label="View Bathroom Project 10">
+                <img src="./assets/images/optimized/Bathroom-Project-10-Image-2_result-scaled.webp" data-original="./assets/images/projects-pics/Bathroom-Project-10-Image-2_result-scaled.webp" alt="Bathroom Project 10 Image 2" class="ag-pfm-img" loading="lazy" decoding="async">
+                <div class="ag-pfm-overlay"></div>
+                
+                <div class="ag-pfm-content">
+                    <h3 class="ag-pfm-card-title">Bathroom Project 10</h3>
+                </div>
+            </div>
+            <!-- Card 4 -->
+            <div class="ag-pfm-card size-tall" role="button" aria-label="View Bathroom Project 10">
+                <img src="./assets/images/optimized/Bathroom-Project-10-Image-3_result-scaled.webp" data-original="./assets/images/projects-pics/Bathroom-Project-10-Image-3_result-scaled.webp" alt="Bathroom Project 10 Image 3" class="ag-pfm-img" loading="lazy" decoding="async">
+                <div class="ag-pfm-overlay"></div>
+                
+                <div class="ag-pfm-content">
+                    <h3 class="ag-pfm-card-title">Bathroom Project 10</h3>
+                </div>
+            </div>
+            <!-- Card 5 -->
+            <div class="ag-pfm-card size-tall" role="button" aria-label="View Bathroom Project 10">
+                <img src="./assets/images/optimized/Bathroom-Project-10-Image-4_result-scaled.webp" data-original="./assets/images/projects-pics/Bathroom-Project-10-Image-4_result-scaled.webp" alt="Bathroom Project 10 Image 4" class="ag-pfm-img" loading="lazy" decoding="async">
+                <div class="ag-pfm-overlay"></div>
+                
+                <div class="ag-pfm-content">
+                    <h3 class="ag-pfm-card-title">Bathroom Project 10</h3>
+                </div>
+            </div>
+            <!-- Card 6 -->
+            <div class="ag-pfm-card size-tall" role="button" aria-label="View Bathroom Project 10">
+                <img src="./assets/images/optimized/Bathroom-Project-10-Image-5_result-scaled.webp" data-original="./assets/images/projects-pics/Bathroom-Project-10-Image-5_result-scaled.webp" alt="Bathroom Project 10 Image 5" class="ag-pfm-img" loading="lazy" decoding="async">
+                <div class="ag-pfm-overlay"></div>
+                
+                <div class="ag-pfm-content">
+                    <h3 class="ag-pfm-card-title">Bathroom Project 10</h3>
+                </div>
+            </div>
+            <!-- Card 7 -->
+            <div class="ag-pfm-card size-tall" role="button" aria-label="View Bathroom Project 10">
+                <img src="./assets/images/optimized/Bathroom-Project-10-Image-6_result-scaled.webp" data-original="./assets/images/projects-pics/Bathroom-Project-10-Image-6_result-scaled.webp" alt="Bathroom Project 10 Image 6" class="ag-pfm-img" loading="lazy" decoding="async">
+                <div class="ag-pfm-overlay"></div>
+                
+                <div class="ag-pfm-content">
+                    <h3 class="ag-pfm-card-title">Bathroom Project 10</h3>
+                </div>
+            </div>
+            <!-- Card 8 -->
+            <div class="ag-pfm-card size-tall" role="button" aria-label="View Bathroom Project 10">
+                <img src="./assets/images/optimized/Bathroom-Project-10-Image-7_result-scaled.webp" data-original="./assets/images/projects-pics/Bathroom-Project-10-Image-7_result-scaled.webp" alt="Bathroom Project 10 Image 7" class="ag-pfm-img" loading="lazy" decoding="async">
+                <div class="ag-pfm-overlay"></div>
+                
+                <div class="ag-pfm-content">
+                    <h3 class="ag-pfm-card-title">Bathroom Project 10</h3>
+                </div>
+            </div>
+            <!-- Card 9 -->
+            <div class="ag-pfm-card size-wide" role="button" aria-label="View Bathroom Project 10">
+                <img src="./assets/images/optimized/Bathroom-Project-10-Image-8_result-scaled.webp" data-original="./assets/images/projects-pics/Bathroom-Project-10-Image-8_result-scaled.webp" alt="Bathroom Project 10 Image 8" class="ag-pfm-img" loading="lazy" decoding="async">
+                <div class="ag-pfm-overlay"></div>
+                
+                <div class="ag-pfm-content">
+                    <h3 class="ag-pfm-card-title">Bathroom Project 10</h3>
+                </div>
+            </div>
+            <!-- Card 10 -->
+            <div class="ag-pfm-card size-tall" role="button" aria-label="View Bathroom Project 10">
+                <img src="./assets/images/optimized/Bathroom-Project-10-Image-9_result-scaled.webp" data-original="./assets/images/projects-pics/Bathroom-Project-10-Image-9_result-scaled.webp" alt="Bathroom Project 10 Image 9" class="ag-pfm-img" loading="lazy" decoding="async">
+                <div class="ag-pfm-overlay"></div>
+                
+                <div class="ag-pfm-content">
+                    <h3 class="ag-pfm-card-title">Bathroom Project 10</h3>
+                </div>
+            </div>
+            </div>
 
-          <!-- Project Item 4 -->
-          <div class="pg-card relative flex-shrink-0 snap-center rounded-2xl overflow-hidden cursor-pointer group w-full lg:w-auto h-[60vh] lg:h-[600px] xl:h-[700px] min-h-[400px]">
-            <img data-src="" alt="Chiswick Villa" class="block w-full h-full lg:w-auto lg:h-full object-cover min-w-[300px] transition-transform duration-[800ms] ease-out group-hover:scale-105" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-            <div class="absolute bottom-0 left-0 w-full p-8 md:p-10 translate-y-6 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out pointer-events-none flex flex-col justify-end">
-              <h4 class="text-white font-serif text-3xl md:text-4xl mb-3 tracking-wide drop-shadow-md">Chiswick Villa</h4>
-              <p class="text-[#D4C3A3] text-sm md:text-base mb-1 tracking-wide">Full Home Renovation</p>
-              <p class="text-gray-300 text-xs md:text-sm font-light">Chiswick, W4</p>
+            <!-- Footer / Action -->
+            <div class="ag-pfm-footer">
+                <button class="ag-pfm-btn" id="ag-pfm-load-more">
+                    <span>Load More Projects</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;"><path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path></svg>
+                </button>
             </div>
-          </div>
-
-          <!-- Project Item 5 -->
-          <div class="pg-card relative flex-shrink-0 snap-center rounded-2xl overflow-hidden cursor-pointer group w-full lg:w-auto h-[60vh] lg:h-[600px] xl:h-[700px] min-h-[400px]">
-            <img data-src="" alt="Ealing Family Home" class="block w-full h-full lg:w-auto lg:h-full object-cover min-w-[300px] transition-transform duration-[800ms] ease-out group-hover:scale-105" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-            <div class="absolute bottom-0 left-0 w-full p-8 md:p-10 translate-y-6 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out pointer-events-none flex flex-col justify-end">
-              <h4 class="text-white font-serif text-3xl md:text-4xl mb-3 tracking-wide drop-shadow-md">Ealing Family Home</h4>
-              <p class="text-[#D4C3A3] text-sm md:text-base mb-1 tracking-wide">Full Home Renovation</p>
-              <p class="text-gray-300 text-xs md:text-sm font-light">Ealing, W5</p>
-            </div>
-          </div>
-
-          <!-- Project Item 6 -->
-          <div class="pg-card relative flex-shrink-0 snap-center rounded-2xl overflow-hidden cursor-pointer group w-full lg:w-auto h-[60vh] lg:h-[600px] xl:h-[700px] min-h-[400px]">
-            <img data-src="" alt="Chelsea Apartment" class="block w-full h-full lg:w-auto lg:h-full object-cover min-w-[300px] transition-transform duration-[800ms] ease-out group-hover:scale-105" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-            <div class="absolute bottom-0 left-0 w-full p-8 md:p-10 translate-y-6 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out pointer-events-none flex flex-col justify-end">
-              <h4 class="text-white font-serif text-3xl md:text-4xl mb-3 tracking-wide drop-shadow-md">Chelsea Apartment</h4>
-              <p class="text-[#D4C3A3] text-sm md:text-base mb-1 tracking-wide">Interior Styling</p>
-              <p class="text-gray-300 text-xs md:text-sm font-light">Chelsea, SW3</p>
-            </div>
-          </div>
-
-          <!-- Project Item 7 -->
-          <div class="pg-card relative flex-shrink-0 snap-center rounded-2xl overflow-hidden cursor-pointer group w-full lg:w-auto h-[60vh] lg:h-[600px] xl:h-[700px] min-h-[400px]">
-            <img data-src="" alt="Fulham Riverside" class="block w-full h-full lg:w-auto lg:h-full object-cover min-w-[300px] transition-transform duration-[800ms] ease-out group-hover:scale-105" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-            <div class="absolute bottom-0 left-0 w-full p-8 md:p-10 translate-y-6 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out pointer-events-none flex flex-col justify-end">
-              <h4 class="text-white font-serif text-3xl md:text-4xl mb-3 tracking-wide drop-shadow-md">Fulham Riverside</h4>
-              <p class="text-[#D4C3A3] text-sm md:text-base mb-1 tracking-wide">Full Home Renovation</p>
-              <p class="text-gray-300 text-xs md:text-sm font-light">Fulham, SW6</p>
-            </div>
-          </div>
-
-          <!-- Project Item 8 -->
-          <div class="pg-card relative flex-shrink-0 snap-center rounded-2xl overflow-hidden cursor-pointer group w-full lg:w-auto h-[60vh] lg:h-[600px] xl:h-[700px] min-h-[400px]">
-            <img data-src="" alt="Mayfair Penthouse" class="block w-full h-full lg:w-auto lg:h-full object-cover min-w-[300px] transition-transform duration-[800ms] ease-out group-hover:scale-105" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-            <div class="absolute bottom-0 left-0 w-full p-8 md:p-10 translate-y-6 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out pointer-events-none flex flex-col justify-end">
-              <h4 class="text-white font-serif text-3xl md:text-4xl mb-3 tracking-wide drop-shadow-md">Mayfair Penthouse</h4>
-              <p class="text-[#D4C3A3] text-sm md:text-base mb-1 tracking-wide">Luxury Upgrade</p>
-              <p class="text-gray-300 text-xs md:text-sm font-light">Mayfair, W1K</p>
-            </div>
-          </div>
-
-          <!-- Project Item 9 -->
-          <div class="pg-card relative flex-shrink-0 snap-center rounded-2xl overflow-hidden cursor-pointer group w-full lg:w-auto h-[60vh] lg:h-[600px] xl:h-[700px] min-h-[400px]">
-            <img data-src="" alt="Battersea Power Station" class="block w-full h-full lg:w-auto lg:h-full object-cover min-w-[300px] transition-transform duration-[800ms] ease-out group-hover:scale-105" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-            <div class="absolute bottom-0 left-0 w-full p-8 md:p-10 translate-y-6 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out pointer-events-none flex flex-col justify-end">
-              <h4 class="text-white font-serif text-3xl md:text-4xl mb-3 tracking-wide drop-shadow-md">Battersea Power Station</h4>
-              <p class="text-[#D4C3A3] text-sm md:text-base mb-1 tracking-wide">Modern Apartment</p>
-              <p class="text-gray-300 text-xs md:text-sm font-light">Battersea, SW11</p>
-            </div>
-          </div>
-
-          <!-- Project Item 10 -->
-          <div class="pg-card relative flex-shrink-0 snap-center rounded-2xl overflow-hidden cursor-pointer group w-full lg:w-auto h-[60vh] lg:h-[600px] xl:h-[700px] min-h-[400px]">
-            <img data-src="" alt="Richmond Park View" class="block w-full h-full lg:w-auto lg:h-full object-cover min-w-[300px] transition-transform duration-[800ms] ease-out group-hover:scale-105" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-            <div class="absolute bottom-0 left-0 w-full p-8 md:p-10 translate-y-6 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out pointer-events-none flex flex-col justify-end">
-              <h4 class="text-white font-serif text-3xl md:text-4xl mb-3 tracking-wide drop-shadow-md">Richmond Park View</h4>
-              <p class="text-[#D4C3A3] text-sm md:text-base mb-1 tracking-wide">Full Home Renovation</p>
-              <p class="text-gray-300 text-xs md:text-sm font-light">Richmond, TW10</p>
-            </div>
-          </div>
-
-          <!-- Project Item 11 -->
-          <div class="pg-card relative flex-shrink-0 snap-center rounded-2xl overflow-hidden cursor-pointer group w-full lg:w-auto h-[60vh] lg:h-[600px] xl:h-[700px] min-h-[400px]">
-            <img data-src="" alt="Wimbledon Estate" class="block w-full h-full lg:w-auto lg:h-full object-cover min-w-[300px] transition-transform duration-[800ms] ease-out group-hover:scale-105" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-            <div class="absolute bottom-0 left-0 w-full p-8 md:p-10 translate-y-6 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out pointer-events-none flex flex-col justify-end">
-              <h4 class="text-white font-serif text-3xl md:text-4xl mb-3 tracking-wide drop-shadow-md">Wimbledon Estate</h4>
-              <p class="text-[#D4C3A3] text-sm md:text-base mb-1 tracking-wide">Heritage Restoration</p>
-              <p class="text-gray-300 text-xs md:text-sm font-light">Wimbledon, SW19</p>
-            </div>
-          </div>
-
-          <!-- Project Item 12 -->
-          <div class="pg-card relative flex-shrink-0 snap-center rounded-2xl overflow-hidden cursor-pointer group w-full lg:w-auto h-[60vh] lg:h-[600px] xl:h-[700px] min-h-[400px]">
-            <img data-src="" alt="Hampstead Heath House" class="block w-full h-full lg:w-auto lg:h-full object-cover min-w-[300px] transition-transform duration-[800ms] ease-out group-hover:scale-105" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-            <div class="absolute bottom-0 left-0 w-full p-8 md:p-10 translate-y-6 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out pointer-events-none flex flex-col justify-end">
-              <h4 class="text-white font-serif text-3xl md:text-4xl mb-3 tracking-wide drop-shadow-md">Hampstead Heath House</h4>
-              <p class="text-[#D4C3A3] text-sm md:text-base mb-1 tracking-wide">Full Home Renovation</p>
-              <p class="text-gray-300 text-xs md:text-sm font-light">Hampstead, NW3</p>
-            </div>
-          </div>
-
-          <!-- Project Item 13 -->
-          <div class="pg-card relative flex-shrink-0 snap-center rounded-2xl overflow-hidden cursor-pointer group w-full lg:w-auto h-[60vh] lg:h-[600px] xl:h-[700px] min-h-[400px]">
-            <img data-src="" alt="Islington Townhouse" class="block w-full h-full lg:w-auto lg:h-full object-cover min-w-[300px] transition-transform duration-[800ms] ease-out group-hover:scale-105" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-            <div class="absolute bottom-0 left-0 w-full p-8 md:p-10 translate-y-6 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out pointer-events-none flex flex-col justify-end">
-              <h4 class="text-white font-serif text-3xl md:text-4xl mb-3 tracking-wide drop-shadow-md">Islington Townhouse</h4>
-              <p class="text-[#D4C3A3] text-sm md:text-base mb-1 tracking-wide">Contemporary Update</p>
-              <p class="text-gray-300 text-xs md:text-sm font-light">Islington, N1</p>
-            </div>
-          </div>
-
-          <!-- Project Item 14 -->
-          <div class="pg-card relative flex-shrink-0 snap-center rounded-2xl overflow-hidden cursor-pointer group w-full lg:w-auto h-[60vh] lg:h-[600px] xl:h-[700px] min-h-[400px]">
-            <img data-src="" alt="Shoreditch Loft" class="block w-full h-full lg:w-auto lg:h-full object-cover min-w-[300px] transition-transform duration-[800ms] ease-out group-hover:scale-105" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-            <div class="absolute bottom-0 left-0 w-full p-8 md:p-10 translate-y-6 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out pointer-events-none flex flex-col justify-end">
-              <h4 class="text-white font-serif text-3xl md:text-4xl mb-3 tracking-wide drop-shadow-md">Shoreditch Loft</h4>
-              <p class="text-[#D4C3A3] text-sm md:text-base mb-1 tracking-wide">Industrial Conversion</p>
-              <p class="text-gray-300 text-xs md:text-sm font-light">Shoreditch, E1</p>
-            </div>
-          </div>
-
-          <!-- Project Item 15 -->
-          <div class="pg-card relative flex-shrink-0 snap-center rounded-2xl overflow-hidden cursor-pointer group w-full lg:w-auto h-[60vh] lg:h-[600px] xl:h-[700px] min-h-[400px]">
-            <img data-src="" alt="Camden Canalside" class="block w-full h-full lg:w-auto lg:h-full object-cover min-w-[300px] transition-transform duration-[800ms] ease-out group-hover:scale-105" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-            <div class="absolute bottom-0 left-0 w-full p-8 md:p-10 translate-y-6 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out pointer-events-none flex flex-col justify-end">
-              <h4 class="text-white font-serif text-3xl md:text-4xl mb-3 tracking-wide drop-shadow-md">Camden Canalside</h4>
-              <p class="text-[#D4C3A3] text-sm md:text-base mb-1 tracking-wide">Full Home Renovation</p>
-              <p class="text-gray-300 text-xs md:text-sm font-light">Camden, NW1</p>
-            </div>
-          </div>
-
-          <!-- Project Item 16 -->
-          <div class="pg-card relative flex-shrink-0 snap-center rounded-2xl overflow-hidden cursor-pointer group w-full lg:w-auto h-[60vh] lg:h-[600px] xl:h-[700px] min-h-[400px]">
-            <img data-src="" alt="Greenwich Peninsula" class="block w-full h-full lg:w-auto lg:h-full object-cover min-w-[300px] transition-transform duration-[800ms] ease-out group-hover:scale-105" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-            <div class="absolute bottom-0 left-0 w-full p-8 md:p-10 translate-y-6 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out pointer-events-none flex flex-col justify-end">
-              <h4 class="text-white font-serif text-3xl md:text-4xl mb-3 tracking-wide drop-shadow-md">Greenwich Peninsula</h4>
-              <p class="text-[#D4C3A3] text-sm md:text-base mb-1 tracking-wide">Modern Apartment</p>
-              <p class="text-gray-300 text-xs md:text-sm font-light">Greenwich, SE10</p>
-            </div>
-          </div>
-
-          <!-- Project Item 17 -->
-          <div class="pg-card relative flex-shrink-0 snap-center rounded-2xl overflow-hidden cursor-pointer group w-full lg:w-auto h-[60vh] lg:h-[600px] xl:h-[700px] min-h-[400px]">
-            <img data-src="" alt="Canary Wharf Suite" class="block w-full h-full lg:w-auto lg:h-full object-cover min-w-[300px] transition-transform duration-[800ms] ease-out group-hover:scale-105" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-            <div class="absolute bottom-0 left-0 w-full p-8 md:p-10 translate-y-6 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out pointer-events-none flex flex-col justify-end">
-              <h4 class="text-white font-serif text-3xl md:text-4xl mb-3 tracking-wide drop-shadow-md">Canary Wharf Suite</h4>
-              <p class="text-[#D4C3A3] text-sm md:text-base mb-1 tracking-wide">Executive Styling</p>
-              <p class="text-gray-300 text-xs md:text-sm font-light">Canary Wharf, E14</p>
-            </div>
-          </div>
-
-          <!-- Project Item 18 -->
-          <div class="pg-card relative flex-shrink-0 snap-center rounded-2xl overflow-hidden cursor-pointer group w-full lg:w-auto h-[60vh] lg:h-[600px] xl:h-[700px] min-h-[400px]">
-            <img data-src="" alt="Southbank Penthouse" class="block w-full h-full lg:w-auto lg:h-full object-cover min-w-[300px] transition-transform duration-[800ms] ease-out group-hover:scale-105" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-            <div class="absolute bottom-0 left-0 w-full p-8 md:p-10 translate-y-6 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out pointer-events-none flex flex-col justify-end">
-              <h4 class="text-white font-serif text-3xl md:text-4xl mb-3 tracking-wide drop-shadow-md">Southbank Penthouse</h4>
-              <p class="text-[#D4C3A3] text-sm md:text-base mb-1 tracking-wide">Full Home Renovation</p>
-              <p class="text-gray-300 text-xs md:text-sm font-light">Southbank, SE1</p>
-            </div>
-          </div>
-
-          <!-- Project Item 19 -->
-          <div class="pg-card relative flex-shrink-0 snap-center rounded-2xl overflow-hidden cursor-pointer group w-full lg:w-auto h-[60vh] lg:h-[600px] xl:h-[700px] min-h-[400px]">
-            <img data-src="" alt="Marylebone Mews" class="block w-full h-full lg:w-auto lg:h-full object-cover min-w-[300px] transition-transform duration-[800ms] ease-out group-hover:scale-105" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-            <div class="absolute bottom-0 left-0 w-full p-8 md:p-10 translate-y-6 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out pointer-events-none flex flex-col justify-end">
-              <h4 class="text-white font-serif text-3xl md:text-4xl mb-3 tracking-wide drop-shadow-md">Marylebone Mews</h4>
-              <p class="text-[#D4C3A3] text-sm md:text-base mb-1 tracking-wide">Historical Restoration</p>
-              <p class="text-gray-300 text-xs md:text-sm font-light">Marylebone, W1G</p>
-            </div>
-          </div>
-
-          <!-- Project Item 20 -->
-          <div class="pg-card relative flex-shrink-0 snap-center rounded-2xl overflow-hidden cursor-pointer group w-full lg:w-auto h-[60vh] lg:h-[600px] xl:h-[700px] min-h-[400px]">
-            <img data-src="" alt="Belgravia Mansion" class="block w-full h-full lg:w-auto lg:h-full object-cover min-w-[300px] transition-transform duration-[800ms] ease-out group-hover:scale-105" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-            <div class="absolute bottom-0 left-0 w-full p-8 md:p-10 translate-y-6 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out pointer-events-none flex flex-col justify-end">
-              <h4 class="text-white font-serif text-3xl md:text-4xl mb-3 tracking-wide drop-shadow-md">Belgravia Mansion</h4>
-              <p class="text-[#D4C3A3] text-sm md:text-base mb-1 tracking-wide">Full Home Renovation</p>
-              <p class="text-gray-300 text-xs md:text-sm font-light">Belgravia, SW1X</p>
-            </div>
-          </div>
-
         </div>
-      </div>
 
-      <!-- Lightbox Modal -->
-      <!-- Mobile & Tablet: Fullscreen | Desktop (lg): 90vw / 90vh -->
-      <div id="pg-lightbox" class="fixed inset-0 z-[100] hidden bg-black/95 flex items-center justify-center opacity-0 transition-opacity duration-400">
-
-        <!-- Close Button -->
-        <button id="pg-lightbox-close" class="absolute top-4 right-4 lg:top-8 lg:right-8 w-12 h-12 flex items-center justify-center text-white bg-white/10 hover:bg-white/20 rounded-full transition-colors z-[110] focus:outline-none">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"></path></svg>
-        </button>
-
-        <!-- Modal Content Container -->
-        <div id="pg-lightbox-content" class="relative w-full h-full lg:w-[90vw] lg:h-[90vh] flex items-center justify-center p-0 lg:p-6">
-          <img id="pg-lightbox-img" alt="Project Fullscreen" class="w-full h-full object-contain transform scale-95 transition-transform duration-500 ease-out lg:rounded-lg shadow-2xl" />
+        <!-- Lightbox Modal Container -->
+        <div class="ag-pfm-lightbox" id="ag-pfm-lightbox-modal">
+            <button class="ag-pfm-lightbox-close" aria-label="Close image">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+            <!-- Modal Image -->
+            <img src="" alt="Expanded View" class="ag-pfm-lightbox-img" id="ag-pfm-lightbox-img-el">
         </div>
-      </div>
-
-      </section>
+    </section>
 
     <!-- Reviews -->
     <section id="cr-reviews-section" class="cr-reviews-section">
@@ -1228,7 +1085,7 @@
           <!-- Left Column: Image -->
           <div class="fnd-image-col fnd-anim-item" style="animation-delay: 0.1s;">
             <!-- Image with exact constraints, ready for source -->
-            <img alt="Andrius Grisanovas - Founder" class="fnd-img" loading="lazy" decoding="async" />
+            <img src="./assets/images/optimized/andre.webp" data-original="./assets/images/andre.jpeg" alt="Andre - Founder" class="fnd-img fnd-lightbox-trigger" style="cursor: pointer;" loading="lazy" decoding="async" />
 
             <!-- LinkedIn Link Button -->
             <a href="#" class="fnd-linkedin-btn" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile">
@@ -1241,7 +1098,7 @@
           <!-- Right Column: Text Content -->
           <div class="fnd-text-col">
 
-            <span class="fnd-signature fnd-anim-item" style="animation-delay: 0.2s;">Andrius Grisanovas</span>
+            <span class="fnd-signature fnd-anim-item" style="animation-delay: 0.2s;">Andre</span>
             <h2 class="fnd-heading fnd-anim-item" style="animation-delay: 0.3s;">Founder of A&G Renovations</h2>
             <p class="fnd-intro fnd-anim-item" style="animation-delay: 0.4s;">
               From a self-employed tiler to running a trusted renovation company, my journey has always been about doing things properly.

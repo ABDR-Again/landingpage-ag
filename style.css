@@ -2877,3 +2877,402 @@
 .cr-trustpilot-word {
   color: #00b67a;
 }
+
+/* ==========================================================================
+   SCOPED CSS FOR A&G RENOVATIONS PORTFOLIO MASONRY SECTION
+   ========================================================================== */
+
+/* 1. Safe Reset & Box Sizing */
+#ag-pfm-section {
+    box-sizing: border-box;
+}
+
+#ag-pfm-section *,
+#ag-pfm-section *::before,
+#ag-pfm-section *::after {
+    box-sizing: inherit;
+}
+
+/* Explicitly reset typography to prevent WordPress auto-spacing */
+#ag-pfm-section h2, 
+#ag-pfm-section p, 
+#ag-pfm-section div,
+#ag-pfm-section img,
+#ag-pfm-section button {
+   
+}
+
+/* 2. Variables & Main Container */
+#ag-pfm-section {
+    --ag-pfm-bg: #fdfbf7;
+    --ag-pfm-text-dark: #1a1a1a;
+    --ag-pfm-text-muted: #555555;
+    --ag-pfm-accent: #b08d60;
+    --ag-pfm-border: #eae6e1;
+    --ag-pfm-font-heading: 'Cormorant Garamond', serif;
+    --ag-pfm-font-body: 'DM Sans', sans-serif;
+
+    background-color: var(--ag-pfm-bg);
+    color: var(--ag-pfm-text-dark);
+    font-family: var(--ag-pfm-font-body);
+    padding: 100px 40px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.ag-pfm-container {
+    width: 100%;
+    max-width: 1400px; /* Slightly wider for the masonry grid */
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+}
+
+/* ==========================================================================
+   HEADER SECTION
+   ========================================================================== */
+.ag-pfm-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.ag-pfm-eyebrow {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--ag-pfm-accent);
+    margin-bottom: 20px;
+}
+
+.ag-pfm-title {
+    font-family: var(--ag-pfm-font-heading);
+    font-size: clamp(2.8rem, 4vw, 4rem);
+    font-weight: 400;
+    color: var(--ag-pfm-text-dark);
+    line-height: 1.1;
+    margin-bottom: 20px;
+    letter-spacing: -0.02em;
+}
+
+.ag-pfm-desc {
+    font-size: 1.05rem;
+    color: var(--ag-pfm-text-muted);
+    line-height: 1.6;
+}
+
+/* ==========================================================================
+   MASONRY GRID & CARDS
+   ========================================================================== */
+.ag-pfm-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 300px; /* Base height for cells */
+    gap: 24px;
+    grid-auto-flow: dense; /* Fill in gaps automatically */
+    width: 100%;
+}
+
+.ag-pfm-card {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    background-color: #e5e3de; /* Placeholder color before load */
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.ag-pfm-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+
+/* Sizing Classes for Masonry Effect */
+.ag-pfm-card.size-large {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+.ag-pfm-card.size-tall {
+    grid-column: span 1;
+    grid-row: span 2;
+}
+.ag-pfm-card.size-wide {
+    grid-column: span 2;
+    grid-row: span 1;
+}
+.ag-pfm-card.size-normal {
+    grid-column: span 1;
+    grid-row: span 1;
+}
+
+/* Image Element */
+.ag-pfm-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.ag-pfm-card:hover .ag-pfm-img {
+    transform: scale(1.05);
+}
+
+/* Gradient Overlay */
+.ag-pfm-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 40%, rgba(0,0,0,0) 100%);
+    pointer-events: none;
+    z-index: 1;
+    transition: background 0.4s ease;
+}
+
+.ag-pfm-card:hover .ag-pfm-overlay {
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.05) 100%);
+}
+
+/* Card Content (Text) */
+.ag-pfm-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 32px 32px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.ag-pfm-card-title {
+    font-family: var(--ag-pfm-font-heading);
+    font-size: 1.8rem;
+    font-weight: 400;
+    color: #ffffff;
+    line-height: 1.1;
+    margin: 0;
+}
+
+.ag-pfm-card-meta {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.8);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Featured Badge */
+.ag-pfm-badge {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    background-color: var(--ag-pfm-accent);
+    color: #ffffff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 6px 12px;
+    border-radius: 4px;
+    z-index: 2;
+}
+
+/* Skeleton Loader State */
+.ag-pfm-skeleton {
+    background: linear-gradient(90deg, #e5e3de 25%, #f0eee9 50%, #e5e3de 75%);
+    background-size: 200% 100%;
+    animation: agPfmShimmer 1.5s infinite linear;
+    pointer-events: none;
+}
+.ag-pfm-skeleton * {
+    display: none !important;
+}
+
+@keyframes agPfmShimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* ==========================================================================
+   BOTTOM ACTION BUTTON
+   ========================================================================== */
+.ag-pfm-footer {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.ag-pfm-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background-color: transparent;
+    color: var(--ag-pfm-accent);
+    padding: 16px 40px;
+    border-radius: 4px; /* Slightly squared matching the image */
+    font-size: 0.95rem;
+    font-weight: 600;
+    border: 1px solid var(--ag-pfm-accent);
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.1s ease;
+    cursor: pointer;
+    min-width: 240px;
+}
+
+.ag-pfm-btn svg {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.3s ease;
+}
+
+.ag-pfm-btn:hover {
+    background-color: var(--ag-pfm-accent);
+    color: #ffffff;
+}
+
+.ag-pfm-btn:hover svg {
+    transform: translateX(4px);
+}
+
+.ag-pfm-btn:active {
+    transform: scale(0.96);
+}
+
+.ag-pfm-btn.ag-loading {
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+/* ==========================================================================
+   FULLSCREEN LIGHTBOX MODAL
+   ========================================================================== */
+.ag-pfm-lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(10, 10, 10, 0.95);
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    padding: 20px;
+}
+
+.ag-pfm-lightbox.ag-active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.ag-pfm-lightbox-img {
+    max-width: 100%;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 8px;
+    background-color: transparent; 
+    box-shadow: 0 10px 50px rgba(0,0,0,0.5);
+    transform: scale(0.95);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.ag-pfm-lightbox.ag-active .ag-pfm-lightbox-img {
+    transform: scale(1);
+}
+
+.ag-pfm-lightbox-close {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    width: 48px;
+    height: 48px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+    z-index: 100000;
+}
+
+.ag-pfm-lightbox-close:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+    transform: scale(1.05);
+}
+
+/* ==========================================================================
+   RESPONSIVE ADJUSTMENTS
+   ========================================================================== */
+@media (max-width: 1024px) {
+    .ag-pfm-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 250px;
+    }
+    .ag-pfm-card.size-wide {
+        grid-column: span 2; 
+    }
+    .ag-pfm-card.size-large {
+        grid-column: span 2;
+        grid-row: span 1; /* Make it wide rather than huge on tablet */
+    }
+}
+
+@media (max-width: 768px) {
+    #ag-pfm-section {
+        padding: 80px 20px;
+    }
+    .ag-pfm-title {
+        font-size: 2.6rem;
+    }
+    .ag-pfm-grid {
+        grid-template-columns: 1fr;
+        grid-auto-rows: 320px; /* Fixed height for stacked mobile cards */
+        gap: 16px;
+    }
+    /* Override all spans on mobile so they stack one by one */
+    .ag-pfm-card.size-large,
+    .ag-pfm-card.size-tall,
+    .ag-pfm-card.size-wide,
+    .ag-pfm-card.size-normal {
+        grid-column: span 1 !important;
+        grid-row: span 1 !important;
+    }
+    
+    .ag-pfm-btn {
+        width: 100%;
+    }
+    .ag-pfm-lightbox-close {
+        top: 16px;
+        right: 16px;
+        width: 40px;
+        height: 40px;
+    }
+}
+
+
+/* ==========================================================================
+   FOUNDER LIGHTBOX & STICKY HEADER
+   ========================================================================== */
+.fnd-lightbox-trigger {
+    transition: transform 0.3s ease;
+}
+.fnd-lightbox-trigger:hover {
+    transform: scale(1.02);
+}
