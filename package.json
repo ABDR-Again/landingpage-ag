@@ -1,0 +1,20 @@
+{
+  "name": "ag-renovation-landing-page",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "generate": "node scripts/generate-landing.mjs",
+    "optimize:images": "node scripts/optimize-images.mjs",
+    "preview": "vite preview --host 127.0.0.1",
+    "test": "npm run build"
+  },
+  "devDependencies": {
+    "esbuild": "latest",
+    "lightningcss": "latest",
+    "sharp": "^0.35.3",
+    "vite": "latest"
+  }
+}

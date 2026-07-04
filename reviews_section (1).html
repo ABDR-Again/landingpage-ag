@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trusted Renovations Reviews</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --cr-bg: #F9F8F6; /* Bone White / Off-white background */
+      --cr-text-main: #1A1A1A; /* Charcoal dark text */
+      --cr-text-muted: #555555;
+      --cr-gold: #B89768; /* Luxury Gold accents */
+      --cr-white: #FFFFFF;
+      --cr-font-heading: 'Cormorant Garamond', serif;
+      --cr-font-body: 'DM Sans', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--cr-bg);
+      font-family: var(--cr-font-body);
+      color: var(--cr-text-main);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .cr-reviews-section {
+      padding: 100px 20px;
+      overflow: hidden;
+      width: 100%;
+    }
+
+    .cr-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center; /* Center aligns the left content with the scrolling right column */
+      gap: 60px;
+    }
+
+    /* Left Column Content */
+    .cr-content-col {
+      flex: 1;
+      max-width: 480px;
+    }
+
+    .cr-subtitle {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--cr-gold);
+      margin-bottom: 20px;
+      
+      /* Initial CSS Entry Animation */
+      opacity: 0;
+      transform: translateY(20px);
+      animation: cr-fade-in-up 0.6s ease forwards 0.1s;
+    }
+
+    .cr-title {
+      font-family: var(--cr-font-heading);
+      font-size: 4rem;
+      line-height: 1.1;
+      margin-bottom: 24px;
+      color: var(--cr-text-main);
+      
+      opacity: 0;
+      transform: translateY(20px);
+      animation: cr-fade-in-up 0.6s ease forwards 0.3s;
+    }
+
+    .cr-desc {
+      font-size: 1.125rem;
+      line-height: 1.6;
+      color: var(--cr-text-muted);
+      margin-bottom: 40px;
+      
+      opacity: 0;
+      transform: translateY(20px);
+      animation: cr-fade-in-up 0.6s ease forwards 0.5s;
+    }
+
+    .cr-stats-row {
+      display: flex;
+      gap: 20px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: cr-fade-in-up 0.6s ease forwards 0.7s;
+    }
+
+    .cr-stat-box {
+      background: var(--cr-white);
+      padding: 24px;
+      border-radius: 12px;
+      flex: 1;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+      cursor: default;
+      transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease;
+    }
+
+    .cr-stat-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.08);
+    }
+
+    .cr-stat-top {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .cr-logo-icon {
+      width: 24px;
+      height: 24px;
+      object-fit: contain;
+    }
+    
+    .cr-logo-trustpilot {
+      width: auto;
+      height: 20px;
+    }
+
+    .cr-brand-name {
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    .cr-stat-score {
+      font-size: 1.5rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .cr-stat-sub {
+      font-size: 0.85rem;
+      color: #888;
+    }
+
+    /* Right Column & Track */
+    .cr-reviews-col {
+      flex: 1.5;
+      position: relative;
+      height: 800px; /* Fixed height for desktop vertical scrolling */
+    }
+
+    /* Gradient masks to fade cards at top and bottom on desktop */
+    .cr-reviews-col::before,
+    .cr-reviews-col::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 120px;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .cr-reviews-col::before {
+      top: 0;
+      background: linear-gradient(to bottom, var(--cr-bg) 0%, transparent 100%);
+    }
+    .cr-reviews-col::after {
+      bottom: 0;
+      background: linear-gradient(to top, var(--cr-bg) 0%, transparent 100%);
+    }
+
+    .cr-track-wrapper {
+      height: 100%;
+      overflow: hidden; /* Hide overflow to prevent scrollbars */
+    }
+
+    .cr-track {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr); /* Two columns of cards in the scrolling track */
+      gap: 24px;
+      padding: 40px 0;
+      /* Hardware acceleration to keep scrolling at 60fps */
+      will-change: transform; 
+    }
+
+    .cr-card {
+      background: var(--cr-white);
+      border-radius: 16px;
+      padding: 32px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease;
+      
+      /* Initial CSS Pop-Up state - Cards pop in from bottom */
+      opacity: 0;
+      transform: translateY(60px) scale(0.9);
+      animation: cr-pop-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .cr-card:hover {
+      /* Card hover animation */
+      transform: translateY(-8px) scale(1.02) !important;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+      z-index: 10;
+    }
+
+    /* Keyframes for the UI elements appearing one-by-one */
+    @keyframes cr-fade-in-up {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Keyframes for cards popping up */
+    @keyframes cr-pop-up {
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    /* Staggered Random Delays to simulate random popping order */
+    .cr-track .cr-card:nth-child(1) { animation-delay: 0.4s; }
+    .cr-track .cr-card:nth-child(2) { animation-delay: 0.1s; }
+    .cr-track .cr-card:nth-child(3) { animation-delay: 0.6s; }
+    .cr-track .cr-card:nth-child(4) { animation-delay: 0.3s; }
+    .cr-track .cr-card:nth-child(5) { animation-delay: 0.8s; }
+    .cr-track .cr-card:nth-child(6) { animation-delay: 0.2s; }
+    .cr-track .cr-card:nth-child(7) { animation-delay: 0.7s; }
+    .cr-track .cr-card:nth-child(8) { animation-delay: 0.5s; }
+    .cr-track .cr-card:nth-child(9) { animation-delay: 0.3s; }
+    .cr-track .cr-card:nth-child(10) { animation-delay: 0.6s; }
+    .cr-track .cr-card:nth-child(11) { animation-delay: 0.2s; }
+    .cr-track .cr-card:nth-child(12) { animation-delay: 0.9s; }
+
+    .cr-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .cr-platform {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .cr-platform-img {
+      height: 22px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .cr-stars {
+      color: var(--cr-gold);
+      font-size: 1.1rem;
+      letter-spacing: 1px;
+    }
+
+    .cr-quote-icon {
+      font-size: 3rem;
+      color: var(--cr-gold);
+      line-height: 0;
+      margin-bottom: -15px;
+      opacity: 0.4;
+      font-family: var(--cr-font-heading);
+    }
+
+    .cr-review-text {
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: var(--cr-text-muted);
+      flex-grow: 1;
+      margin: 0;
+    }
+
+    .cr-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-top: 1px solid #f0f0f0;
+      padding-top: 20px;
+    }
+
+    .cr-author-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cr-author-info strong {
+      font-size: 0.95rem;
+      color: var(--cr-text-main);
+    }
+
+    .cr-author-info span {
+      font-size: 0.8rem;
+      color: #888;
+    }
+
+    @media (max-width: 1024px) {
+      .cr-container {
+        flex-direction: column;
+        gap: 40px;
+      }
+      
+      .cr-content-col {
+        max-width: 100%;
+        text-align: center;
+      }
+
+      .cr-stats-row {
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .cr-reviews-col {
+        width: 100%;
+        height: auto;
+      }
+      
+      /* Remove fading masks on mobile so they don't block horizontal scrolling */
+      .cr-reviews-col::before,
+      .cr-reviews-col::after {
+        display: none;
+      }
+
+      .cr-track-wrapper {
+        overflow-x: auto;
+        overflow-y: hidden;
+        /* Enable smooth momentum scrolling on iOS */
+        -webkit-overflow-scrolling: touch; 
+        padding: 20px 0;
+        
+        /* Hide scrollbar for a cleaner aesthetic */
+        -ms-overflow-style: none;  
+        scrollbar-width: none;  
+      }
+      
+      .cr-track-wrapper::-webkit-scrollbar { 
+        display: none; 
+      }
+
+      .cr-track {
+        display: flex; /* Switch grid to flex for horizontal layout */
+        width: max-content;
+        gap: 20px;
+        padding: 10px 5vw; /* Start padding so cards are indented from edge */
+      }
+
+      .cr-card {
+        width: 85vw; /* Show slightly more than 1 card to hint at scrollability */
+        max-width: 380px;
+        white-space: normal;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="cr-reviews-section">
+    <div class="cr-container">
+      
+      <!-- Content Column -->
+      <div class="cr-content-col">
+        <span class="cr-subtitle">REAL CLIENTS. REAL RESULTS.</span>
+        <h2 class="cr-title">Trusted By Homeowners Across West London.</h2>
+        <p class="cr-desc">
+          We take pride in delivering exceptional renovations and a seamless experience from concept to completion. But don't just take our word for it—here's what our clients have to say.
+        </p>
+
+        <!-- Stats row (Interactive summary, replacing the original button) -->
+        <div class="cr-stats-row">
+          <div class="cr-stat-box">
+            <div class="cr-stat-top">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google" class="cr-logo-icon">
+              <span class="cr-brand-name">Google</span>
+            </div>
+            <div class="cr-stat-score">
+              <strong>5.0</strong> <span class="cr-stars">★★★★★</span>
+            </div>
+            <span class="cr-stat-sub">Based on 87 reviews</span>
+          </div>
+
+          <div class="cr-stat-box">
+            <div class="cr-stat-top">
+              <img src="https://cdn.trustpilot.net/brand-assets/4.1.0/logo-black.svg" alt="Trustpilot" class="cr-logo-trustpilot">
+            </div>
+            <div class="cr-stat-score">
+              <strong>4.9</strong> <span class="cr-stars">★★★★★</span>
+            </div>
+            <span class="cr-stat-sub">Based on 64 reviews</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reviews Track Column -->
+      <div class="cr-reviews-col">
+        <div class="cr-track-wrapper" id="cr-track-wrapper">
+          <div class="cr-track" id="cr-track">
+            
+            <!-- Google Review 1 -->
+            <div class="cr-card">
+              <div class="cr-card-header">
+                <div class="cr-platform">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" class="cr-platform-img">
+                </div>
+                <div class="cr-stars">★★★★★</div>
+              </div>
+              <div class="cr-quote-icon">“</div>
+              <p class="cr-review-text">I had a fantastic experience with A&G Renovations. They were meticulous and detail-oriented throughout the entire project. The team worked with great care, keeping everything clean, tidy, and well-organised.</p>
+              <div class="cr-author">
+                <div class="cr-author-info">
+                  <strong>Stevie Downard</strong>
+                  <span>Google Local Guide</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Trustpilot Review 1 -->
+            <div class="cr-card">
+              <div class="cr-card-header">
+                <div class="cr-platform">
+                  <img src="https://cdn.trustpilot.net/brand-assets/4.1.0/logo-black.svg" alt="Trustpilot" class="cr-platform-img">
+                </div>
+                <div class="cr-stars">★★★★★</div>
+              </div>
+              <div class="cr-quote-icon">“</div>
+              <p class="cr-review-text">A&G Renovations have just completely refurbished two bathrooms for us. Everything about the service has been excellent. The first visit and quotation process was very impressive with great attention to detail.</p>
+              <div class="cr-author">
+                <div class="cr-author-info">
+                  <strong>Emma Welch</strong>
+                  <span>Trustpilot Verified</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Google Review 2 -->
+            <div class="cr-card">
+              <div class="cr-card-header">
+                <div class="cr-platform">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" class="cr-platform-img">
+                </div>
+                <div class="cr-stars">★★★★★</div>
+              </div>
+              <div class="cr-quote-icon">“</div>
+              <p class="cr-review-text">Beyond our expectations! We dealt with many various builders in the past but these guys are another level when it comes to quality of work and professionalism. Every detail is covered.</p>
+              <div class="cr-author">
+                <div class="cr-author-info">
+                  <strong>Toma Ferguson</strong>
+                  <span>Google Local Guide</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Trustpilot Review 2 -->
+            <div class="cr-card">
+              <div class="cr-card-header">
+                <div class="cr-platform">
+                  <img src="https://cdn.trustpilot.net/brand-assets/4.1.0/logo-black.svg" alt="Trustpilot" class="cr-platform-img">
+                </div>
+                <div class="cr-stars">★★★★★</div>
+              </div>
+              <div class="cr-quote-icon">“</div>
+              <p class="cr-review-text">Mindi, Gintare, Andrius and their team are fantastic. They've done our kitchen and bathroom to an incredibly high standard and we're delighted with the result. Cannot recommend highly enough</p>
+              <div class="cr-author">
+                <div class="cr-author-info">
+                  <strong>Richard</strong>
+                  <span>Trustpilot Verified</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Google Review 3 -->
+            <div class="cr-card">
+              <div class="cr-card-header">
+                <div class="cr-platform">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" class="cr-platform-img">
+                </div>
+                <div class="cr-stars">★★★★★</div>
+              </div>
+              <div class="cr-quote-icon">“</div>
+              <p class="cr-review-text">I am extremely happy with A&G Renovations they were professional from the very beginning when they came to discuss the scope and the quotation. The attention to detail continued throughout the works.</p>
+              <div class="cr-author">
+                <div class="cr-author-info">
+                  <strong>Leonardo Ramirez</strong>
+                  <span>Google Local Guide</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Trustpilot Review 3 -->
+            <div class="cr-card">
+              <div class="cr-card-header">
+                <div class="cr-platform">
+                  <img src="https://cdn.trustpilot.net/brand-assets/4.1.0/logo-black.svg" alt="Trustpilot" class="cr-platform-img">
+                </div>
+                <div class="cr-stars">★★★★★</div>
+              </div>
+              <div class="cr-quote-icon">“</div>
+              <p class="cr-review-text">The A&G team are fantastic! The workmanship they carried out was top notch and they are always responsive and accommodating. We look forward to working with them again on future renovations!</p>
+              <div class="cr-author">
+                <div class="cr-author-info">
+                  <strong>CG</strong>
+                  <span>Trustpilot Verified</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Google Review 4 -->
+            <div class="cr-card">
+              <div class="cr-card-header">
+                <div class="cr-platform">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" class="cr-platform-img">
+                </div>
+                <div class="cr-stars">★★★★★</div>
+              </div>
+              <div class="cr-quote-icon">“</div>
+              <p class="cr-review-text">A&G Renovations are amazing! Andrius, Andrei and Gintare are super professional and a pleasure to work with. The bathroom looks incredible and so much better than I could have ever imagined.</p>
+              <div class="cr-author">
+                <div class="cr-author-info">
+                  <strong>Alexandra Neto</strong>
+                  <span>Google Review</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Trustpilot Review 4 -->
+            <div class="cr-card">
+              <div class="cr-card-header">
+                <div class="cr-platform">
+                  <img src="https://cdn.trustpilot.net/brand-assets/4.1.0/logo-black.svg" alt="Trustpilot" class="cr-platform-img">
+                </div>
+                <div class="cr-stars">★★★★★</div>
+              </div>
+              <div class="cr-quote-icon">“</div>
+              <p class="cr-review-text">Very well organised from start to finish. The installer did a great job - the bathroom looks excellent and we're very happy with it. He was also very tidy and looked after other parts of the flat.</p>
+              <div class="cr-author">
+                <div class="cr-author-info">
+                  <strong>Ian Day</strong>
+                  <span>Trustpilot Verified</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Google Review 5 -->
+            <div class="cr-card">
+              <div class="cr-card-header">
+                <div class="cr-platform">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" class="cr-platform-img">
+                </div>
+                <div class="cr-stars">★★★★★</div>
+              </div>
+              <div class="cr-quote-icon">“</div>
+              <p class="cr-review-text">Totally stress free process from start to finish. Very good communication, professional and all stuck to budget. I’d recommend to anyone looking for a trustworthy and professional renovation project.</p>
+              <div class="cr-author">
+                <div class="cr-author-info">
+                  <strong>Alex Milne</strong>
+                  <span>Google Review</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Trustpilot Review 5 -->
+            <div class="cr-card">
+              <div class="cr-card-header">
+                <div class="cr-platform">
+                  <img src="https://cdn.trustpilot.net/brand-assets/4.1.0/logo-black.svg" alt="Trustpilot" class="cr-platform-img">
+                </div>
+                <div class="cr-stars">★★★★★</div>
+              </div>
+              <div class="cr-quote-icon">“</div>
+              <p class="cr-review-text">Oleg is absolutely brilliant – an incredibly hard worker with exceptional attention to detail. The quality of his workmanship is outstanding and the A&G team were fantastic to work with.</p>
+              <div class="cr-author">
+                <div class="cr-author-info">
+                  <strong>Isla Brown</strong>
+                  <span>Trustpilot Verified</span>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const track = document.getElementById("cr-track");
+      const wrapper = document.getElementById("cr-track-wrapper");
+      let originalCards = Array.from(track.children);
+
+      // Deep clone the original cards to create the seamless infinite scroll effect
+      originalCards.forEach(card => {
+        let clone = card.cloneNode(true);
+        // Remove pop-up animations from the cloned cards so they don't unexpectedly flash 
+        // when they scroll into view later
+        clone.style.animation = "none";
+        clone.style.opacity = "1";
+        clone.style.transform = "none";
+        track.appendChild(clone);
+      });
+
+      // State checking for layout mode
+      let isMobile = window.innerWidth <= 1024;
+      
+      // Speed Tuning (User requested faster desktop speed, decent mobile speed)
+      const desktopSpeed = 2.5; // Fast vertical movement
+      const mobileSpeed = 1.5;  // Decent horizontal movement
+
+      let positionY = 0;
+      let isHovered = false;
+      let isTouching = false;
+
+      // Event listeners to pause animation on user interactions
+      wrapper.addEventListener("mouseenter", () => isHovered = true);
+      wrapper.addEventListener("mouseleave", () => isHovered = false);
+      
+      // Mobile specific touch listeners to allow user to scroll themselves
+      wrapper.addEventListener("touchstart", () => isTouching = true, {passive: true});
+      wrapper.addEventListener("touchend", () => {
+        // Resume the auto-scroll smoothly 1.5 seconds after a swipe
+        setTimeout(() => isTouching = false, 1500); 
+      });
+
+      // Re-evaluate context smoothly on window resize
+      window.addEventListener("resize", () => {
+        const wasMobile = isMobile;
+        isMobile = window.innerWidth <= 1024;
+        
+        // Reset positions if switching between layout types
+        if (wasMobile !== isMobile) {
+          positionY = 0;
+          track.style.transform = `translate3d(0, 0, 0)`;
+          wrapper.scrollLeft = 0;
+        }
+      });
+
+      // Delay the continuous scroll briefly so the CSS entrance animations can finish
+      setTimeout(() => {
+        requestAnimationFrame(animateScroll);
+      }, 1500);
+
+      function animateScroll() {
+        if (isMobile) {
+          // MOBILE / TABLET MODE: Horizontal scroll 
+          // Modify scrollLeft which works perfectly with native CSS touch scrolling
+          if (!isTouching && !isHovered) {
+            wrapper.scrollLeft += mobileSpeed;
+            
+            // Seamless loop: snap back when the halfway point (end of original list) is reached
+            if (wrapper.scrollLeft >= (track.scrollWidth / 2)) {
+              wrapper.scrollLeft = 0;
+            }
+          }
+        } else {
+          // DESKTOP MODE: Vertical scroll 
+          // Using translate3d forces hardware acceleration on the GPU for 60FPS smoothness
+          if (!isHovered) {
+            positionY -= desktopSpeed;
+            const trackHeight = track.scrollHeight / 2; // Height of the original non-cloned set
+            
+            if (Math.abs(positionY) >= trackHeight) {
+              positionY = 0;
+            }
+            track.style.transform = `translate3d(0, ${positionY}px, 0)`;
+          }
+        }
+        
+        // Call the next frame
+        requestAnimationFrame(animateScroll);
+      }
+    });
+  </script>
+</body>
+</html>

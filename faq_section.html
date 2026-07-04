@@ -1,0 +1,477 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:opsz,wght@9..40,400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  /* Base Reset scoped to this section */
+  #faq-section, #faq-section * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Section Variables & Container */
+  #faq-section {
+    --bg-color: #FCFAF8;
+    --item-bg: #F9F6F1;
+    --text-primary: #111111;
+    --text-secondary: #555555;
+    --accent-gold: #B5925E;
+    --border-color: #EFEBE4;
+    
+    background-color: var(--bg-color);
+    font-family: 'DM Sans', sans-serif;
+    padding: 80px 20px;
+    width: 100%;
+    color: var(--text-primary);
+  }
+
+  @media (min-width: 768px) {
+    #faq-section {
+      padding: 120px 40px;
+    }
+  }
+
+  #faq-section .faq-container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  /* Header Styles */
+  #faq-section .faq-header-top {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
+  #faq-section .faq-kicker {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: var(--accent-gold);
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  #faq-section .faq-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
+    font-weight: 500;
+    line-height: 1.1;
+    color: var(--text-primary);
+    margin-bottom: 24px;
+  }
+
+  @media (min-width: 768px) {
+    #faq-section .faq-title {
+      font-size: 56px;
+    }
+  }
+
+  #faq-section .faq-subtitle {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  /* FAQ List & Items */
+  #faq-section .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  #faq-section .faq-item {
+    background-color: var(--item-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: background-color 0.3s ease;
+  }
+
+  /* The clickable header button */
+  #faq-section .faq-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background: transparent;
+    border: none;
+    padding: 20px;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.3s ease;
+  }
+  
+  @media (min-width: 768px) {
+    #faq-section .faq-btn {
+      padding: 24px 32px;
+    }
+  }
+
+  /* Button internal elements */
+  #faq-section .faq-num {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--accent-gold);
+    min-width: 24px;
+  }
+
+  #faq-section .faq-divider {
+    width: 1px;
+    height: 24px;
+    background-color: #E2DCD3;
+    margin: 0 16px;
+    flex-shrink: 0;
+  }
+
+  #faq-section .faq-icon-wrap {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--accent-gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-gold);
+    flex-shrink: 0;
+    margin-right: 20px;
+  }
+  
+  #faq-section .faq-icon-wrap svg {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  #faq-section .faq-question {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--text-primary);
+    line-height: 1.3;
+    flex: 1;
+    padding-right: 20px;
+  }
+
+  @media (min-width: 768px) {
+    #faq-section .faq-question {
+      font-size: 26px;
+    }
+  }
+
+  /* Plus/Minus Toggle Icon */
+  #faq-section .faq-toggle {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    margin-left: auto;
+  }
+
+  #faq-section .faq-toggle::before,
+  #faq-section .faq-toggle::after {
+    content: '';
+    position: absolute;
+    background-color: var(--accent-gold);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.4s ease;
+  }
+
+  /* Horizontal line */
+  #faq-section .faq-toggle::before {
+    width: 14px;
+    height: 1.5px;
+  }
+
+  /* Vertical line */
+  #faq-section .faq-toggle::after {
+    width: 1.5px;
+    height: 14px;
+  }
+
+  /* Active state for Toggle (Turns into minus) */
+  #faq-section .faq-item.active .faq-toggle::after {
+    transform: translate(-50%, -50%) rotate(90deg);
+    opacity: 0;
+  }
+
+  /* Accordion Content Animation (Using CSS Grid for smooth height transition) */
+  #faq-section .faq-content-wrapper {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+
+  #faq-section .faq-item.active .faq-content-wrapper {
+    grid-template-rows: 1fr;
+  }
+
+  #faq-section .faq-content-inner {
+    overflow: hidden;
+  }
+
+  #faq-section .faq-answer {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    /* Align text with the question by calculating the offsets of previous elements */
+    padding: 0 32px 24px 104px; 
+  }
+  
+  @media (max-width: 767px) {
+    #faq-section .faq-answer {
+       padding: 0 20px 20px 76px; /* Adjusted for smaller mobile paddings/margins */
+    }
+    #faq-section .faq-icon-wrap {
+      width: 32px;
+      height: 32px;
+      margin-right: 12px;
+    }
+    #faq-section .faq-icon-wrap svg {
+      width: 16px;
+      height: 16px;
+    }
+    #faq-section .faq-divider {
+      margin: 0 12px;
+    }
+  }
+  
+</style>
+
+<section id="faq-section">
+  <div class="faq-container">
+    
+    <!-- Section Header -->
+    <div class="faq-header-top">
+      <span class="faq-kicker">FAQS</span>
+      <h2 class="faq-title">Frequently Asked Questions</h2>
+      <p class="faq-subtitle">
+        Clear answers to the most common questions from homeowners in West London.<br class="hidden md:block">
+        If you need anything else, our team is always happy to help.
+      </p>
+    </div>
+
+    <!-- Accordion List -->
+    <div class="faq-list">
+      
+      <!-- FAQ Item 1 (Active by default) -->
+      <div class="faq-item active">
+        <button class="faq-btn" aria-expanded="true">
+          <span class="faq-num">01</span>
+          <span class="faq-divider"></span>
+          <span class="faq-icon-wrap">
+            <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+          </span>
+          <span class="faq-question">What types of renovations do you specialise in?</span>
+          <span class="faq-toggle"></span>
+        </button>
+        <div class="faq-content-wrapper">
+          <div class="faq-content-inner">
+            <p class="faq-answer">We specialise in bathroom renovations, kitchen renovations, and full home or apartment refurbishments.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ Item 2 -->
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false">
+          <span class="faq-num">02</span>
+          <span class="faq-divider"></span>
+          <span class="faq-icon-wrap">
+            <!-- Document with £ symbol -->
+            <svg viewBox="0 0 24 24">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <text x="12" y="17" text-anchor="middle" font-family="'DM Sans', sans-serif" font-weight="600" font-size="10" fill="currentColor" stroke="none">£</text>
+            </svg>
+          </span>
+          <span class="faq-question">Do you provide a fixed quote before work starts?</span>
+          <span class="faq-toggle"></span>
+        </button>
+        <div class="faq-content-wrapper">
+          <div class="faq-content-inner">
+            <p class="faq-answer">Yes, we provide detailed, fixed-price quotes after our initial consultation, so you know exactly what to expect financially before any work begins.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ Item 3 -->
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false">
+          <span class="faq-num">03</span>
+          <span class="faq-divider"></span>
+          <span class="faq-icon-wrap">
+            <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+          </span>
+          <span class="faq-question">How long does a typical renovation take?</span>
+          <span class="faq-toggle"></span>
+        </button>
+        <div class="faq-content-wrapper">
+          <div class="faq-content-inner">
+            <p class="faq-answer">Timelines vary depending on the scope of the project. A standard bathroom might take 2-3 weeks, while a full property refurbishment can take 8-12 weeks.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ Item 4 -->
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false">
+          <span class="faq-num">04</span>
+          <span class="faq-divider"></span>
+          <span class="faq-icon-wrap">
+            <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+          </span>
+          <span class="faq-question">Will I have a dedicated point of contact?</span>
+          <span class="faq-toggle"></span>
+        </button>
+        <div class="faq-content-wrapper">
+          <div class="faq-content-inner">
+            <p class="faq-answer">Absolutely. You will be assigned a dedicated project manager who will keep you informed with regular updates and handle any queries you have.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ Item 5 -->
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false">
+          <span class="faq-num">05</span>
+          <span class="faq-divider"></span>
+          <span class="faq-icon-wrap">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-3-3.87"></path><path d="M9 21v-2a4 4 0 0 1 3-3.87"></path><circle cx="12" cy="7" r="4"></circle><circle cx="17" cy="11" r="3"></circle><circle cx="7" cy="11" r="3"></circle></svg>
+          </span>
+          <span class="faq-question">Are your tradespeople in-house?</span>
+          <span class="faq-toggle"></span>
+        </button>
+        <div class="faq-content-wrapper">
+          <div class="faq-content-inner">
+            <p class="faq-answer">Yes, we proudly use our own team of 14 highly skilled, in-house specialists to ensure consistent quality and reliability across all trades.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ Item 6 -->
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false">
+          <span class="faq-num">06</span>
+          <span class="faq-divider"></span>
+          <span class="faq-icon-wrap">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><polyline points="9 12 11 14 15 10"></polyline></svg>
+          </span>
+          <span class="faq-question">Are you insured?</span>
+          <span class="faq-toggle"></span>
+        </button>
+        <div class="faq-content-wrapper">
+          <div class="faq-content-inner">
+            <p class="faq-answer">Yes, we hold comprehensive public liability and employer's liability insurance, giving you complete peace of mind while we are working in your home.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ Item 7 -->
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false">
+          <span class="faq-num">07</span>
+          <span class="faq-divider"></span>
+          <span class="faq-icon-wrap">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+          </span>
+          <span class="faq-question">Do you offer any guarantee?</span>
+          <span class="faq-toggle"></span>
+        </button>
+        <div class="faq-content-wrapper">
+          <div class="faq-content-inner">
+            <p class="faq-answer">We stand by our craftsmanship. Every project we complete comes with a comprehensive 12-month labour guarantee for lasting quality assurance.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ Item 8 -->
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false">
+          <span class="faq-num">08</span>
+          <span class="faq-divider"></span>
+          <span class="faq-icon-wrap">
+            <svg viewBox="0 0 24 24"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path><line x1="2" y1="2" x2="8" y2="8"></line></svg>
+          </span>
+          <span class="faq-question">Can you help with design choices and materials?</span>
+          <span class="faq-toggle"></span>
+        </button>
+        <div class="faq-content-wrapper">
+          <div class="faq-content-inner">
+            <p class="faq-answer">We certainly can. Our office team is highly experienced in sourcing materials and can provide guidance on layout, finishes, and fixtures.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ Item 9 -->
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false">
+          <span class="faq-num">09</span>
+          <span class="faq-divider"></span>
+          <span class="faq-icon-wrap">
+            <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><path d="M12 16.5l-3.5-3.5a2.5 2.5 0 1 1 3.5-3.5 2.5 2.5 0 1 1 3.5 3.5L12 16.5z" stroke-width="1.2"></path></svg>
+          </span>
+          <span class="faq-question">How do you keep disruption to a minimum?</span>
+          <span class="faq-toggle"></span>
+        </button>
+        <div class="faq-content-wrapper">
+          <div class="faq-content-inner">
+            <p class="faq-answer">We treat your home with absolute respect. Our teams work cleanly, protect your living areas, and ensure the site is tidy at the end of every working day.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ Item 10 -->
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false">
+          <span class="faq-num">10</span>
+          <span class="faq-divider"></span>
+          <span class="faq-icon-wrap">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          </span>
+          <span class="faq-question">Which areas do you cover?</span>
+          <span class="faq-toggle"></span>
+        </button>
+        <div class="faq-content-wrapper">
+          <div class="faq-content-inner">
+            <p class="faq-answer">We proudly operate across West London, frequently working on projects in Kensington, Chelsea, Notting Hill, Ealing, Chiswick, and Fulham.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const faqButtons = document.querySelectorAll('#faq-section .faq-btn');
+      
+      faqButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          const currentItem = button.closest('.faq-item');
+          const isCurrentlyActive = currentItem.classList.contains('active');
+          
+          // Close all FAQ items first
+          document.querySelectorAll('#faq-section .faq-item').forEach(item => {
+            item.classList.remove('active');
+            item.querySelector('.faq-btn').setAttribute('aria-expanded', 'false');
+          });
+          
+          // If the clicked item was NOT active, open it
+          // (If it was active, it will now just stay closed, acting as a toggle)
+          if (!isCurrentlyActive) {
+            currentItem.classList.add('active');
+            button.setAttribute('aria-expanded', 'true');
+          }
+        });
+      });
+    });
+  </script>
+</section>

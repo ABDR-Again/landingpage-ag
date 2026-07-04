@@ -1,0 +1,586 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:opsz,wght@9..40,400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  #syp-section, #syp-section * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  #syp-section {
+    --bg-color: #FCFAF8;
+    --text-primary: #111111;
+    --text-secondary: #555555;
+    --accent-gold: #B88E52; /* Matches the button color in the image */
+    --accent-gold-hover: #A17942;
+    --error-color: #D32F2F;
+    --card-bg: #FFFFFF;
+    --border-color: #EFEBE4;
+    --input-bg: #FFFFFF;
+    --focus-shadow: rgba(184, 142, 82, 0.15);
+    
+    background-color: var(--bg-color);
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text-primary);
+    padding: 80px 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  @media (min-width: 768px) {
+    #syp-section {
+      padding: 100px 40px;
+    }
+  }
+
+  #syp-section .syp-container {
+    max-width: 1100px;
+    width: 100%;
+  }
+
+  #syp-section .syp-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  #syp-section .syp-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
+    font-weight: 500;
+    line-height: 1.1;
+    color: var(--text-primary);
+    margin-bottom: 24px;
+  }
+  @media (min-width: 768px) {
+    #syp-section .syp-title {
+      font-size: 56px;
+    }
+  }
+
+  #syp-section .syp-divider {
+    width: 40px;
+    height: 1.5px;
+    background-color: var(--accent-gold);
+    margin: 0 auto 24px auto;
+    border: none;
+  }
+
+  #syp-section .syp-subtitle {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  #syp-section .syp-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  @media (min-width: 992px) {
+    #syp-section .syp-grid {
+      grid-template-columns: 1fr 2fr; /* Left col takes 1 part, right takes 2 parts */
+      gap: 40px;
+    }
+  }
+
+  #syp-section .syp-card {
+    background-color: var(--card-bg);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.03);
+    border: 1px solid rgba(239, 235, 228, 0.6);
+  }
+
+  #syp-section .syp-contact-card {
+    padding: 40px 32px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #syp-section .syp-icon-wrap {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: 1px solid var(--accent-gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-gold);
+    margin-bottom: 24px;
+  }
+  #syp-section .syp-icon-wrap svg {
+    width: 24px;
+    height: 24px;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    fill: none;
+  }
+
+  #syp-section .syp-contact-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 500;
+    margin-bottom: 16px;
+  }
+
+  #syp-section .syp-contact-desc {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin-bottom: 32px;
+  }
+
+  #syp-section .syp-phone-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    padding: 16px 24px;
+    border: 1px solid var(--accent-gold);
+    border-radius: 8px;
+    color: var(--accent-gold);
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    background: transparent;
+    cursor: pointer;
+  }
+  #syp-section .syp-phone-btn:hover {
+    background-color: var(--accent-gold);
+    color: #FFF;
+  }
+  #syp-section .syp-phone-btn svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+  }
+
+  #syp-section .syp-form-card {
+    padding: 32px;
+  }
+  @media (min-width: 768px) {
+    #syp-section .syp-form-card {
+      padding: 48px;
+    }
+  }
+
+  #syp-section .syp-form-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  @media (min-width: 600px) {
+    #syp-section .syp-form-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  #syp-section .syp-input-group {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  #syp-section .syp-full-width {
+    grid-column: 1 / -1;
+  }
+
+  #syp-section .syp-input,
+  #syp-section .syp-select,
+  #syp-section .syp-textarea {
+    width: 100%;
+    background-color: var(--input-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 16px 20px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+    outline: none;
+    box-shadow: 0 0 0 0 transparent;
+  }
+
+  /* Placeholder Styling */
+  #syp-section .syp-input::placeholder,
+  #syp-section .syp-textarea::placeholder {
+    color: #999;
+  }
+
+  /* Focus Animations */
+  #syp-section .syp-input:focus,
+  #syp-section .syp-select:focus,
+  #syp-section .syp-textarea:focus {
+    border-color: var(--accent-gold);
+    box-shadow: 0 0 0 4px var(--focus-shadow);
+  }
+
+  /* Custom Select Arrow */
+  #syp-section .syp-select {
+    appearance: none;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23555555' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    background-size: 16px;
+    color: #555;
+  }
+  #syp-section .syp-select.has-value {
+    color: var(--text-primary);
+  }
+
+  #syp-section .syp-textarea {
+    resize: vertical;
+    min-height: 140px;
+  }
+
+  #syp-section .syp-error-msg {
+    color: var(--error-color);
+    font-size: 12px;
+    margin-top: 6px;
+    opacity: 0;
+    transform: translateY(-5px);
+    transition: all 0.3s ease;
+    position: absolute;
+    bottom: -20px;
+    left: 4px;
+    pointer-events: none;
+  }
+
+  /* Error State applied via JS */
+  #syp-section .syp-input-group.is-error .syp-input,
+  #syp-section .syp-input-group.is-error .syp-select,
+  #syp-section .syp-input-group.is-error .syp-textarea {
+    border-color: var(--error-color);
+    box-shadow: 0 0 0 4px rgba(211, 47, 47, 0.1);
+  }
+  #syp-section .syp-input-group.is-error .syp-error-msg {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Error Shake Animation */
+  @keyframes sypShake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
+    20%, 40%, 60%, 80% { transform: translateX(4px); }
+  }
+  .syp-shake-anim {
+    animation: sypShake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+  }
+
+  #syp-section .syp-submit-btn {
+    width: 100%;
+    background-color: var(--accent-gold);
+    color: #FFFFFF;
+    border: none;
+    border-radius: 8px;
+    padding: 18px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    transition: all 0.3s ease;
+    margin-top: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  #syp-section .syp-submit-btn:hover:not(:disabled) {
+    background-color: var(--accent-gold-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(184, 142, 82, 0.3);
+  }
+  
+  #syp-section .syp-submit-btn:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  #syp-section .syp-btn-arrow {
+    width: 20px;
+    height: 20px;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    fill: none;
+    transition: transform 0.3s ease;
+  }
+  #syp-section .syp-submit-btn:hover:not(:disabled) .syp-btn-arrow {
+    transform: translateX(4px);
+  }
+
+  /* Button Error State */
+  #syp-section .syp-submit-btn.btn-error {
+    background-color: var(--error-color);
+  }
+
+  /* Button Loading State */
+  #syp-section .syp-spinner {
+    display: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    border-top-color: #FFF;
+    animation: sypSpin 0.8s linear infinite;
+  }
+  @keyframes sypSpin {
+    to { transform: rotate(360deg); }
+  }
+
+  #syp-section .syp-submit-btn.is-loading {
+    background-color: var(--accent-gold-hover);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+  #syp-section .syp-submit-btn.is-loading .syp-btn-arrow {
+    display: none;
+  }
+  #syp-section .syp-submit-btn.is-loading .syp-spinner {
+    display: block;
+  }
+  #syp-section .syp-submit-btn.is-success {
+    background-color: #2E7D32; /* Green for success */
+  }
+
+</style>
+
+<section id="syp-section">
+  <div class="syp-container">
+    
+    <!-- Header -->
+    <div class="syp-header">
+      <h2 class="syp-title">Start Your Project<br>with A&G Renovations</h2>
+      <hr class="syp-divider">
+      <p class="syp-subtitle">
+        West London's trusted renovation specialists. From first ideas to<br class="hidden md:block"> flawless finishes, we make the process seamless.
+      </p>
+    </div>
+
+    <!-- Main Grid Content -->
+    <div class="syp-grid">
+      
+      <!-- Left Column: Contact Info -->
+      <div class="syp-card syp-contact-card">
+        <div class="syp-icon-wrap">
+          <svg viewBox="0 0 24 24">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+          </svg>
+        </div>
+        <h3 class="syp-contact-title">Speak to our team<br>today</h3>
+        <hr class="syp-divider" style="width: 24px; margin-bottom: 20px;">
+        <p class="syp-contact-desc">
+          Get expert advice, clear answers,<br>
+          and a no-obligation discussion<br>
+          about your project.
+        </p>
+        <a href="tel:02079931203" class="syp-phone-btn">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          020 7993 1203
+        </a>
+      </div>
+
+      <!-- Right Column: Form -->
+      <div class="syp-card syp-form-card">
+        <form id="syp-form" novalidate>
+          <div class="syp-form-grid">
+            
+            <div class="syp-input-group">
+              <input type="text" id="syp-name" class="syp-input" placeholder="Full Name">
+              <span class="syp-error-msg">Please enter your full name</span>
+            </div>
+
+            <div class="syp-input-group">
+              <input type="tel" id="syp-phone" class="syp-input" placeholder="Phone Number">
+              <span class="syp-error-msg">Enter a valid UK phone number</span>
+            </div>
+
+            <div class="syp-input-group">
+              <input type="email" id="syp-email" class="syp-input" placeholder="Email Address">
+              <span class="syp-error-msg">Enter a valid email address</span>
+            </div>
+
+            <div class="syp-input-group">
+              <input type="text" id="syp-postcode" class="syp-input" placeholder="Postcode">
+              <span class="syp-error-msg">Please enter your postcode</span>
+            </div>
+
+            <div class="syp-input-group syp-full-width">
+              <select id="syp-type" class="syp-select">
+                <option value="" disabled selected hidden>Project Type</option>
+                <option value="bathroom">Bathroom Renovation</option>
+                <option value="kitchen">Kitchen Renovation</option>
+                <option value="full_home">Full Home Refurbishment</option>
+                <option value="other">Other</option>
+              </select>
+              <span class="syp-error-msg">Please select a project type</span>
+            </div>
+
+            <div class="syp-input-group syp-full-width">
+              <textarea id="syp-details" class="syp-textarea" placeholder="Project Details"></textarea>
+              <span class="syp-error-msg">Please provide some details</span>
+            </div>
+
+            <div class="syp-input-group syp-full-width">
+              <button type="submit" id="syp-submit" class="syp-submit-btn">
+                <span class="syp-btn-text">Send Enquiry</span>
+                <svg class="syp-btn-arrow" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+                <div class="syp-spinner"></div>
+              </button>
+            </div>
+
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('syp-form');
+      const phoneInput = document.getElementById('syp-phone');
+      const selectInput = document.getElementById('syp-type');
+      const submitBtn = document.getElementById('syp-submit');
+      const btnText = submitBtn.querySelector('.syp-btn-text');
+
+      // Change select color when option is chosen
+      selectInput.addEventListener('change', function() {
+        if(this.value !== "") {
+          this.classList.add('has-value');
+        }
+      });
+
+      // Strict UK Phone Formatter (+44 format)
+      phoneInput.addEventListener('input', function(e) {
+        // Strip everything except digits and plus sign
+        let val = this.value.replace(/[^\d+]/g, '');
+        
+        // If empty, reset
+        if (val.length === 0) {
+          this.value = '';
+          return;
+        }
+
+        // Force +44 at the start
+        if (!val.startsWith('+44')) {
+           // Remove any leading + or 0, then prepend +44
+           let rawDigits = val.replace(/^(\+?44)?0?/, '');
+           val = '+44' + rawDigits;
+        }
+
+        // Format spacing: +44 XXXX XXXXXX
+        let formatted = '+44';
+        let digits = val.substring(3); // Get numbers after +44
+        
+        if (digits.length > 0) formatted += ' ' + digits.substring(0, 4);
+        if (digits.length > 4) formatted += ' ' + digits.substring(4, 10);
+        
+        this.value = formatted;
+      });
+
+      // Validation Helper
+      const validateEmail = (email) => {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      };
+
+      // Form Submit Handler
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        let isValid = true;
+        
+        // Elements to validate
+        const fields = [
+          { id: 'syp-name', validate: (v) => v.trim() !== '' },
+          { id: 'syp-phone', validate: (v) => v.length >= 12 }, // Basic length check for +44 format
+          { id: 'syp-email', validate: (v) => validateEmail(v.trim()) },
+          { id: 'syp-postcode', validate: (v) => v.trim() !== '' },
+          { id: 'syp-type', validate: (v) => v !== '' },
+          { id: 'syp-details', validate: (v) => v.trim() !== '' }
+        ];
+
+        // Reset errors
+        document.querySelectorAll('.syp-input-group').forEach(group => {
+          group.classList.remove('is-error');
+        });
+
+        // Run validation
+        fields.forEach(field => {
+          const el = document.getElementById(field.id);
+          const group = el.closest('.syp-input-group');
+          
+          if (!field.validate(el.value)) {
+            isValid = false;
+            group.classList.add('is-error');
+          }
+        });
+
+        if (!isValid) {
+          // Error UI for Submit Button
+          submitBtn.classList.add('btn-error', 'syp-shake-anim');
+          btnText.innerText = 'Please complete all fields';
+          
+          // Remove shake animation after it completes so it can be triggered again
+          setTimeout(() => {
+            submitBtn.classList.remove('syp-shake-anim');
+          }, 500);
+
+          // Reset button text color after a delay
+          setTimeout(() => {
+            submitBtn.classList.remove('btn-error');
+            btnText.innerText = 'Send Enquiry';
+          }, 2500);
+          
+          return;
+        }
+
+        // Valid State -> Loading UI
+        submitBtn.classList.add('is-loading');
+        submitBtn.disabled = true;
+        btnText.innerText = 'Sending...';
+
+        // Simulate API Request
+        setTimeout(() => {
+          // Success UI
+          submitBtn.classList.remove('is-loading');
+          submitBtn.classList.add('is-success');
+          btnText.innerText = 'Enquiry Sent Successfully';
+          
+          // Reset form
+          form.reset();
+          selectInput.classList.remove('has-value');
+
+          // Reset button back to normal after 3 seconds
+          setTimeout(() => {
+            submitBtn.classList.remove('is-success');
+            submitBtn.disabled = false;
+            btnText.innerText = 'Send Enquiry';
+          }, 3000);
+
+        }, 1500);
+      });
+      
+      // Remove error state on input
+      form.querySelectorAll('.syp-input, .syp-select, .syp-textarea').forEach(input => {
+        input.addEventListener('input', function() {
+          this.closest('.syp-input-group').classList.remove('is-error');
+        });
+      });
+    });
+  </script>
+</section>

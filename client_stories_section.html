@@ -1,0 +1,313 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:opsz,wght@9..40,400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  /* Scope all CSS to this specific section to prevent conflicts */
+  #client-stories-section, #client-stories-section * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  #client-stories-section {
+    --bg-color: #FCFAF8;
+    --text-primary: #111111;
+    --text-secondary: #555555;
+    --accent-gold: #B88E52;
+    --accent-gold-hover: #A17942;
+    --placeholder-bg: #EFEBE4;
+    
+    background-color: var(--bg-color);
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text-primary);
+    padding: 80px 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  @media (min-width: 768px) {
+    #client-stories-section {
+      padding: 100px 40px;
+    }
+  }
+
+  #client-stories-section .cs-container {
+    max-width: 1100px;
+    width: 100%;
+  }
+
+  /* Header Styling */
+  #client-stories-section .cs-header {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
+  #client-stories-section .cs-tagline {
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--accent-gold);
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  #client-stories-section .cs-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
+    font-weight: 500;
+    line-height: 1.1;
+    color: var(--text-primary);
+    margin-bottom: 24px;
+  }
+
+  @media (min-width: 768px) {
+    #client-stories-section .cs-title {
+      font-size: 56px;
+    }
+  }
+
+  #client-stories-section .cs-desc {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    max-width: 550px;
+    margin: 0 auto;
+  }
+
+  /* Video Layout & Wrappers */
+  #client-stories-section .cs-main-video-wrapper {
+    width: 100%;
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background-color: var(--placeholder-bg);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+  }
+
+  #client-stories-section .cs-thumbnails-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-bottom: 50px;
+  }
+
+  @media (min-width: 768px) {
+    #client-stories-section .cs-thumbnails-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+  }
+
+  #client-stories-section .cs-thumbnail-wrapper {
+    width: 100%;
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background-color: var(--placeholder-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  #client-stories-section .cs-thumbnail-wrapper:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.08);
+  }
+
+  /* Iframe Enforcement */
+  #client-stories-section .cs-iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    object-fit: cover;
+  }
+
+  /* Loading State Skeleton for empty videos */
+  #client-stories-section .cs-skeleton {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #EFEBE4 25%, #f7f5f0 50%, #EFEBE4 75%);
+    background-size: 200% 100%;
+    animation: csLoading 1.5s infinite;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  @keyframes csLoading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  /* Button Styling */
+  #client-stories-section .cs-btn-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  #client-stories-section .cs-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background-color: var(--accent-gold);
+    color: #FFFFFF;
+    text-decoration: none;
+    padding: 16px 32px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+
+  #client-stories-section .cs-btn:hover {
+    background-color: var(--accent-gold-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(184, 142, 82, 0.3);
+  }
+
+  #client-stories-section .cs-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+  }
+</style>
+
+<section id="client-stories-section">
+  <div class="cs-container">
+    
+    <!-- Section Header -->
+    <div class="cs-header">
+      <span class="cs-tagline">Client Stories</span>
+      <h2 class="cs-title">Real Clients. Real Homes.<br>Real Results.</h2>
+      <p class="cs-desc">
+        Hear from homeowners across West London who trusted us<br class="hidden md:block">
+        to transform their homes with care, clarity and craftsmanship.
+      </p>
+    </div>
+
+    <!-- Main Autoplay Video -->
+    <div class="cs-main-video-wrapper">
+      <div class="cs-skeleton" id="cs-main-skeleton"></div>
+      <!-- Add your YouTube URL to the src below. JS will auto-append autoplay logic -->
+      <iframe 
+        id="cs-main-video" 
+        class="cs-iframe" 
+        src="" 
+        title="Main Client Testimonial" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen>
+      </iframe>
+    </div>
+
+    <!-- Small Videos Grid (3 Videos) -->
+    <div class="cs-thumbnails-grid">
+      
+      <div class="cs-thumbnail-wrapper">
+        <div class="cs-skeleton"></div>
+        <!-- Add YouTube URL to src -->
+        <iframe 
+          class="cs-iframe cs-lazy-video" 
+          src="" 
+          title="Client Testimonial 1" 
+          loading="lazy" 
+          allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <div class="cs-thumbnail-wrapper">
+        <div class="cs-skeleton"></div>
+        <!-- Add YouTube URL to src -->
+        <iframe 
+          class="cs-iframe cs-lazy-video" 
+          src="" 
+          title="Client Testimonial 2" 
+          loading="lazy" 
+          allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <div class="cs-thumbnail-wrapper">
+        <div class="cs-skeleton"></div>
+        <!-- Add YouTube URL to src -->
+        <iframe 
+          class="cs-iframe cs-lazy-video" 
+          src="" 
+          title="Client Testimonial 3" 
+          loading="lazy" 
+          allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allowfullscreen>
+        </iframe>
+      </div>
+
+    </div>
+
+    <!-- YouTube Channel Button -->
+    <div class="cs-btn-container">
+      <!-- Add your YouTube Channel Link to the href below -->
+      <a href="" class="cs-btn" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24">
+          <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
+        </svg>
+        View All Video Reviews
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Logic 1: Remove skeletons when iframes load to show the video
+      const allIframes = document.querySelectorAll('.cs-iframe');
+      allIframes.forEach(iframe => {
+        iframe.addEventListener('load', function() {
+          // Only remove skeleton if src is actually filled by user
+          if(this.src && this.src !== window.location.href && this.src !== "about:blank") {
+            const skeleton = this.previousElementSibling;
+            if(skeleton && skeleton.classList.contains('cs-skeleton')) {
+              skeleton.style.display = 'none';
+            }
+          }
+        });
+      });
+
+      // Logic 2: Ensure the Main Video ALWAYS autoplays (requires mute for browsers to allow it)
+      const mainVideo = document.getElementById('cs-main-video');
+      
+      // Observer checks if user has manually updated the src in the DOM later (via CMS/Builder)
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          if (mutation.type === 'attributes' && mutation.attributeName === 'src') {
+            enforceAutoplay(mainVideo);
+          }
+        });
+      });
+
+      observer.observe(mainVideo, { attributes: true });
+
+      function enforceAutoplay(iframeElement) {
+        let currentSrc = iframeElement.getAttribute('src');
+        // Check if there's a valid YouTube link and missing the autoplay params
+        if (currentSrc && currentSrc.includes('youtube.com/embed') && !currentSrc.includes('autoplay=1')) {
+          // Append required parameters for seamless autoplay
+          const separator = currentSrc.includes('?') ? '&' : '?';
+          iframeElement.setAttribute('src', currentSrc + separator + 'autoplay=1&mute=1&loop=1');
+        }
+      }
+
+      // Run it once on initial load just in case the src is already populated
+      enforceAutoplay(mainVideo);
+    });
+  </script>
+</section>

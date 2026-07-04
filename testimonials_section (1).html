@@ -1,0 +1,693 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:opsz,wght@9..40,400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  /* Base Reset scoped to this section */
+  #tsm-section, #tsm-section * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Section Variables & Base Styles */
+  #tsm-section {
+    --bg-color: #FAF9F6;
+    --text-primary: #1A1A1A;
+    --text-secondary: #555555;
+    --accent-gold: #C4A478;
+    --card-bg: #FFFFFF;
+    
+    font-family: 'DM Sans', sans-serif;
+    background-color: var(--bg-color);
+    padding: 80px 20px;
+    width: 100%;
+    overflow: hidden;
+    color: var(--text-primary);
+  }
+
+  @media (min-width: 768px) {
+    #tsm-section {
+      padding: 120px 40px;
+    }
+  }
+
+  #tsm-section .tsm-container {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  /* Header Styles */
+  #tsm-section .tsm-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  #tsm-section .tsm-kicker {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: var(--accent-gold);
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  #tsm-section .tsm-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
+    line-height: 1.1;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 24px;
+  }
+  @media (min-width: 768px) {
+    #tsm-section .tsm-title {
+      font-size: 56px;
+    }
+  }
+
+  #tsm-section .tsm-divider {
+    width: 40px;
+    height: 1px;
+    background-color: var(--accent-gold);
+    margin: 0 auto 24px auto;
+    border: none;
+  }
+
+  #tsm-section .tsm-subtitle {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* Grid & Mobile Carousel */
+  #tsm-section .tsm-grid {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 20px;
+    padding-bottom: 20px; /* Space for scrollbar */
+    
+    /* Hide scrollbar for a cleaner look */
+    -ms-overflow-style: none;  
+    scrollbar-width: none;  
+  }
+  #tsm-section .tsm-grid::-webkit-scrollbar { 
+    display: none; 
+  }
+
+  @media (min-width: 1024px) {
+    #tsm-section .tsm-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      overflow-x: visible;
+      padding-bottom: 0;
+    }
+  }
+
+  /* Card Base Styles */
+  #tsm-section .tsm-card {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+    display: flex;
+    flex-direction: column;
+    
+    /* Mobile: 1 card per view */
+    flex: 0 0 100%;
+    scroll-snap-align: center;
+  }
+
+  /* Featured Card Layout (Desktop Only) */
+  @media (min-width: 1024px) {
+    #tsm-section .tsm-card.tsm-featured {
+      grid-column: span 2;
+      flex-direction: row;
+    }
+  }
+
+  /* Image Wrapper & Image Styles */
+  #tsm-section .tsm-img-wrap {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  
+  /* Standard card image height */
+  #tsm-section .tsm-card:not(.tsm-featured) .tsm-img-wrap {
+    height: 300px;
+    width: 100%;
+  }
+
+  /* Featured card image dimensions on desktop */
+  @media (min-width: 1024px) {
+    #tsm-section .tsm-featured .tsm-img-wrap {
+      width: 50%;
+      height: 100%;
+      min-height: 400px;
+    }
+  }
+
+  #tsm-section .tsm-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    background-color: #Eae7e2; /* Fallback color for empty src */
+    color: transparent;
+    transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+
+  /* Hover Overlay Animation (Bottom to Top) */
+  #tsm-section .tsm-img-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(26, 26, 26, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(100%);
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    pointer-events: none; /* Let clicks pass to the wrapper */
+  }
+  #tsm-section .tsm-img-overlay span {
+    color: #FFF;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 600;
+    border: 1px solid rgba(255,255,255,0.5);
+    padding: 10px 20px;
+    border-radius: 4px;
+    opacity: 0;
+    transition: opacity 0.3s ease 0.1s;
+  }
+
+  /* Hover Triggers */
+  #tsm-section .tsm-card:hover .tsm-img {
+    transform: scale(1.05);
+  }
+  #tsm-section .tsm-card:hover .tsm-img-overlay {
+    transform: translateY(0);
+  }
+  #tsm-section .tsm-card:hover .tsm-img-overlay span {
+    opacity: 1;
+  }
+
+  /* Text Content Area */
+  #tsm-section .tsm-content {
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+  }
+  @media (min-width: 1024px) {
+    #tsm-section .tsm-featured .tsm-content {
+      width: 50%;
+      padding: 48px;
+    }
+  }
+
+  #tsm-section .tsm-quote-icon {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 64px;
+    color: var(--accent-gold);
+    line-height: 0.5;
+    margin-bottom: 24px;
+    display: block;
+  }
+
+  #tsm-section .tsm-review-text {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin-bottom: 32px;
+    flex: 1;
+  }
+  @media (min-width: 1024px) {
+    #tsm-section .tsm-featured .tsm-review-text {
+      font-size: 18px;
+      line-height: 1.7;
+    }
+  }
+
+  /* Reviewer Info & Stars */
+  #tsm-section .tsm-reviewer-wrap {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  
+  #tsm-section .tsm-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: #F0EBE6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: var(--accent-gold);
+    flex-shrink: 0;
+  }
+
+  #tsm-section .tsm-reviewer-info h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+  }
+
+  #tsm-section .tsm-stars {
+    color: var(--accent-gold);
+    display: flex;
+    gap: 2px;
+  }
+  #tsm-section .tsm-stars svg {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+  }
+
+  /* CSS Entrance Animation Classes */
+  #tsm-section .tsm-anim-card {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  @keyframes tsmFadeUp {
+    0% {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Triggered via Intersection Observer */
+  #tsm-section.is-visible .tsm-anim-card {
+    animation: tsmFadeUp 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+  }
+
+  /* Staggered Delays for Cards */
+  #tsm-section .tsm-anim-card:nth-child(1) { animation-delay: 0.1s; }
+  #tsm-section .tsm-anim-card:nth-child(2) { animation-delay: 0.25s; }
+  #tsm-section .tsm-anim-card:nth-child(3) { animation-delay: 0.15s; }
+  #tsm-section .tsm-anim-card:nth-child(4) { animation-delay: 0.35s; }
+  #tsm-section .tsm-anim-card:nth-child(5) { animation-delay: 0.2s; }
+  #tsm-section .tsm-anim-card:nth-child(6) { animation-delay: 0.4s; }
+  #tsm-section .tsm-anim-card:nth-child(7) { animation-delay: 0.3s; }
+  #tsm-section .tsm-anim-card:nth-child(8) { animation-delay: 0.45s; }
+
+  /* Lightbox Styles */
+  #tsm-section .tsm-lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.95);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+  }
+  #tsm-section .tsm-lightbox.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  
+  #tsm-section .tsm-lightbox-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transform: scale(0.95);
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+  @media (min-width: 768px) {
+    #tsm-section .tsm-lightbox-img {
+      width: 90vw;
+      height: 90vh;
+      border-radius: 8px;
+    }
+  }
+  #tsm-section .tsm-lightbox.active .tsm-lightbox-img {
+    transform: scale(1);
+  }
+
+  #tsm-section .tsm-close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: rgba(255,255,255,0.1);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease;
+    z-index: 10000;
+  }
+  #tsm-section .tsm-close-btn:hover {
+    background: rgba(255,255,255,0.25);
+  }
+  #tsm-section .tsm-close-btn svg {
+    width: 24px;
+    height: 24px;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  @media (min-width: 768px) {
+    #tsm-section .tsm-close-btn {
+      top: 40px;
+      right: 40px;
+    }
+  }
+
+</style>
+
+<section id="tsm-section">
+  <div class="tsm-container">
+    
+    <!-- Section Header -->
+    <div class="tsm-header">
+      <span class="tsm-kicker">Real Clients, Real Results.</span>
+      <h2 class="tsm-title">Beautiful Spaces.<br>Trusted by Homeowners.</h2>
+      <hr class="tsm-divider">
+      <p class="tsm-subtitle">
+        We take pride in delivering exceptional renovations and a seamless experience from concept to completion.
+      </p>
+    </div>
+
+    <!-- Cards Grid / Mobile Carousel -->
+    <div class="tsm-grid">
+      
+      <!-- Card 1 (Featured - spans 2 cols on desktop) -->
+      <div class="tsm-card tsm-featured tsm-anim-card">
+        <div class="tsm-img-wrap">
+          <img src="" alt="Bathroom Renovation by A&G" class="tsm-img" loading="lazy" decoding="async" />
+          <div class="tsm-img-overlay"><span>View Image</span></div>
+        </div>
+        <div class="tsm-content">
+          <span class="tsm-quote-icon">“</span>
+          <p class="tsm-review-text">
+            A&G Renovations are amazing! Andrius, Andrei and Gintare are super professional and a pleasure to work with. The bathroom looks incredible and so much better than I could have ever imagined. A year on and it still looks brand new! The team have also been very helpful fixing any snagging after completion. Highly recommend, 10/10!
+          </p>
+          <div class="tsm-reviewer-wrap">
+            <div class="tsm-avatar">A</div>
+            <div class="tsm-reviewer-info">
+              <h4>Alexandra Neto</h4>
+              <div class="tsm-stars">
+                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="tsm-card tsm-anim-card">
+        <div class="tsm-img-wrap">
+          <img src="" alt="Renovation Work" class="tsm-img" loading="lazy" decoding="async" />
+          <div class="tsm-img-overlay"><span>View Image</span></div>
+        </div>
+        <div class="tsm-content">
+          <span class="tsm-quote-icon">“</span>
+          <p class="tsm-review-text">Extremely happy with the A&G team and could not recommend them enough. They completed a total bathroom make over for us a year ago, and it continues to delight us every day. The quality of work is superb, and the project organisation and communication have exceeded all expectations.</p>
+          <div class="tsm-reviewer-wrap">
+            <div class="tsm-avatar">K</div>
+            <div class="tsm-reviewer-info">
+              <h4>Ksenia Belova</h4>
+              <div class="tsm-stars">
+                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="tsm-card tsm-anim-card">
+        <div class="tsm-img-wrap">
+          <img src="" alt="Renovation Work" class="tsm-img" loading="lazy" decoding="async" />
+          <div class="tsm-img-overlay"><span>View Image</span></div>
+        </div>
+        <div class="tsm-content">
+          <span class="tsm-quote-icon">“</span>
+          <p class="tsm-review-text">I am extremely happy with A&G Renovations they were professional from the very beginning when they came to discuss the scope and the quotation suggesting both costs savings and improvements. The attention to detail continued throughout the works.</p>
+          <div class="tsm-reviewer-wrap">
+            <div class="tsm-avatar">L</div>
+            <div class="tsm-reviewer-info">
+              <h4>Leonardo Ramirez</h4>
+              <div class="tsm-stars">
+                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="tsm-card tsm-anim-card">
+        <div class="tsm-img-wrap">
+          <img src="" alt="Renovation Work" class="tsm-img" loading="lazy" decoding="async" />
+          <div class="tsm-img-overlay"><span>View Image</span></div>
+        </div>
+        <div class="tsm-content">
+          <span class="tsm-quote-icon">“</span>
+          <p class="tsm-review-text">The team at A&G did a fantastic job. Mike was a delight to have in the flat, worked hard and had a great eye for detail. I cannot fault the result. Really pleased with the new bathroom. Thank you, Mike, Mindi, Gintare and Andrius!</p>
+          <div class="tsm-reviewer-wrap">
+            <div class="tsm-avatar">R</div>
+            <div class="tsm-reviewer-info">
+              <h4>Rupert Tubbs</h4>
+              <div class="tsm-stars">
+                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="tsm-card tsm-anim-card">
+        <div class="tsm-img-wrap">
+          <img src="" alt="Renovation Work" class="tsm-img" loading="lazy" decoding="async" />
+          <div class="tsm-img-overlay"><span>View Image</span></div>
+        </div>
+        <div class="tsm-content">
+          <span class="tsm-quote-icon">“</span>
+          <p class="tsm-review-text">Everything was done with care and to a high standard. My installer Kestas was polite, tidy, and always did everything properly. Everyone at the office was also great. I couldn't recommend these gentlemen enough!</p>
+          <div class="tsm-reviewer-wrap">
+            <div class="tsm-avatar">D</div>
+            <div class="tsm-reviewer-info">
+              <h4>Dani Coyle</h4>
+              <div class="tsm-stars">
+                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Card 6 -->
+      <div class="tsm-card tsm-anim-card">
+        <div class="tsm-img-wrap">
+          <img src="" alt="Renovation Work" class="tsm-img" loading="lazy" decoding="async" />
+          <div class="tsm-img-overlay"><span>View Image</span></div>
+        </div>
+        <div class="tsm-content">
+          <span class="tsm-quote-icon">“</span>
+          <p class="tsm-review-text">Really happy with my bathroom renovation! The team was easy to communicate with, efficient, and worked incredibly hard. They even finished quicker than expected - highly recommend!</p>
+          <div class="tsm-reviewer-wrap">
+            <div class="tsm-avatar">C</div>
+            <div class="tsm-reviewer-info">
+              <h4>Carys Blackman-Rogers</h4>
+              <div class="tsm-stars">
+                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 7 -->
+      <div class="tsm-card tsm-anim-card">
+        <div class="tsm-img-wrap">
+          <img src="" alt="Renovation Work" class="tsm-img" loading="lazy" decoding="async" />
+          <div class="tsm-img-overlay"><span>View Image</span></div>
+        </div>
+        <div class="tsm-content">
+          <span class="tsm-quote-icon">“</span>
+          <p class="tsm-review-text">From the first consultation to the completion of the project, I was confident we had made the perfect choice. The result speaks for itself—the final finish is nothing short of magnificent.</p>
+          <div class="tsm-reviewer-wrap">
+            <div class="tsm-avatar">S</div>
+            <div class="tsm-reviewer-info">
+              <h4>Simon Wain</h4>
+              <div class="tsm-stars">
+                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 8 -->
+      <div class="tsm-card tsm-anim-card">
+        <div class="tsm-img-wrap">
+          <img src="" alt="Renovation Work" class="tsm-img" loading="lazy" decoding="async" />
+          <div class="tsm-img-overlay"><span>View Image</span></div>
+        </div>
+        <div class="tsm-content">
+          <span class="tsm-quote-icon">“</span>
+          <p class="tsm-review-text">We recently used Andrius and the team to install a new bathroom upstairs and a shower room downstairs, and we're very pleased with the result. I wouldn't hesitate to recommend them.</p>
+          <div class="tsm-reviewer-wrap">
+            <div class="tsm-avatar">N</div>
+            <div class="tsm-reviewer-info">
+              <h4>Natalie Sloan</h4>
+              <div class="tsm-stars">
+                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Lightbox Wrapper -->
+  <div id="tsm-lightbox" class="tsm-lightbox">
+    <button id="tsm-lightbox-close" class="tsm-close-btn" aria-label="Close fullscreen image">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12"></path></svg>
+    </button>
+    <img id="tsm-lightbox-image" src="" alt="Expanded project view" class="tsm-lightbox-img" />
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Initial CSS Animation Observer
+      const section = document.getElementById('tsm-section');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            section.classList.add('is-visible');
+            observer.unobserve(section);
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      if (section) observer.observe(section);
+
+      // 2. Lightbox Logic
+      const imgWrappers = document.querySelectorAll('#tsm-section .tsm-img-wrap');
+      const lightbox = document.getElementById('tsm-lightbox');
+      const lightboxImg = document.getElementById('tsm-lightbox-image');
+      const closeBtn = document.getElementById('tsm-lightbox-close');
+      let isDesktopView = window.innerWidth >= 1024;
+
+      const openLightbox = (src) => {
+        if (!src || src === window.location.href) return; // Ignore if empty
+        lightboxImg.src = src;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      };
+
+      const closeLightbox = () => {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+        setTimeout(() => {
+          if (!lightbox.classList.contains('active')) {
+            lightboxImg.src = '';
+          }
+        }, 400); 
+      };
+
+      imgWrappers.forEach(wrap => {
+        wrap.addEventListener('click', function() {
+          const img = this.querySelector('.tsm-img');
+          const src = img.getAttribute('src');
+          if (src) {
+             openLightbox(src);
+          }
+        });
+      });
+
+      closeBtn.addEventListener('click', closeLightbox);
+      
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) closeLightbox();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+          closeLightbox();
+        }
+      });
+
+      // 3. Screen Resize Auto-Close Logic
+      // If user crosses the breakpoint while lightbox is open, close it to prevent UI issues
+      window.addEventListener('resize', () => {
+        const newIsDesktopView = window.innerWidth >= 1024;
+        if (isDesktopView !== newIsDesktopView) {
+          isDesktopView = newIsDesktopView;
+          if (lightbox.classList.contains('active')) {
+            closeLightbox();
+          }
+        }
+      });
+    });
+  </script>
+</section>

@@ -1,0 +1,427 @@
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:opsz,wght@9..40,400;500;600&display=swap');
+
+  /* Reset and Box Sizing scoped to this section */
+  #srv-section, #srv-section * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  #srv-section {
+    font-family: 'DM Sans', sans-serif;
+    background-color: #FAF9F6; /* Soft warm off-white */
+    color: #1A1A1A;
+    padding: 100px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Custom Cursor Styles */
+  #srv-section .srv-custom-cursor {
+    width: 60px;
+    height: 60px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(4px);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    transform: translate(-50%, -50%) scale(0.5);
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s ease;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0;
+  }
+  #srv-section .srv-custom-cursor.active {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+
+  /* Container */
+  #srv-section .srv-container {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  /* Header Section */
+  #srv-section .srv-header {
+    text-align: center;
+    margin-bottom: 80px;
+  }
+  #srv-section .srv-kicker {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: #B5925E; /* Gold/Bronze */
+    margin-bottom: 20px;
+    display: block;
+  }
+  #srv-section .srv-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    line-height: 1.1;
+    color: #111;
+    margin-bottom: 30px;
+    font-weight: 500;
+  }
+  @media (min-width: 768px) {
+    #srv-section .srv-title {
+      font-size: 64px;
+    }
+  }
+  #srv-section .srv-divider {
+    width: 60px;
+    height: 1px;
+    background-color: #B5925E;
+    border: none;
+    margin: 0 auto 30px;
+  }
+  #srv-section .srv-subtitle {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #666;
+    max-width: 550px;
+    margin: 0 auto;
+  }
+
+  /* Grid / Rows */
+  #srv-section .srv-row {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+    background-color: #FFFFFF; /* White background for blocks */
+    box-shadow: 0 4px 30px rgba(0,0,0,0.02);
+  }
+  @media (min-width: 768px) {
+    #srv-section .srv-row {
+      flex-direction: row;
+      align-items: stretch; /* Ensures both columns share the same height */
+      margin-bottom: 0; /* Remove margin for a flush, grid-like look on desktop */
+      box-shadow: none;
+      background-color: transparent;
+    }
+    /* Alternate row direction on tablet/desktop */
+    #srv-section .srv-row:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+  }
+
+  /* Columns */
+  #srv-section .srv-text-col {
+    flex: 1;
+    padding: 60px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #FAF9F6;
+  }
+  @media (min-width: 1024px) {
+    #srv-section .srv-text-col {
+      padding: 100px 80px;
+    }
+  }
+
+  #srv-section .srv-img-col {
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+  }
+  #srv-section .srv-img-wrap {
+    width: 100%;
+    height: 450px;
+    position: relative;
+    display: flex;
+    overflow: hidden;
+    cursor: none; /* Hide default cursor to show custom one */
+  }
+  @media (min-width: 768px) {
+    #srv-section .srv-img-wrap {
+      height: 100%;
+      min-height: 600px;
+    }
+  }
+  
+  /* Image Styles - Adjusts to container and handles empty src gracefully */
+  #srv-section .srv-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    
+    /* Fallbacks for empty src */
+    background-color: #Eae7e2; 
+    color: transparent; /* Hides broken image icon text */
+  }
+  
+  /* Hover Zoom Effect */
+  #srv-section .srv-img-wrap:hover img {
+    transform: scale(1.06);
+  }
+
+  /* Content Typography */
+  #srv-section .srv-num {
+    font-size: 12px;
+    font-weight: 600;
+    color: #B5925E;
+    letter-spacing: 0.15em;
+    margin-bottom: 24px;
+    display: block;
+  }
+  #srv-section .srv-item-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
+    font-weight: 500;
+    line-height: 1.15;
+    color: #111;
+    margin-bottom: 20px;
+  }
+  @media (min-width: 768px) {
+    #srv-section .srv-item-title {
+      font-size: 56px;
+    }
+  }
+  #srv-section .srv-item-desc {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #555;
+    max-width: 360px;
+  }
+
+  /* Lightbox Modal */
+  #srv-section .srv-lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.96);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+  }
+  #srv-section .srv-lightbox.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  
+  #srv-section .srv-lightbox-img {
+    width: 100vw;
+    height: 100vh;
+    object-fit: contain;
+    transform: scale(0.95);
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+  @media (min-width: 768px) {
+    #srv-section .srv-lightbox-img {
+      width: 90vw;
+      height: 90vh;
+      border-radius: 4px;
+    }
+  }
+  #srv-section .srv-lightbox.active .srv-lightbox-img {
+    transform: scale(1);
+  }
+
+  #srv-section .srv-close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: rgba(255,255,255,0.1);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease;
+    z-index: 10000;
+  }
+  #srv-section .srv-close-btn:hover {
+    background: rgba(255,255,255,0.25);
+  }
+  #srv-section .srv-close-btn svg {
+    width: 24px;
+    height: 24px;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  @media (min-width: 768px) {
+    #srv-section .srv-close-btn {
+      top: 40px;
+      right: 40px;
+    }
+  }
+</style>
+
+<section id="srv-section">
+  
+  <!-- Custom Hover Cursor -->
+  <div id="srv-custom-cursor" class="srv-custom-cursor hidden lg:flex">
+    Zoom
+  </div>
+
+  <div class="srv-container">
+    
+    <!-- Section Header -->
+    <div class="srv-header">
+      <span class="srv-kicker">Our Services</span>
+      <h2 class="srv-title">Renovations Tailored<br>to Your Home</h2>
+      <hr class="srv-divider">
+      <p class="srv-subtitle">
+        From single-room upgrades to full home transformations,<br>
+        we deliver quality, care and craftsmanship in every detail.
+      </p>
+    </div>
+
+    <!-- Row 01 -->
+    <div class="srv-row">
+      <div class="srv-text-col">
+        <span class="srv-num">01</span>
+        <h3 class="srv-item-title">Kitchen<br>Renovation</h3>
+        <p class="srv-item-desc">Beautifully designed kitchens built for everyday living and effortless entertaining.</p>
+      </div>
+      <div class="srv-img-col">
+        <div class="srv-img-wrap">
+          <img src="image_5717b7.jpg" alt="Kitchen Renovation" class="srv-zoomable" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 02 (Reverses automatically on desktop via CSS) -->
+    <div class="srv-row">
+      <div class="srv-text-col">
+        <span class="srv-num">02</span>
+        <h3 class="srv-item-title">Bathroom<br>Renovation</h3>
+        <p class="srv-item-desc">Elegant, functional bathrooms designed for comfort, style and lasting quality.</p>
+      </div>
+      <div class="srv-img-col">
+        <div class="srv-img-wrap">
+          <img src="image_5717b7.jpg" alt="Bathroom Renovation" class="srv-zoomable" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 03 -->
+    <div class="srv-row">
+      <div class="srv-text-col">
+        <span class="srv-num">03</span>
+        <h3 class="srv-item-title">Full Apartment<br>Renovation</h3>
+        <p class="srv-item-desc">Complete transformations that elevate your entire home to a new standard.</p>
+      </div>
+      <div class="srv-img-col">
+        <div class="srv-img-wrap">
+          <img src="image_5717b7.jpg" alt="Full Apartment Renovation" class="srv-zoomable" />
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Lightbox Wrapper -->
+  <div id="srv-lightbox" class="srv-lightbox">
+    <button id="srv-lightbox-close" class="srv-close-btn" aria-label="Close fullscreen image">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12"></path></svg>
+    </button>
+    <img id="srv-lightbox-image" src="" alt="Expanded view" class="srv-lightbox-img" />
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Elements
+      const section = document.getElementById('srv-section');
+      const customCursor = document.getElementById('srv-custom-cursor');
+      const imgWrappers = document.querySelectorAll('#srv-section .srv-img-wrap');
+      const zoomableImages = document.querySelectorAll('#srv-section .srv-zoomable');
+      const lightbox = document.getElementById('srv-lightbox');
+      const lightboxImg = document.getElementById('srv-lightbox-image');
+      const closeBtn = document.getElementById('srv-lightbox-close');
+
+      // 1. Custom Cursor Logic
+      // Only run on devices that support hover (non-touch)
+      if (window.matchMedia("(pointer: fine)").matches) {
+        imgWrappers.forEach(wrap => {
+          wrap.addEventListener('mouseenter', () => {
+            customCursor.classList.add('active');
+          });
+          
+          wrap.addEventListener('mouseleave', () => {
+            customCursor.classList.remove('active');
+          });
+          
+          wrap.addEventListener('mousemove', (e) => {
+            customCursor.style.left = `${e.clientX}px`;
+            customCursor.style.top = `${e.clientY}px`;
+          });
+        });
+      }
+
+      // 2. Lightbox Logic
+      const openLightbox = (src) => {
+        // Prevent opening if src is empty (fallback protection)
+        if (!src || src === window.location.href) return;
+        
+        lightboxImg.src = src;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Lock background scroll
+        customCursor.classList.remove('active'); // Hide cursor while modal is open
+      };
+
+      const closeLightbox = () => {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = ''; // Unlock background scroll
+        
+        // Wait for fade out transition before clearing source
+        setTimeout(() => {
+          if (!lightbox.classList.contains('active')) {
+            lightboxImg.src = '';
+          }
+        }, 400); 
+      };
+
+      // Bind click events to all images
+      zoomableImages.forEach(img => {
+        img.addEventListener('click', function() {
+          // Use getAttribute to reliably check if src exists and isn't just the base URL
+          const src = this.getAttribute('src');
+          if(src) {
+             openLightbox(this.src);
+          }
+        });
+      });
+
+      // Bind close events
+      closeBtn.addEventListener('click', closeLightbox);
+      
+      // Close on background click
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) {
+          closeLightbox();
+        }
+      });
+
+      // Close on Escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+          closeLightbox();
+        }
+      });
+    });
+  </script>
+</section>
