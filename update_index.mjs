@@ -18,7 +18,7 @@ async function updateIndex() {
   html = html.replace(oldImg, newImg);
 
   // 2. Projects Section Replacement
-  const projectsData = JSON.parse(await fs.readFile(path.join(process.cwd(), 'projects_data.json'), 'utf-8'));
+  const projectsData = JSON.parse(await fs.readFile(path.join(process.cwd(), 'public', 'projects_data.json'), 'utf-8'));
   const first10 = projectsData.slice(0, 10);
   
   let cardsHtml = '';
@@ -30,17 +30,13 @@ async function updateIndex() {
     let badge = index === 0 ? '<div class="ag-pfm-badge">Featured Project</div>' : '';
     
     // Create a clean title from alt
-    const title = data.alt.split(' Image ')[0] || data.alt;
+    const title = data.alt; // Use full alt text for uniqueness
     
     cardsHtml += `
             <!-- Card ${index + 1} -->
             <div class="ag-pfm-card ${size}" role="button" aria-label="View ${title}">
                 <img src="${data.thumbnail}" data-original="${data.original}" alt="${data.alt}" class="ag-pfm-img" loading="lazy" decoding="async">
-                <div class="ag-pfm-overlay"></div>
                 ${badge}
-                <div class="ag-pfm-content">
-                    <h3 class="ag-pfm-card-title">${title}</h3>
-                </div>
             </div>`;
   });
 
@@ -83,8 +79,8 @@ ${cardsHtml}
     </section>
 `;
 
-  // Use regex to replace the old section. It starts with <section id="our-projects-section" and ends before <!-- Reviews -->
-  const oldSectionRegex = /<section id="our-projects-section"[\s\S]*?<\/section>/;
+  // Use regex to replace the old section. It starts with <section id="ag-pfm-section" and ends before <!-- Reviews -->
+  const oldSectionRegex = /<section id="ag-pfm-section"[\s\S]*?<\/section>/;
   html = html.replace(oldSectionRegex, masonryHtml.trim());
 
   await fs.writeFile(indexPath, html);

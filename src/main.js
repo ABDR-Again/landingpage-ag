@@ -1,5 +1,5 @@
 import { initHero } from './sections/hero.js';
-
+import { initForms } from './forms.js';
 function onReady(callback) {
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', callback, { once: true });
@@ -56,6 +56,7 @@ function loadSection(entry) {
 
 onReady(() => {
   initHero();
+  initForms();
 
   if (!('IntersectionObserver' in window)) {
     lazySections.forEach(loadSection);

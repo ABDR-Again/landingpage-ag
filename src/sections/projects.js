@@ -82,14 +82,10 @@ export function initProjects() {
           card.className = `ag-pfm-card ${data.sizeClass}`;
           card.setAttribute('role', 'button');
           
-          const title = data.alt.split(' Image ')[0] || data.alt;
+          const title = data.alt; // Use full alt text for uniqueness
           
           card.innerHTML = `
             <img src="${data.thumbnail}" data-original="${data.original}" alt="${data.alt}" class="ag-pfm-img" loading="lazy" decoding="async">
-            <div class="ag-pfm-overlay"></div>
-            <div class="ag-pfm-content">
-                <h3 class="ag-pfm-card-title">${title}</h3>
-            </div>
           `;
           grid.appendChild(card);
         });

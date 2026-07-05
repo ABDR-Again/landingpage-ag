@@ -657,9 +657,9 @@
   }
   @media (min-width: 768px) {
     #srv-section .srv-lightbox-img {
-      width: 90vw;
-      height: 90vh;
-      border-radius: 4px;
+      width: 100vw;
+      height: 100vh;
+      border-radius: 0;
     }
   }
   #srv-section .srv-lightbox.active .srv-lightbox-img {
@@ -3171,7 +3171,7 @@
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease;
-    padding: 20px;
+    padding: 0; /* Removed padding for full screen */
 }
 
 .ag-pfm-lightbox.ag-active {
@@ -3180,10 +3180,9 @@
 }
 
 .ag-pfm-lightbox-img {
-    max-width: 100%;
-    max-height: 90vh;
+    width: 100vw;
+    height: 100vh;
     object-fit: contain;
-    border-radius: 8px;
     background-color: transparent; 
     box-shadow: 0 10px 50px rgba(0,0,0,0.5);
     transform: scale(0.95);
