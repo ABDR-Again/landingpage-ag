@@ -203,6 +203,24 @@
 
     @media (max-width: 640px) {
 
+      /* Headings on mobile: prevent overflow, awkward line-breaks, and distortion */
+      h1, [style*="clamp(46px"] {
+        font-size: clamp(32px, 8vw, 42px) !important;
+        line-height: 1.15 !important;
+        word-wrap: break-word;
+      }
+
+      h2, .gal-title, .tsm-title, [style*="clamp(34px"], [style*="clamp(40px"] {
+        font-size: clamp(26px, 6.5vw, 32px) !important;
+        line-height: 1.2 !important;
+        word-wrap: break-word;
+      }
+
+      h3 {
+        line-height: 1.25 !important;
+      }
+
+
       /* Body and lead copy: generous and easily readable on mobile */
       body {
         font-size: 19px !important;
@@ -334,6 +352,15 @@
     /* Very narrow phones */
     @media (max-width: 380px) {
 
+      h1, [style*="clamp(46px"] {
+        font-size: 28px !important;
+      }
+
+      h2, .gal-title, .tsm-title, [style*="clamp(34px"], [style*="clamp(40px"] {
+        font-size: 24px !important;
+      }
+
+
       #nav .text-\[18px\],
       #nav .text-\[20px\],
       #nav .text-\[21px\] {
@@ -394,7 +421,7 @@
         class="inline-block px-4 py-1.5 rounded-full text-[18px] font-bold uppercase tracking-[1.5px] border bg-[rgba(0,182,122,0.12)] border-[rgba(0,182,122,0.25)] text-[#00b67a]">London's
         Trusted Bathroom Specialists &middot; Est. 2014</span>
       <h1 class="text-white font-bold leading-[1.15] tracking-tight mt-5 mb-4 max-w-[720px]"
-        style="font-size:clamp(52px, 7vw, 84px)">
+        style="font-size:clamp(46px, 6.5vw, 74px)">
         Your Bathroom.<br>
         <em style="color:#00b67a;font-weight:400">Done Once. Done Right.</em>
       </h1>
@@ -467,7 +494,7 @@
         <div>
           <div class="text-[18px] uppercase tracking-[2.5px] text-[#00b67a] font-bold mb-4">Sound familiar?</div>
           <h2 class="font-bold leading-tight tracking-tight mb-6 text-[#111418]"
-            style="font-size:clamp(38px, 5.2vw, 62px)">Finding a Bathroom Company You Can Actually Trust Shouldn't Be
+            style="font-size:clamp(34px, 4.5vw, 54px)">Finding a Bathroom Company You Can Actually Trust Shouldn't Be
             This
             Hard</h2>
           <div class="flex items-center gap-4 my-5">
@@ -526,7 +553,7 @@
           class="inline-block px-4 py-1.5 rounded-full text-[18px] font-bold uppercase tracking-[1.5px] border bg-[rgba(0,182,122,0.12)] border-[rgba(0,182,122,0.25)] text-[#00b67a]">A
           Different Kind of Renovation Company</span>
         <h2 class="font-bold leading-tight tracking-tight mt-5 mb-4 text-[#111418]"
-          style="font-size:clamp(38px, 5.2vw, 62px)">Built Around You. Accountable From Day One.</h2>
+          style="font-size:clamp(34px, 4.5vw, 54px)">Built Around You. Accountable From Day One.</h2>
         <div class="flex items-center gap-4 justify-center my-5">
           <div class="flex-1 max-w-[100px] h-px bg-[#00b67a] opacity-30"></div>
           <div class="w-1.5 h-1.5 rounded-full bg-[#00b67a]"></div>
@@ -542,7 +569,7 @@
           class="bg-[#f5f6f4] rounded-2xl p-10 relative overflow-hidden transition-all hover:-translate-y-1 hover:shadow-[0_20px_56px_rgba(0,0,0,0.07)]">
           <div class="absolute bottom-0 left-0 right-0 h-[3px] bg-[#00b67a]"></div>
           <div class="text-[72px] font-semibold leading-none mb-4 tracking-tight opacity-[0.15] text-[#00b67a]">01</div>
-          <h3 class="text-[28px] font-semibold mb-3 text-[#111418]">In-House Specialists Only</h3>
+          <h3 class="text-[25px] font-semibold mb-3 text-[#111418]">In-House Specialists Only</h3>
           <p class="text-[22px] text-[#3d4550] leading-relaxed">Our fitters work exclusively for A&amp;G, not
             subcontracted strangers. They arrive on time, work a full day between 8AM and 5PM, and treat your home with
             the same respect they'd want in their own. Same faces, same standards, every day.</p>
@@ -551,7 +578,7 @@
           class="bg-[#f5f6f4] rounded-2xl p-10 relative overflow-hidden transition-all hover:-translate-y-1 hover:shadow-[0_20px_56px_rgba(0,0,0,0.07)]">
           <div class="absolute bottom-0 left-0 right-0 h-[3px] bg-[#00b67a]"></div>
           <div class="text-[72px] font-semibold leading-none mb-4 tracking-tight opacity-[0.15] text-[#00b67a]">02</div>
-          <h3 class="text-[28px] font-semibold mb-3 text-[#111418]">Dedicated Project Coordination</h3>
+          <h3 class="text-[25px] font-semibold mb-3 text-[#111418]">Dedicated Project Coordination</h3>
           <p class="text-[22px] text-[#3d4550] leading-relaxed">Every project has a dedicated project manager. One point
             of
             contact from proposal sign-off to final handover, so you're never left wondering what's happening. A
@@ -561,7 +588,7 @@
           class="bg-[#f5f6f4] rounded-2xl p-10 relative overflow-hidden transition-all hover:-translate-y-1 hover:shadow-[0_20px_56px_rgba(0,0,0,0.07)]">
           <div class="absolute bottom-0 left-0 right-0 h-[3px] bg-[#00b67a]"></div>
           <div class="text-[72px] font-semibold leading-none mb-4 tracking-tight opacity-[0.15] text-[#00b67a]">03</div>
-          <h3 class="text-[28px] font-semibold mb-3 text-[#111418]">12-Month Labour Guarantee</h3>
+          <h3 class="text-[25px] font-semibold mb-3 text-[#111418]">12-Month Labour Guarantee</h3>
           <p class="text-[22px] text-[#3d4550] leading-relaxed">All workmanship is covered for a full year as standard,
             backed by &pound;5M public liability insurance. If anything falls short of your expectations, we return and
             fix it at no cost to you. That's our promise in writing.</p>
@@ -578,7 +605,7 @@
           class="inline-block px-4 py-1.5 rounded-full text-[18px] font-bold uppercase tracking-[1.5px] border bg-[rgba(0,182,122,0.15)] border-[rgba(0,182,122,0.2)] text-[#00b67a]">Our
           Packages</span>
         <h2 class="font-bold leading-tight tracking-tight mt-5 mb-4 text-white"
-          style="font-size:clamp(38px, 5.2vw, 62px)">Choose Your Bathroom Package</h2>
+          style="font-size:clamp(34px, 4.5vw, 54px)">Choose Your Bathroom Package</h2>
         <div class="flex items-center gap-4 justify-center my-5">
           <div class="flex-1 max-w-[100px] h-px bg-[#00b67a] opacity-30"></div>
           <div class="w-1.5 h-1.5 rounded-full bg-[#00b67a]"></div>
@@ -592,7 +619,7 @@
         <!-- Basic -->
         <div class="bg-white/5 border border-white/10 rounded-2xl p-9 relative overflow-hidden">
           <span class="block text-[18px] font-bold uppercase tracking-[2px] text-[#00b67a] mb-3">Basic Package</span>
-          <h3 class="text-[32px] font-semibold text-white mb-2">Complete Bathroom Installation</h3>
+          <h3 class="text-[28px] font-semibold text-white mb-2">Complete Bathroom Installation</h3>
           <p class="text-[22px] text-white/50 mb-7 leading-relaxed">Everything needed for a full, professional bathroom
             refurbishment from strip-out to final clean.</p>
           <ul class="flex flex-col gap-2.5">
@@ -632,7 +659,7 @@
             class="absolute top-5 right-5 bg-[#00b67a] text-white text-[18px] font-bold uppercase tracking-[1.5px] px-3 py-1.5 rounded-full">
             Most Popular</div>
           <span class="block text-[18px] font-bold uppercase tracking-[2px] text-[#00b67a] mb-3">Premium Package</span>
-          <h3 class="text-[32px] font-semibold text-white mb-2">Premium Bathroom Installation</h3>
+          <h3 class="text-[28px] font-semibold text-white mb-2">Premium Bathroom Installation</h3>
           <p class="text-[22px] text-white/50 mb-7 leading-relaxed">Everything in the Basic Package, plus premium
             upgrades that transform a functional bathroom into a standout space.</p>
           <ul class="flex flex-col gap-2.5">
@@ -713,7 +740,7 @@
     }
 
     #gal-section .gal-title {
-      font-size: clamp(38px, 5.2vw, 62px);
+      font-size: clamp(34px, 4.5vw, 54px);
       font-weight: 700;
       line-height: 1.15;
       letter-spacing: -0.02em;
@@ -1175,7 +1202,7 @@
           class="inline-block px-4 py-1.5 rounded-full text-[18px] font-bold uppercase tracking-[1.5px] border bg-[rgba(0,182,122,0.12)] border-[rgba(0,182,122,0.25)] text-[#00b67a]">Commercial
           Excellence</span>
         <h2 class="font-bold leading-tight tracking-tight mt-5 mb-4 text-[#111418]"
-          style="font-size:clamp(38px, 5.2vw, 62px)">Trusted by London's Most Discerning Clients</h2>
+          style="font-size:clamp(34px, 4.5vw, 54px)">Trusted by London's Most Discerning Clients</h2>
         <div class="flex items-center gap-4 justify-center my-5">
           <div class="flex-1 max-w-[100px] h-px bg-[#00b67a] opacity-30"></div>
           <div class="w-1.5 h-1.5 rounded-full bg-[#00b67a]"></div>
@@ -1304,7 +1331,7 @@
     }
 
     #tsm-section .tsm-title {
-      font-size: clamp(38px, 5.2vw, 62px);
+      font-size: clamp(34px, 4.5vw, 54px);
       font-weight: 700;
       line-height: 1.15;
       letter-spacing: -0.02em;
@@ -2138,7 +2165,7 @@
   <!-- MID CTA -->
   <section class="bg-gradient-to-br from-[#00b67a] to-[#00926a] py-20 text-center">
     <div class="max-w-[1120px] mx-auto px-6">
-      <h2 class="text-white font-bold mb-4" style="font-size:clamp(38px, 5.2vw, 62px)">Ready to See What Your Bathroom
+      <h2 class="text-white font-bold mb-4" style="font-size:clamp(34px, 4.5vw, 54px)">Ready to See What Your Bathroom
         Could Look Like?</h2>
       <p class="text-white/90 max-w-[560px] mx-auto mb-9 text-[27px]">Book a free site visit. Syed, our
         estimator,
@@ -2165,7 +2192,7 @@
           class="inline-block px-4 py-1.5 rounded-full text-[18px] font-bold uppercase tracking-[1.5px] border bg-[rgba(0,182,122,0.12)] border-[rgba(0,182,122,0.25)] text-[#00b67a]">No
           Guesswork</span>
         <h2 class="font-bold leading-tight tracking-tight mt-5 mb-4 text-[#111418]"
-          style="font-size:clamp(38px, 5.2vw, 62px)">Here's Exactly What Happens Next</h2>
+          style="font-size:clamp(34px, 4.5vw, 54px)">Here's Exactly What Happens Next</h2>
         <div class="flex items-center gap-4 justify-center my-5">
           <div class="flex-1 max-w-[100px] h-px bg-[#00b67a] opacity-30"></div>
           <div class="w-1.5 h-1.5 rounded-full bg-[#00b67a]"></div>
@@ -2183,7 +2210,7 @@
             class="w-[68px] h-[68px] rounded-full bg-white text-[#00b67a] flex items-center justify-center text-[34px] font-semibold flex-shrink-0 relative z-10 shadow-[0_0_0_6px_#f5f6f4,0_4px_12px_rgba(0,0,0,0.06)]">
             1</div>
           <div class="pt-4">
-            <h3 class="text-[27px] font-semibold mb-2 text-[#111418]">You Get in Touch</h3>
+            <h3 class="text-[24px] font-semibold mb-2 text-[#111418]">You Get in Touch</h3>
             <p class="text-[22px] text-[#3d4550] leading-relaxed">Fill in the form below or call us on 020 3621 8527.
               Gintare will confirm a convenient time for your free site visit, usually within a few days.</p>
           </div>
@@ -2193,7 +2220,7 @@
             class="w-[68px] h-[68px] rounded-full bg-white text-[#00b67a] flex items-center justify-center text-[34px] font-semibold flex-shrink-0 relative z-10 shadow-[0_0_0_6px_#f5f6f4,0_4px_12px_rgba(0,0,0,0.06)]">
             2</div>
           <div class="pt-4">
-            <h3 class="text-[27px] font-semibold mb-2 text-[#111418]">Syed Visits Your Home</h3>
+            <h3 class="text-[24px] font-semibold mb-2 text-[#111418]">Syed Visits Your Home</h3>
             <p class="text-[22px] text-[#3d4550] leading-relaxed">Our estimator comes to you, takes precise
               measurements,
               listens to your vision, and answers every question. Nothing to prepare, just show him the bathroom.
@@ -2205,7 +2232,7 @@
             class="w-[68px] h-[68px] rounded-full bg-white text-[#00b67a] flex items-center justify-center text-[34px] font-semibold flex-shrink-0 relative z-10 shadow-[0_0_0_6px_#f5f6f4,0_4px_12px_rgba(0,0,0,0.06)]">
             3</div>
           <div class="pt-4">
-            <h3 class="text-[27px] font-semibold mb-2 text-[#111418]">You Receive a Clear, Itemised Proposal</h3>
+            <h3 class="text-[24px] font-semibold mb-2 text-[#111418]">You Receive a Clear, Itemised Proposal</h3>
             <p class="text-[22px] text-[#3d4550] leading-relaxed">Gintare prepares and sends you a detailed written
               proposal
               covering the full scope of work, materials coordination, and labour, with every line itemised and no
@@ -2218,7 +2245,7 @@
             class="w-[68px] h-[68px] rounded-full bg-white text-[#00b67a] flex items-center justify-center text-[34px] font-semibold flex-shrink-0 relative z-10 shadow-[0_0_0_6px_#f5f6f4,0_4px_12px_rgba(0,0,0,0.06)]">
             4</div>
           <div class="pt-4">
-            <h3 class="text-[27px] font-semibold mb-2 text-[#111418]">We Book Your Start Date &amp; Order Everything
+            <h3 class="text-[24px] font-semibold mb-2 text-[#111418]">We Book Your Start Date &amp; Order Everything
             </h3>
             <p class="text-[22px] text-[#3d4550] leading-relaxed">Once you're happy to proceed, Gintare locks in your
               project start date and coordinates all materials. Your project manager creates a dedicated
@@ -2230,7 +2257,7 @@
             class="w-[68px] h-[68px] rounded-full bg-white text-[#00b67a] flex items-center justify-center text-[34px] font-semibold flex-shrink-0 relative z-10 shadow-[0_0_0_6px_#f5f6f4,0_4px_12px_rgba(0,0,0,0.06)]">
             5</div>
           <div class="pt-4">
-            <h3 class="text-[27px] font-semibold mb-2 text-[#111418]">Handover, Sign-Off &amp; Your Guarantee Activated
+            <h3 class="text-[24px] font-semibold mb-2 text-[#111418]">Handover, Sign-Off &amp; Your Guarantee Activated
             </h3>
             <p class="text-[22px] text-[#3d4550] leading-relaxed">Final quality checks are completed and all waste is
               removed before handover. Your 12-month labour warranty begins from day one of completion. If anything
@@ -2249,7 +2276,7 @@
           class="inline-block px-4 py-1.5 rounded-full text-[18px] font-bold uppercase tracking-[1.5px] border bg-[rgba(0,182,122,0.12)] border-[rgba(0,182,122,0.25)] text-[#00b67a]">Fully
           Verified</span>
         <h2 class="font-bold leading-tight tracking-tight mt-5 mb-4 text-[#111418]"
-          style="font-size:clamp(38px, 5.2vw, 62px)">Why A&amp;G Can Be Trusted With Your Home</h2>
+          style="font-size:clamp(34px, 4.5vw, 54px)">Why A&amp;G Can Be Trusted With Your Home</h2>
         <div class="flex items-center gap-4 justify-center my-5">
           <div class="flex-1 max-w-[100px] h-px bg-[#00b67a] opacity-30"></div>
           <div class="w-1.5 h-1.5 rounded-full bg-[#00b67a]"></div>
@@ -2345,7 +2372,7 @@
             class="inline-block px-4 py-1.5 rounded-full text-[18px] font-bold uppercase tracking-[1.5px] border bg-[rgba(0,182,122,0.15)] border-[rgba(0,182,122,0.2)] text-[#00b67a]">The
             Man Behind A&amp;G</span>
           <h2 class="font-bold leading-tight tracking-tight mt-5 mb-4 text-white"
-            style="font-size:clamp(38px, 5.2vw, 62px)">Built From the Ground Up. On Craft Alone.</h2>
+            style="font-size:clamp(34px, 4.5vw, 54px)">Built From the Ground Up. On Craft Alone.</h2>
           <div class="flex items-center gap-4 my-5">
             <div class="flex-1 h-px bg-[#00b67a] opacity-30"></div>
             <div class="w-1.5 h-1.5 rounded-full bg-[#00b67a]"></div>
@@ -2388,7 +2415,7 @@
             class="inline-block px-4 py-1.5 rounded-full text-[18px] font-bold uppercase tracking-[1.5px] border bg-[rgba(0,182,122,0.12)] border-[rgba(0,182,122,0.25)] text-[#00b67a]">Free
             &middot; No Obligation</span>
           <h2 class="font-bold leading-tight tracking-tight mt-5 mb-6 text-[#111418]"
-            style="font-size:clamp(38px, 5.2vw, 62px)">Your New Bathroom Starts With One Conversation</h2>
+            style="font-size:clamp(34px, 4.5vw, 54px)">Your New Bathroom Starts With One Conversation</h2>
           <div class="flex items-center gap-4 my-5">
             <div class="flex-1 h-px bg-[#00b67a] opacity-30"></div>
             <div class="w-1.5 h-1.5 rounded-full bg-[#00b67a]"></div>
@@ -2708,7 +2735,7 @@
         <span
           class="inline-block px-4 py-1.5 rounded-full text-[18px] font-bold uppercase tracking-[1.5px] border bg-[rgba(0,182,122,0.12)] border-[rgba(0,182,122,0.25)] text-[#00b67a]">FAQ</span>
         <h2 class="font-bold leading-tight tracking-tight mt-5 mb-4 text-[#111418]"
-          style="font-size:clamp(38px, 5.2vw, 62px)">Frequently Asked Questions</h2>
+          style="font-size:clamp(34px, 4.5vw, 54px)">Frequently Asked Questions</h2>
         <div class="flex items-center gap-4 justify-center my-5">
           <div class="flex-1 max-w-[100px] h-px bg-[#00b67a] opacity-30"></div>
           <div class="w-1.5 h-1.5 rounded-full bg-[#00b67a]"></div>
@@ -2724,7 +2751,7 @@
             class="flex items-center justify-between p-6 cursor-pointer list-none font-semibold text-[#111418] text-[26px] hover:text-[#00b67a] transition-colors">
             How long does a bathroom renovation take?
             <span
-              class="text-[#00b67a] text-[30px] font-light flex-shrink-0 ml-4 transition-transform group-open:rotate-45">+</span>
+              class="text-[#00b67a] text-[26px] font-light flex-shrink-0 ml-4 transition-transform group-open:rotate-45">+</span>
           </summary>
           <div class="px-6 pb-6 text-[24px] text-[#3d4550] leading-relaxed border-t border-[#d4d8d5] pt-4">
             Most bathroom renovations take between 1 and 3 weeks depending on the size and scope of the project. A
@@ -2739,7 +2766,7 @@
             class="flex items-center justify-between p-6 cursor-pointer list-none font-semibold text-[#111418] text-[26px] hover:text-[#00b67a] transition-colors">
             How much does a bathroom renovation cost in London?
             <span
-              class="text-[#00b67a] text-[30px] font-light flex-shrink-0 ml-4 transition-transform group-open:rotate-45">+</span>
+              class="text-[#00b67a] text-[26px] font-light flex-shrink-0 ml-4 transition-transform group-open:rotate-45">+</span>
           </summary>
           <div class="px-6 pb-6 text-[24px] text-[#3d4550] leading-relaxed border-t border-[#d4d8d5] pt-4">
             Bathroom renovation costs in London typically range from £6,000 to £22,000 depending on the size of the
@@ -2754,7 +2781,7 @@
             class="flex items-center justify-between p-6 cursor-pointer list-none font-semibold text-[#111418] text-[26px] hover:text-[#00b67a] transition-colors">
             Do I need to supply my own bathroom fixtures and tiles?
             <span
-              class="text-[#00b67a] text-[30px] font-light flex-shrink-0 ml-4 transition-transform group-open:rotate-45">+</span>
+              class="text-[#00b67a] text-[26px] font-light flex-shrink-0 ml-4 transition-transform group-open:rotate-45">+</span>
           </summary>
           <div class="px-6 pb-6 text-[24px] text-[#3d4550] leading-relaxed border-t border-[#d4d8d5] pt-4">
             No, we handle everything. Through our network of trusted suppliers we source and coordinate the delivery of
@@ -2770,7 +2797,7 @@
             class="flex items-center justify-between p-6 cursor-pointer list-none font-semibold text-[#111418] text-[26px] hover:text-[#00b67a] transition-colors">
             Is the work guaranteed?
             <span
-              class="text-[#00b67a] text-[30px] font-light flex-shrink-0 ml-4 transition-transform group-open:rotate-45">+</span>
+              class="text-[#00b67a] text-[26px] font-light flex-shrink-0 ml-4 transition-transform group-open:rotate-45">+</span>
           </summary>
           <div class="px-6 pb-6 text-[24px] text-[#3d4550] leading-relaxed border-t border-[#d4d8d5] pt-4">
             Yes. All workmanship is covered by a 12-month guarantee against faulty labour as standard on every project.
@@ -2785,7 +2812,7 @@
             class="flex items-center justify-between p-6 cursor-pointer list-none font-semibold text-[#111418] text-[26px] hover:text-[#00b67a] transition-colors">
             Do you use subcontractors or your own team?
             <span
-              class="text-[#00b67a] text-[30px] font-light flex-shrink-0 ml-4 transition-transform group-open:rotate-45">+</span>
+              class="text-[#00b67a] text-[26px] font-light flex-shrink-0 ml-4 transition-transform group-open:rotate-45">+</span>
           </summary>
           <div class="px-6 pb-6 text-[24px] text-[#3d4550] leading-relaxed border-t border-[#d4d8d5] pt-4">
             Our installers are in-house specialists who work exclusively for A&G Renovations, not subcontracted
@@ -2800,7 +2827,7 @@
             class="flex items-center justify-between p-6 cursor-pointer list-none font-semibold text-[#111418] text-[26px] hover:text-[#00b67a] transition-colors">
             What areas of London do you cover?
             <span
-              class="text-[#00b67a] text-[30px] font-light flex-shrink-0 ml-4 transition-transform group-open:rotate-45">+</span>
+              class="text-[#00b67a] text-[26px] font-light flex-shrink-0 ml-4 transition-transform group-open:rotate-45">+</span>
           </summary>
           <div class="px-6 pb-6 text-[24px] text-[#3d4550] leading-relaxed border-t border-[#d4d8d5] pt-4">
             We work across all areas of London and the surrounding regions. Our team is based in East London and
@@ -2814,7 +2841,7 @@
             class="flex items-center justify-between p-6 cursor-pointer list-none font-semibold text-[#111418] text-[26px] hover:text-[#00b67a] transition-colors">
             What happens after I submit an enquiry?
             <span
-              class="text-[#00b67a] text-[30px] font-light flex-shrink-0 ml-4 transition-transform group-open:rotate-45">+</span>
+              class="text-[#00b67a] text-[26px] font-light flex-shrink-0 ml-4 transition-transform group-open:rotate-45">+</span>
           </summary>
           <div class="px-6 pb-6 text-[24px] text-[#3d4550] leading-relaxed border-t border-[#d4d8d5] pt-4">
             Once you submit an enquiry, Gintare from our team will be in touch to confirm a convenient time for a free
@@ -2833,7 +2860,7 @@
   <section class="bg-[#1e2329] py-28 text-center relative overflow-hidden">
     <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,182,122,0.07)_0%,transparent_70%)]"></div>
     <div class="max-w-[1120px] mx-auto px-6 relative z-10">
-      <h2 class="text-white max-w-[660px] mx-auto mb-4 font-normal italic" style="font-size:clamp(46px, 5.8vw, 72px)">
+      <h2 class="text-white max-w-[660px] mx-auto mb-4 font-normal italic" style="font-size:clamp(40px, 5vw, 64px)">
         &ldquo;Do It Once. Do It Right.&rdquo;</h2>
       <p class="text-white/55 max-w-[520px] mx-auto mb-11 text-[27px]">Over 40 five-star reviews. A decade of London
         renovations. A team that genuinely cares about the result, and a guarantee to prove it.</p>
