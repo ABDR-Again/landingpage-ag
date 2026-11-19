@@ -20,7 +20,6 @@ def optimize_image(input_path, output_path, max_size=None, quality=90):
 
 # Process Company Logos
 logos_mapping = {
-    "2.png": "bikbbi.webp",
     "3.png": "niceic.webp",
     "4.png": "gas-safe.webp",
     "5.png": "bsi.webp",

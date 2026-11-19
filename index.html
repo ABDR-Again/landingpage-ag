@@ -17,12 +17,38 @@
   <title>Bathroom Renovation London | A&G Renovations (Est. 2014)</title>
   <meta name="description"
     content="London's trusted bathroom renovation specialists since 2014. In-house team, dedicated project coordinator, 12-month guarantee. Free site visit from one of our estimators.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="dist/output.css?v=4">
+  <!-- PERF: hero photo (the LCP element) and the DM Sans font are requested
+       before any CSS, so neither waits on a stylesheet. Phones get the 800px
+       file, wide screens the 1600px one. -->
+  <link rel="preload" as="image" fetchpriority="high"
+    href="images/new-bathroom/low/Project-01-bathroom-01-image-01.webp"
+    imagesrcset="images/new-bathroom/low/Project-01-bathroom-01-image-01.webp 800w, images/new-bathroom/full/Project-01-bathroom-01-image-01.webp 1600w"
+    imagesizes="(max-width: 900px) calc(100vw - 48px), (max-width: 1168px) calc(54.5vw - 61px), 576px">
+  <link rel="preload" as="font" type="font/woff2" href="fonts/dm-sans-latin.woff2" crossorigin>
+
+  <!-- PERF: DM Sans, self-hosted (was Google Fonts). One variable file covers
+       weights 300-700, so it is the only font file a normal visit downloads.
+       latin-ext only loads if the page shows a character outside Latin-1.
+       Licence: fonts/OFL.txt. -->
+  <style>
+    @font-face {
+      font-family: 'DM Sans';
+      font-style: normal;
+      font-weight: 300 700;
+      font-display: swap;
+      src: url(fonts/dm-sans-latin-ext.woff2) format('woff2');
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+    @font-face {
+      font-family: 'DM Sans';
+      font-style: normal;
+      font-weight: 300 700;
+      font-display: swap;
+      src: url(fonts/dm-sans-latin.woff2) format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+  </style>
+  <link rel="stylesheet" href="dist/output.css?v=6">
 
   <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
@@ -448,6 +474,21 @@
       }
     }
   </style>
+
+  <!-- A11Y: colour contrast (WCAG AA 4.5:1 for body-size text). Self-contained
+       so a Tailwind rebuild cannot drop it. Each is the smallest shift that
+       passes; hue is unchanged.
+       - grey #6f7a74 -> #6a746e (4.2:1 -> 4.57:1 on cream, 4.84:1 on white)
+       - white/50 price-card copy -> 62% white (3.5:1 -> 4.5:1)
+       - white/60 stat labels on the owner panel -> 62% white (4.34:1 -> 4.5:1)
+       - step numerals 01-04 (54-72px, large text, needs 3:1): opacity
+         0.15 -> 0.67 (1.23:1 -> 3.01:1 on cream) -->
+  <style>
+    .text-\[\#6f7a74\] { color: #6a746e; }
+    .opacity-\[0\.15\].text-\[\#2d6a4f\] { opacity: 0.67; }
+    .text-white\/50 { color: rgba(255, 255, 255, 0.62); }
+    .bg-white\/5 .text-white\/60 { color: rgba(255, 255, 255, 0.62); }
+  </style>
 </head>
 
 <body class="min-h-screen bg-white">
@@ -458,7 +499,7 @@
     <div class="max-w-[1120px] mx-auto px-6">
       <div class="flex items-center justify-between h-[70px]">
         <a href="#" class="flex items-center gap-3">
-          <img src="logo.jpeg" alt="A&amp;G Renovations Logo" class="h-10 w-auto object-contain rounded-sm" />
+          <img src="images/optimized/logo-128.webp" alt="A&amp;G Renovations Logo" class="h-10 w-auto object-contain rounded-sm" width="102" height="128" />
           <div>
             <div class="text-[21px] font-bold tracking-wide leading-tight text-[#1c2b26]">A&amp;G Renovations</div>
             <div class="text-[18px] font-normal text-[#6f7a74] tracking-[2px] uppercase">Est. London 2014</div>
@@ -481,6 +522,8 @@
       </div>
     </div>
   </nav>
+
+  <main id="main">
 
   <!-- HERO -->
   <style>
@@ -1037,7 +1080,7 @@
                 </svg>
               </div>
               <strong>5.0 on Google</strong>
-              <span>51 five-star reviews</span>
+              <span>62 reviews</span>
             </div>
           </div>
 
@@ -1081,9 +1124,11 @@
         <div class="h-ring" aria-hidden="true"></div>
 
         <div class="h-photo">
-          <img src="images/new-bathroom/full/Project-01-bathroom-01-image-01.webp"
+          <img src="images/new-bathroom/low/Project-01-bathroom-01-image-01.webp"
+            srcset="images/new-bathroom/low/Project-01-bathroom-01-image-01.webp 800w, images/new-bathroom/full/Project-01-bathroom-01-image-01.webp 1600w"
+            sizes="(max-width: 900px) calc(100vw - 48px), (max-width: 1168px) calc(54.5vw - 61px), 576px"
             alt="Completed bathroom renovation by A&amp;G Renovations in London, with marble bath panel, green vanity unit and brass fittings"
-            width="800" height="600" fetchpriority="high" decoding="async">
+            width="800" height="600" fetchpriority="high">
         </div>
 
         <div class="h-card h-quote">
@@ -1113,7 +1158,7 @@
 
         <div class="h-card h-project">
           <span class="h-project-thumb">
-            <img src="images/new-bathroom/low/Project-06-bathroom-01-image-01.webp" alt="" aria-hidden="true">
+            <img src="images/new-bathroom/low/Project-06-bathroom-01-image-01.webp" alt="" aria-hidden="true" width="600" height="800" loading="lazy" decoding="async">
           </span>
           <a href="#gal-section">
             <div class="h-project-label">Real A&amp;G project</div>
@@ -1191,6 +1236,261 @@
       </div>
     </div>
   </section>
+
+  <!-- ONE CONTRACT: interactive comparison (same section as the kitchen and
+       flat pages, adapted for bathrooms). The section padding and header use
+       the same Tailwind classes as the page's other section headers (all
+       already in dist/output.css); the interactive part is scoped to
+       #ag-contract and does not rely on Tailwind. -->
+  <style>
+    #ag-contract {
+      --c-forest: #2d6a4f; --c-forest-deep: #24483a; --c-ink: #1c2b26; --c-ink-soft: #47524d;
+      --c-paper: #faf8f4; --c-stone: #e5e0d6; --c-mint: #95d5b2; --c-brass-light: #dcb878;
+      color: var(--c-ink); font-family: 'DM Sans', sans-serif;
+    }
+    #ag-contract * { box-sizing: border-box; }
+    /* Even line lengths, so "It." never sits alone on the last line. */
+    #ag-contract #ag-contract-h { text-wrap: balance; }
+    #ag-contract .c-switch {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 5px; margin: 0 auto 22px; width: fit-content;
+      background: var(--c-paper); border: 1px solid var(--c-stone); border-radius: 999px;
+    }
+    #ag-contract .c-switch button {
+      border: 0; cursor: pointer; border-radius: 999px; padding: 11px 20px; min-height: 46px;
+      font: inherit; font-size: 16px; font-weight: 600; color: var(--c-ink-soft); background: transparent;
+      transition: background-color .3s ease, color .3s ease;
+    }
+    #ag-contract .c-switch button[aria-selected="true"] { background: var(--c-forest-deep); color: #ffffff; }
+    #ag-contract[data-mode="alone"] .c-switch button[data-mode="alone"][aria-selected="true"] { background: #6f665a; }
+    #ag-contract .c-grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr); gap: 28px; align-items: stretch; }
+    #ag-contract .c-stage {
+      position: relative; min-height: 460px; border-radius: 22px; overflow: hidden;
+      border: 1px solid var(--c-stone); background-color: var(--c-paper);
+      background-image: radial-gradient(rgba(45, 106, 79, 0.16) 1px, transparent 1.2px);
+      background-size: 22px 22px; transition: background-color .6s ease;
+    }
+    #ag-contract .c-stage[data-mode="ag"] { background-color: #f1f7f3; }
+    #ag-contract .c-wires { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+    #ag-contract .c-wires .w { fill: none; }
+    #ag-contract .c-wires .w-alone { stroke: #b8ad99; stroke-width: 1.6; stroke-dasharray: 5 6; }
+    #ag-contract .c-wires .w-main { stroke: var(--c-forest); stroke-width: 3; }
+    #ag-contract .c-wires .w-ag { stroke: rgba(45, 106, 79, 0.5); stroke-width: 2; }
+    #ag-contract .c-nodes { position: absolute; inset: 0; }
+    #ag-contract .c-node {
+      position: absolute; left: var(--x); top: var(--y); transform: translate(-50%, -50%);
+      white-space: nowrap; font-size: 15.5px; font-weight: 600; line-height: 1.2;
+      transition: left .9s cubic-bezier(.65, 0, .25, 1), top .9s cubic-bezier(.65, 0, .25, 1),
+                  background-color .5s ease, color .5s ease, border-color .5s ease, opacity .5s ease, transform .5s ease;
+      transition-delay: calc(var(--i, 0) * 45ms);
+    }
+    #ag-contract .c-node.trade { padding: 8px 14px; border-radius: 999px; background: #ffffff; border: 1.5px dashed #bfb39f; color: var(--c-ink-soft); }
+    #ag-contract .c-stage[data-mode="ag"] .c-node.trade { background: var(--c-forest); border: 1.5px solid var(--c-forest); color: #ffffff; }
+    #ag-contract .c-node.you {
+      width: 70px; height: 70px; border-radius: 50%; display: grid; place-items: center;
+      background: var(--c-ink); color: #ffffff; font-size: 17px; z-index: 2;
+      box-shadow: 0 0 0 8px rgba(28, 43, 38, 0.06);
+    }
+    #ag-contract .c-node.coord {
+      padding: 13px 18px; border-radius: 14px; background: var(--c-forest-deep); color: #ffffff;
+      border: 2px solid var(--c-brass-light); font-size: 16px; z-index: 2; opacity: 0; transform: translate(-50%, -50%) scale(.7);
+    }
+    #ag-contract .c-stage[data-mode="ag"] .c-node.coord { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    /* positions: booking trades yourself */
+    #ag-contract .c-stage .you, #ag-contract .c-stage .coord { --x: 49%; --y: 50%; }
+    #ag-contract .c-stage .t1 { --x: 18%; --y: 21%; } #ag-contract .c-stage .t2 { --x: 78%; --y: 17%; }
+    #ag-contract .c-stage .t3 { --x: 85%; --y: 52%; } #ag-contract .c-stage .t4 { --x: 70%; --y: 83%; }
+    #ag-contract .c-stage .t5 { --x: 27%; --y: 80%; } #ag-contract .c-stage .t6 { --x: 12%; --y: 50%; }
+    /* positions: one contract with A&G */
+    #ag-contract .c-stage[data-mode="ag"] .you { --x: 8%; --y: 50%; }
+    #ag-contract .c-stage[data-mode="ag"] .coord { --x: 36%; --y: 50%; }
+    #ag-contract .c-stage[data-mode="ag"] .t1 { --x: 80%; --y: 13%; } #ag-contract .c-stage[data-mode="ag"] .t2 { --x: 80%; --y: 27%; }
+    #ag-contract .c-stage[data-mode="ag"] .t3 { --x: 80%; --y: 41%; } #ag-contract .c-stage[data-mode="ag"] .t4 { --x: 80%; --y: 55%; }
+    #ag-contract .c-stage[data-mode="ag"] .t5 { --x: 80%; --y: 69%; } #ag-contract .c-stage[data-mode="ag"] .t6 { --x: 80%; --y: 83%; }
+    #ag-contract .c-note {
+      position: absolute; left: 16px; bottom: 14px; right: 16px; z-index: 3; margin: 0;
+      font-size: 16px; color: var(--c-ink-soft); pointer-events: none;
+    }
+    #ag-contract .c-note b { font-size: 23px; font-weight: 700; color: var(--c-ink); margin-right: 4px; letter-spacing: -0.02em; }
+    #ag-contract[data-mode="ag"] .note-alone, #ag-contract[data-mode="alone"] .note-ag { display: none; }
+    #ag-contract[data-mode="ag"] .c-note b { color: var(--c-forest); }
+    #ag-contract .c-points { display: grid; gap: 14px; align-content: start; }
+    #ag-contract .c-pts {
+      border-radius: 14px; padding: 22px 22px 20px; border: 1px solid var(--c-stone);
+      transition: opacity .5s ease, background-color .5s ease, border-color .5s ease, color .5s ease;
+    }
+    #ag-contract .c-pts h3 { font-size: 20px; font-weight: 600; line-height: 1.25; margin: 0 0 12px; letter-spacing: -0.01em; color: inherit; }
+    #ag-contract .c-list { display: grid; gap: 9px; list-style: none; margin: 0; padding: 0; }
+    #ag-contract .c-list li { display: flex; gap: 12px; font-size: 17px; line-height: 1.5; }
+    #ag-contract .c-list svg { flex-shrink: 0; margin-top: 4px; }
+    #ag-contract .c-pts-alone .c-list li { color: var(--c-ink-soft); }
+    #ag-contract .c-pts-alone .c-list svg { color: #a39b8c; }
+    #ag-contract .c-pts-ag .c-list svg { color: var(--c-forest); }
+    #ag-contract[data-mode="ag"] .c-pts-ag { background: var(--c-forest-deep); border-color: var(--c-forest-deep); color: #ffffff; }
+    #ag-contract[data-mode="ag"] .c-pts-ag .c-list svg { color: var(--c-mint); }
+    #ag-contract[data-mode="ag"] .c-pts-alone, #ag-contract[data-mode="alone"] .c-pts-ag { opacity: .55; }
+    @media (max-width: 960px) { #ag-contract .c-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 760px) {
+      #ag-contract .c-switch { display: grid; width: 100%; }
+      #ag-contract .c-switch button { padding: 10px 8px; font-size: 14.5px; }
+      #ag-contract .c-stage { min-height: 500px; }
+      #ag-contract .c-node.trade { font-size: 13.5px; padding: 7px 11px; }
+      #ag-contract .c-node.coord { font-size: 14px; padding: 10px 13px; white-space: normal; text-align: center; width: 190px; }
+      #ag-contract .c-node.you { width: 56px; height: 56px; font-size: 15px; }
+      #ag-contract .c-stage .you, #ag-contract .c-stage .coord { --x: 50%; --y: 47%; }
+      #ag-contract .c-stage .t1 { --x: 28%; --y: 10%; } #ag-contract .c-stage .t2 { --x: 73%; --y: 19%; }
+      #ag-contract .c-stage .t3 { --x: 76%; --y: 70%; } #ag-contract .c-stage .t4 { --x: 47%; --y: 78%; }
+      #ag-contract .c-stage .t5 { --x: 25%; --y: 66%; } #ag-contract .c-stage .t6 { --x: 24%; --y: 32%; }
+      #ag-contract .c-stage[data-mode="ag"] .you { --x: 50%; --y: 8%; }
+      #ag-contract .c-stage[data-mode="ag"] .coord { --x: 50%; --y: 27%; }
+      #ag-contract .c-stage[data-mode="ag"] .t1 { --x: 28%; --y: 47%; } #ag-contract .c-stage[data-mode="ag"] .t2 { --x: 72%; --y: 47%; }
+      #ag-contract .c-stage[data-mode="ag"] .t3 { --x: 28%; --y: 60%; } #ag-contract .c-stage[data-mode="ag"] .t4 { --x: 72%; --y: 60%; }
+      #ag-contract .c-stage[data-mode="ag"] .t5 { --x: 28%; --y: 73%; } #ag-contract .c-stage[data-mode="ag"] .t6 { --x: 72%; --y: 73%; }
+      #ag-contract .c-note { font-size: 14.5px; }
+      #ag-contract .c-note b { font-size: 20px; }
+      #ag-contract .c-list li { font-size: 16.5px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      #ag-contract .c-node, #ag-contract .c-stage, #ag-contract .c-pts, #ag-contract .c-switch button { transition: none; }
+    }
+  </style>
+
+  <section id="ag-contract" class="bg-white py-20 md:py-24" data-mode="alone" aria-labelledby="ag-contract-h">
+    <div class="max-w-[1120px] mx-auto px-6">
+      <div class="text-center mb-16">
+        <span
+          class="inline-block px-4 py-1.5 rounded-full text-[18px] font-bold uppercase tracking-[1.5px] border bg-[rgba(45,106,79,0.12)] border-[rgba(45,106,79,0.25)] text-[#2d6a4f]">One
+          Contract, One Team</span>
+        <h2 class="font-bold leading-tight tracking-tight mt-5 mb-4 text-[#1c2b26]" id="ag-contract-h"
+          style="font-size:clamp(34px, 4.5vw, 54px)">Up to Six Trades in One Room. One Team Runs It.</h2>
+        <div class="flex items-center gap-4 justify-center my-5">
+          <div class="flex-1 max-w-[100px] h-px bg-[#2d6a4f] opacity-30"></div>
+          <div class="w-1.5 h-1.5 rounded-full bg-[#2d6a4f]"></div>
+          <div class="flex-1 max-w-[100px] h-px bg-[#2d6a4f] opacity-30"></div>
+        </div>
+        <p class="max-w-[580px] mx-auto text-[27px] text-[#47524d]">A new bathroom brings together a fitter, a
+          plumber, an electrician, often a gas engineer, plus tiling and decorating, all in a set order. Booked
+          separately, every gap between them is yours to manage.</p>
+      </div>
+      <div class="c-switch" role="tablist" aria-label="Compare two ways to renovate a bathroom">
+        <button type="button" role="tab" data-mode="alone" aria-selected="true" aria-controls="ag-contract-stage">Booking trades yourself</button>
+        <button type="button" role="tab" data-mode="ag" aria-selected="false" aria-controls="ag-contract-stage">One contract with A&amp;G</button>
+      </div>
+      <div class="c-grid">
+        <div class="c-stage" id="ag-contract-stage" data-mode="alone" role="tabpanel">
+          <svg class="c-wires" aria-hidden="true"></svg>
+          <div class="c-nodes" aria-hidden="true">
+            <span class="c-node you">You</span>
+            <span class="c-node coord">Your A&amp;G project coordinator</span>
+            <span class="c-node trade t1" style="--i:1">Bathroom fitter</span>
+            <span class="c-node trade t2" style="--i:2">Plumber</span>
+            <span class="c-node trade t3" style="--i:3">Electrician</span>
+            <span class="c-node trade t4" style="--i:4">Gas engineer</span>
+            <span class="c-node trade t5" style="--i:5">Tiler</span>
+            <span class="c-node trade t6" style="--i:6">Decorator</span>
+          </div>
+          <p class="c-note" aria-live="polite">
+            <span class="note-alone"><b>6</b> separate trades for you to find, schedule and chase</span>
+            <span class="note-ag"><b>1</b> point of contact. We schedule everyone else.</span>
+          </p>
+        </div>
+        <div class="c-points">
+          <div class="c-pts c-pts-alone">
+            <h3>Booking trades yourself</h3>
+            <ul class="c-list">
+              <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M4 9h10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>You find, check and schedule each trade</li>
+              <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M4 9h10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>A delay in one trade holds up the next</li>
+              <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M4 9h10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>Problems between trades have no single owner</li>
+              <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M4 9h10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>Separate invoices and separate guarantees</li>
+            </ul>
+          </div>
+          <div class="c-pts c-pts-ag">
+            <h3>One contract with A&amp;G</h3>
+            <ul class="c-list">
+              <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>One contract and one point of contact for the whole bathroom</li>
+              <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Fitted by our own in-house bathroom fitters</li>
+              <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Plumbing, NICEIC certified electricians and Gas Safe engineers through certified partners, scheduled by us</li>
+              <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>A project coordinator and a WhatsApp group from day one</li>
+              <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="m3.5 9.5 3.5 3.5 7.5-8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>One 12-month labour guarantee on the finished work</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script>
+    /* One contract: draws the connecting lines and switches between the two
+       views. Same behaviour as the kitchen and flat pages, minus their
+       analytics call (no tracking added here). */
+    (function () {
+      var section = document.getElementById('ag-contract');
+      if (!section) { return; }
+      var stage = document.getElementById('ag-contract-stage');
+      var svg = stage.querySelector('.c-wires');
+      var you = stage.querySelector('.you'), coord = stage.querySelector('.coord');
+      var trades = Array.prototype.slice.call(stage.querySelectorAll('.trade'));
+      var tabs = Array.prototype.slice.call(section.querySelectorAll('[role="tab"]'));
+      var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var bend = [[-46, 34], [52, -26], [34, 44], [-52, -30], [44, 30], [-34, -48]];
+      var raf = 0, until = 0, touched = false;
+      function mid(el) {
+        var s = stage.getBoundingClientRect(), r = el.getBoundingClientRect();
+        return [r.left - s.left + r.width / 2, r.top - s.top + r.height / 2];
+      }
+      function draw() {
+        var y = mid(you), out = '';
+        if (stage.dataset.mode === 'alone') {
+          trades.forEach(function (t, i) {
+            var p = mid(t), b = bend[i % bend.length];
+            out += '<path class="w w-alone" d="M' + y[0] + ' ' + y[1] + ' Q' + ((y[0] + p[0]) / 2 + b[0]) + ' ' +
+              ((y[1] + p[1]) / 2 + b[1]) + ' ' + p[0] + ' ' + p[1] + '"/>';
+          });
+        } else {
+          var c = mid(coord);
+          out += '<path class="w w-main" d="M' + y[0] + ' ' + y[1] + ' L' + c[0] + ' ' + c[1] + '"/>';
+          trades.forEach(function (t) {
+            var p = mid(t), vertical = window.innerWidth < 761;
+            var ctl = vertical ? (c[0] + ' ' + (c[1] + p[1]) / 2 + ' ' + p[0] + ' ' + (c[1] + p[1]) / 2)
+                               : ((c[0] + p[0]) / 2 + ' ' + c[1] + ' ' + (c[0] + p[0]) / 2 + ' ' + p[1]);
+            out += '<path class="w w-ag" d="M' + c[0] + ' ' + c[1] + ' C' + ctl + ' ' + p[0] + ' ' + p[1] + '"/>';
+          });
+        }
+        svg.innerHTML = out;
+      }
+      function follow(ms) {
+        until = performance.now() + ms; cancelAnimationFrame(raf);
+        var step = function () { draw(); if (performance.now() < until) { raf = requestAnimationFrame(step); } };
+        step();
+        /* Final redraw once the nodes have settled, in case animation frames
+           were throttled (background tab, low-power mode). */
+        setTimeout(draw, ms + 150);
+      }
+      function setMode(mode, byUser) {
+        stage.dataset.mode = mode; section.dataset.mode = mode;
+        tabs.forEach(function (t) { t.setAttribute('aria-selected', t.dataset.mode === mode ? 'true' : 'false'); });
+        follow(reduceMotion ? 50 : 1300);
+        if (byUser) { touched = true; }
+      }
+      tabs.forEach(function (t) { t.addEventListener('click', function () { setMode(t.dataset.mode, true); }); });
+      tabs.forEach(function (t, i) {
+        t.addEventListener('keydown', function (ev) {
+          if (ev.key === 'ArrowRight' || ev.key === 'ArrowLeft') { var n = tabs[(i + 1) % 2]; n.focus(); n.click(); }
+        });
+      });
+      window.addEventListener('resize', draw, { passive: true });
+      window.addEventListener('load', draw);
+      if (document.fonts && document.fonts.ready) { document.fonts.ready.then(draw); }
+      draw();
+      if ('IntersectionObserver' in window && !reduceMotion) {
+        var io = new IntersectionObserver(function (es) {
+          if (es[0].isIntersecting) {
+            io.disconnect();
+            setTimeout(function () { if (!touched) { setMode('ag', false); } }, 1400);
+          }
+        }, { threshold: 0.55 });
+        io.observe(stage);
+      }
+    })();
+  </script>
 
   <!-- WHY AG -->
   <section class="bg-white py-20 md:py-24">
@@ -1687,7 +1987,7 @@
           data-label="Bathroom renovation in Aldersbrook">
           <img src="images/new-bathroom/low/Project-01-bathroom-01-image-01.webp"
             alt="Bathroom renovation completed by A&amp;G Renovations in Aldersbrook, London" class="gal-img"
-            loading="lazy" decoding="async" width="600" height="800">
+            loading="lazy" decoding="async" width="800" height="600">
           <div class="gal-overlay"><span>View Project</span></div>
 
           <div class="gal-place">Aldersbrook</div>
@@ -1698,7 +1998,7 @@
           data-label="Bathroom renovation in Little Venice">
           <img src="images/new-bathroom/low/Project-02-bathroom-01-image-01.webp"
             alt="Bathroom renovation completed by A&amp;G Renovations in Little Venice, London" class="gal-img"
-            loading="lazy" decoding="async" width="600" height="800">
+            loading="lazy" decoding="async" width="533" height="800">
           <div class="gal-overlay"><span>View Project</span></div>
 
           <div class="gal-place">Little Venice</div>
@@ -1751,7 +2051,7 @@
           data-label="Bathroom renovation in Walworth">
           <img src="images/new-bathroom/low/Project-07-bathroom-01-image-01.webp"
             alt="Bathroom renovation completed by A&amp;G Renovations in Walworth, London" class="gal-img"
-            loading="lazy" decoding="async" width="600" height="800">
+            loading="lazy" decoding="async" width="800" height="600">
           <div class="gal-overlay"><span>View Project</span></div>
 
           <div class="gal-place">Walworth</div>
@@ -1777,14 +2077,6 @@
           <div class="gal-overlay"><span>View Project</span></div>
 
           <div class="gal-place">Croydon</div>
-        </div>
-
-        <div class="gal-tile" data-set="images/new-bathroom/full/Project-10-bathroom-01-image-01.webp"
-          data-label="Bathroom renovation in London">
-          <img src="images/new-bathroom/low/Project-10-bathroom-01-image-01.webp"
-            alt="Bathroom renovation completed by A&amp;G Renovations in London" class="gal-img" loading="lazy"
-            decoding="async" width="600" height="800">
-          <div class="gal-overlay"><span>View Project</span></div>
         </div>
       </div>
 
@@ -1923,7 +2215,7 @@
           <div
             class="w-full aspect-[4/3] rounded-[24px] overflow-hidden shadow-[0_16px_40px_rgba(0,0,0,0.15)] mb-5 transition-transform duration-500 group-hover:-translate-y-2">
             <img src="images/optimized/clients/jw-marriott.webp" alt="JW Marriott Grosvenor House"
-              class="w-full h-full object-cover">
+              class="w-full h-full object-cover" width="480" height="600" loading="lazy" decoding="async">
           </div>
           <h3 class="text-center text-[#1c2b26] font-bold text-[22px] uppercase tracking-[1px] leading-[1.4]">
             JW MARRIOTT<br>GROSVENOR HOUSE
@@ -1934,7 +2226,7 @@
           <div
             class="w-full aspect-[4/3] rounded-[24px] overflow-hidden shadow-[0_16px_40px_rgba(0,0,0,0.15)] mb-5 transition-transform duration-500 group-hover:-translate-y-2">
             <img src="images/optimized/clients/the-hari-hotel.webp" alt="The Hari Hotel London"
-              class="w-full h-full object-cover">
+              class="w-full h-full object-cover" width="480" height="600" loading="lazy" decoding="async">
           </div>
           <h3 class="text-center text-[#1c2b26] font-bold text-[22px] uppercase tracking-[1px] leading-[1.4]">
             THE HARI HOTEL<br>LONDON
@@ -1945,7 +2237,7 @@
           <div
             class="w-full aspect-[4/3] rounded-[24px] overflow-hidden shadow-[0_16px_40px_rgba(0,0,0,0.15)] mb-5 transition-transform duration-500 group-hover:-translate-y-2">
             <img src="images/optimized/clients/royal-air-force-club.webp" alt="Royal Air Force Club"
-              class="w-full h-full object-cover">
+              class="w-full h-full object-cover" width="480" height="600" loading="lazy" decoding="async">
           </div>
           <h3 class="text-center text-[#1c2b26] font-bold text-[22px] uppercase tracking-[1px] leading-[1.4]">
             ROYAL AIR FORCE<br>CLUB
@@ -1956,7 +2248,7 @@
           <div
             class="w-full aspect-[4/3] rounded-[24px] overflow-hidden shadow-[0_16px_40px_rgba(0,0,0,0.15)] mb-5 transition-transform duration-500 group-hover:-translate-y-2">
             <img src="images/optimized/clients/gordons-wine-bar.webp" alt="Gordon's Wine Bar"
-              class="w-full h-full object-cover">
+              class="w-full h-full object-cover" width="480" height="600" loading="lazy" decoding="async">
           </div>
           <h3 class="text-center text-[#1c2b26] font-bold text-[22px] uppercase tracking-[1px] leading-[1.4]">
             GORDON'S WINE<br>BAR
@@ -1967,7 +2259,7 @@
           <div
             class="w-full aspect-[4/3] rounded-[24px] overflow-hidden shadow-[0_16px_40px_rgba(0,0,0,0.15)] mb-5 transition-transform duration-500 group-hover:-translate-y-2">
             <img src="images/optimized/clients/equinox-sports-club.webp" alt="Equinox Sports Club"
-              class="w-full h-full object-cover">
+              class="w-full h-full object-cover" width="480" height="600" loading="lazy" decoding="async">
           </div>
           <h3 class="text-center text-[#1c2b26] font-bold text-[22px] uppercase tracking-[1px] leading-[1.4]">
             EQUINOX SPORTS<br>CLUB
@@ -1977,7 +2269,7 @@
         <div class="flex flex-col items-center group">
           <div
             class="w-full aspect-[4/3] rounded-[24px] overflow-hidden shadow-[0_16px_40px_rgba(0,0,0,0.15)] mb-5 transition-transform duration-500 group-hover:-translate-y-2">
-            <img src="images/optimized/clients/victus-soul.webp" alt="Victus Soul" class="w-full h-full object-cover">
+            <img src="images/optimized/clients/victus-soul.webp" alt="Victus Soul" class="w-full h-full object-cover" width="480" height="600" loading="lazy" decoding="async">
           </div>
           <h3 class="text-center text-[#1c2b26] font-bold text-[22px] uppercase tracking-[1px] leading-[1.4]">
             VICTUS SOUL
@@ -2470,7 +2762,7 @@
             data-images="images/client-testimonials/full/alexandra-neto-alexandra-neto-bathroom-1.webp,images/client-testimonials/full/alexandra-neto-alexandra-neto-bathroom-2.webp,images/client-testimonials/full/alexandra-neto-alexandra-neto-bathroom-3.webp">
             <img src="images/client-testimonials/low/alexandra-neto-alexandra-neto-bathroom-1.webp"
               alt="Bathroom renovation completed for Alexandra Neto" class="tsm-img" loading="lazy" decoding="async"
-              width="800" height="600">
+              width="760" height="1013">
             <div class="tsm-count">1 / 3</div>
             <div class="tsm-img-overlay"><span>View Project</span></div>
           </div>
@@ -2511,7 +2803,7 @@
             data-images="images/client-testimonials/full/leonardo-ramirez-leonardo-ramirez-bathroom-1.webp,images/client-testimonials/full/leonardo-ramirez-leonardo-ramirez-bathroom-2.webp,images/client-testimonials/full/leonardo-ramirez-leonardo-ramirez-bathroom-3.webp,images/client-testimonials/full/leonardo-ramirez-leonardo-ramirez-bathroom-4.webp,images/client-testimonials/full/leonardo-ramirez-leonardo-ramirez-bathroom-5.webp,images/client-testimonials/full/leonardo-ramirez-leonardo-ramirez-bathroom-6.webp">
             <img src="images/client-testimonials/low/leonardo-ramirez-leonardo-ramirez-bathroom-1.webp"
               alt="Bathroom renovation completed for Leonardo Ramirez" class="tsm-img" loading="lazy" decoding="async"
-              width="800" height="600">
+              width="760" height="1145">
             <div class="tsm-count">1 / 6</div>
             <div class="tsm-img-overlay"><span>View Project</span></div>
           </div>
@@ -2551,7 +2843,7 @@
             data-images="images/client-testimonials/full/simon-wain-simon-wain-bathroom-1.webp,images/client-testimonials/full/simon-wain-simon-wain-bathroom-2.webp,images/client-testimonials/full/simon-wain-simon-wain-bathroom-3.webp,images/client-testimonials/full/simon-wain-simon-wain-bathroom-4.webp,images/client-testimonials/full/simon-wain-simon-wain-bathroom-5.webp">
             <img src="images/client-testimonials/low/simon-wain-simon-wain-bathroom-1.webp"
               alt="Bathroom renovation completed for Simon Wain" class="tsm-img" loading="lazy" decoding="async"
-              width="800" height="600">
+              width="760" height="1013">
             <div class="tsm-count">1 / 5</div>
             <div class="tsm-img-overlay"><span>View Project</span></div>
           </div>
@@ -2593,7 +2885,7 @@
             data-images="images/client-testimonials/full/ksenia-belova-ksenia-belove-bathroom-1.webp">
             <img src="images/client-testimonials/low/ksenia-belova-ksenia-belove-bathroom-1.webp"
               alt="Bathroom renovation completed for Ksenia Belova" class="tsm-img" loading="lazy" decoding="async"
-              width="800" height="600">
+              width="760" height="570">
             <div class="tsm-img-overlay"><span>View Project</span></div>
           </div>
           <div class="tsm-content">
@@ -2633,7 +2925,7 @@
             data-images="images/client-testimonials/full/natalie-sloan-natalie-sloan-bathroom-image-1.webp,images/client-testimonials/full/natalie-sloan-natalie-sloan-bathroom-image-2.webp">
             <img src="images/client-testimonials/low/natalie-sloan-natalie-sloan-bathroom-image-1.webp"
               alt="Bathroom renovation completed for Natalie Sloan" class="tsm-img" loading="lazy" decoding="async"
-              width="800" height="600">
+              width="760" height="930">
             <div class="tsm-count">1 / 2</div>
             <div class="tsm-img-overlay"><span>View Project</span></div>
           </div>
@@ -2675,7 +2967,7 @@
             data-images="images/client-testimonials/full/dani-coyle-dani-coyle-bathroom-1.webp">
             <img src="images/client-testimonials/low/dani-coyle-dani-coyle-bathroom-1.webp"
               alt="Bathroom renovation completed for Dani Coyle" class="tsm-img" loading="lazy" decoding="async"
-              width="800" height="600">
+              width="760" height="1013">
             <div class="tsm-img-overlay"><span>View Project</span></div>
           </div>
           <div class="tsm-content">
@@ -2714,7 +3006,7 @@
             data-images="images/client-testimonials/full/rupert-tubbs-rupert-tubbs-bathroom-1.webp">
             <img src="images/client-testimonials/low/rupert-tubbs-rupert-tubbs-bathroom-1.webp"
               alt="Bathroom renovation completed for Rupert Tubbs" class="tsm-img" loading="lazy" decoding="async"
-              width="800" height="600">
+              width="760" height="1013">
             <div class="tsm-img-overlay"><span>View Project</span></div>
           </div>
           <div class="tsm-content">
@@ -2753,7 +3045,7 @@
             data-images="images/client-testimonials/full/carys-blackman-rogers-carys-blackman-rogers-bathroom-1.webp">
             <img src="images/client-testimonials/low/carys-blackman-rogers-carys-blackman-rogers-bathroom-1.webp"
               alt="Bathroom renovation completed for Carys Blackman-Rogers" class="tsm-img" loading="lazy"
-              decoding="async" width="800" height="600">
+              decoding="async" width="760" height="1013">
             <div class="tsm-img-overlay"><span>View Project</span></div>
           </div>
           <div class="tsm-content">
@@ -2806,7 +3098,7 @@
           </div>
           <div class="tsm-rating-score">5.0</div>
           <div class="tsm-rating-stars tsm-stars-google">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <div class="tsm-rating-label">51 Reviews</div>
+          <div class="tsm-rating-label">62 Reviews</div>
           <span class="tsm-rating-link">Read them on Google &rarr;</span>
         </a>
         <a class="tsm-rating-box" href="https://uk.trustpilot.com/review/ag-renovations.co.uk" target="_blank"
@@ -2818,9 +3110,9 @@
             </svg>
             <span class="tsm-wordmark">Trustpilot</span>
           </div>
-          <div class="tsm-rating-score">4.7</div>
+          <div class="tsm-rating-score">4.8</div>
           <div class="tsm-rating-stars tsm-stars-trustpilot">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <div class="tsm-rating-label">41 Reviews</div>
+          <div class="tsm-rating-label">51 Reviews</div>
           <span class="tsm-rating-link">Read them on Trustpilot &rarr;</span>
         </a>
       </div>
@@ -2938,10 +3230,56 @@
       <p class="text-white/90 max-w-[560px] mx-auto mb-9 text-[27px]">Book a free site visit. One of our estimators
         comes to you, measures up, and walks you through the full process. A clear, itemised proposal follows for your
         review. No obligation whatsoever.</p>
-      <div
-        class="max-w-[720px] mx-auto mb-9 rounded-2xl border border-white/25 bg-white/10 px-7 py-6 text-left flex items-start gap-4">
-        <span class="text-[38px] leading-none flex-shrink-0 font-semibold" aria-hidden="true">&pound;</span>
-        <p class="text-[23px] text-white leading-relaxed">
+      <!-- Introduction-fee callout. Styled by its own block below rather than
+           Tailwind classes, so it cannot break when dist/output.css is stale
+           or rebuilt. -->
+      <style>
+        .ag-fee-callout {
+          box-sizing: border-box;
+          display: flex;
+          align-items: center;
+          gap: 20px;
+          width: 100%;
+          max-width: 560px; /* same as the paragraph above (max-w-[560px]) */
+          margin: 0 auto 2.25rem;
+          padding: 24px 28px;
+          border: 1px solid rgba(255, 255, 255, 0.22);
+          border-radius: 16px;
+          background: rgba(255, 255, 255, 0.08);
+          color: #ffffff;
+          text-align: left;
+        }
+        .ag-fee-callout__icon {
+          flex: 0 0 auto;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 52px;
+          height: 52px;
+          border-radius: 50%;
+          background: rgba(255, 255, 255, 0.12);
+          font-size: 30px;
+          font-weight: 600;
+          line-height: 1;
+        }
+        .ag-fee-callout__text {
+          flex: 1 1 auto;
+          min-width: 0;
+          margin: 0;
+          font-size: 23px;
+          line-height: 1.6;
+          color: #ffffff;
+          overflow-wrap: break-word;
+        }
+        @media (max-width: 640px) {
+          .ag-fee-callout { gap: 14px; padding: 18px 18px; }
+          .ag-fee-callout__icon { width: 42px; height: 42px; font-size: 24px; }
+          .ag-fee-callout__text { font-size: 19px !important; }
+        }
+      </style>
+      <div class="ag-fee-callout">
+        <span class="ag-fee-callout__icon" aria-hidden="true">&pound;</span>
+        <p class="ag-fee-callout__text">
           <strong>Enquire direct and pay no introduction fee.</strong> Matching platforms charge the builder a
           commission on every job won, which ends up in the price you are quoted. Our direct quotes are typically
           10&ndash;15% lower than the same project priced through one.
@@ -2956,7 +3294,7 @@
           020 3621 8527</a>
       </div>
       <div class="text-[21px] text-white/70">Enquiries: Mon &ndash; Sat &middot; <strong class="text-white">8AM &ndash;
-          7PM</strong> &nbsp;&middot;&nbsp; Works carried out: <strong class="text-white">8AM &ndash; 5PM</strong></div>
+          7PM</strong> &nbsp;&middot;&nbsp; Works carried out: Mon &ndash; Sat &middot; <strong class="text-white">8AM &ndash; 5PM</strong></div>
     </div>
   </section>
 
@@ -2979,7 +3317,9 @@
       </div>
       <div class="max-w-[840px] mx-auto mb-14">
         <figure class="rounded-2xl overflow-hidden shadow-[0_16px_44px_rgba(28,43,38,0.14)]">
-          <img src="images/optimized/bathroom-under-renovation-full.webp"
+          <img src="images/new-bathroom/low/bathroom-under-renovation.webp"
+            srcset="images/new-bathroom/low/bathroom-under-renovation.webp 600w, images/optimized/bathroom-under-renovation-full.webp 1200w"
+            sizes="(max-width: 888px) calc(100vw - 48px), 840px"
             alt="An A&amp;G installer fitting a bathroom in a London home, with floor protection down and tools laid out"
             class="w-full h-auto object-cover" loading="lazy" decoding="async" width="1200" height="1600"
             style="max-height:520px;object-position:center 38%">
@@ -3074,18 +3414,32 @@
           policy
           exists to protect you, not us.</p>
       </div>
+      <!-- BIFIS logo is a wide wordmark, so in narrow cards it shrank to a thin
+           strip next to the square icons. It may use the card's side padding
+           (up to 200px wide) to match their visual weight. The slot height is
+           unchanged, so the card headings stay aligned. -->
+      <style>
+        .ag-bifis-logo {
+          display: block;
+          width: min(calc(100% + 40px), 200px);
+          max-width: none;
+          margin-left: 50%;
+          margin-right: 0;
+          transform: translateX(-50%);
+        }
+      </style>
       <div class="grid md:grid-cols-4 grid-cols-2 gap-4">
         <div
           class="bg-[#faf8f4] rounded-xl p-6 text-center border border-[#e0ded4] transition-all hover:border-[#2d6a4f] hover:-translate-y-0.5 hover:bg-white">
-          <img src="images/optimized/british-logo.jpeg" alt="BIFIS Member Logo"
-            class="h-30 mx-auto mb-4 object-contain">
+          <img src="images/optimized/bifis.webp" alt="BIFIS member logo" width="600" height="168" loading="lazy" decoding="async"
+            class="h-30 mx-auto mb-4 object-contain ag-bifis-logo">
           <div class="font-bold text-[21px] text-[#1c2b26] mb-1.5">BIFIS Member</div>
           <div class="text-[20px] text-[#6f7a74] leading-snug">British Institute of Fitted Interiors Specialists:
             the industry professional standard for kitchen and bathroom fitters</div>
         </div>
         <div
           class="bg-[#faf8f4] rounded-xl p-6 text-center border border-[#e0ded4] transition-all hover:border-[#2d6a4f] hover:-translate-y-0.5 hover:bg-white">
-          <img src="images/optimized/NIC.jpeg" alt="NICEIC Certified Electricians Logo"
+          <img src="images/optimized/NIC-400.webp" alt="NICEIC Certified Electricians Logo" width="400" height="280" loading="lazy" decoding="async"
             class="h-30 mx-auto mb-4 object-contain">
           <div class="font-bold text-[21px] text-[#1c2b26] mb-1.5">NICEIC Certified Electricians</div>
           <div class="text-[20px] text-[#6f7a74] leading-snug">All electrical work by our certified subcontractors,
@@ -3093,7 +3447,7 @@
         </div>
         <div
           class="bg-[#faf8f4] rounded-xl p-6 text-center border border-[#e0ded4] transition-all hover:border-[#2d6a4f] hover:-translate-y-0.5 hover:bg-white">
-          <img src="images/optimized/gas-safe.webp" alt="Gas Safe Registered Logo"
+          <img src="images/optimized/gas-safe.webp" width="160" height="200" loading="lazy" decoding="async" alt="Gas Safe Registered Logo"
             class="h-30 mx-auto mb-4 object-contain scale-120">
           <div class="font-bold text-[21px] text-[#1c2b26] mb-1.5">Gas Safe Registered</div>
           <div class="text-[20px] text-[#6f7a74] leading-snug">All gas and boiler work by our Gas Safe registered
@@ -3101,7 +3455,7 @@
         </div>
         <div
           class="bg-[#faf8f4] rounded-xl p-6 text-center border border-[#e0ded4] transition-all hover:border-[#2d6a4f] hover:-translate-y-0.5 hover:bg-white">
-          <img src="images/optimized/bsi.webp" alt="BSI-Certified Products Logo"
+          <img src="images/optimized/bsi.webp" width="160" height="200" loading="lazy" decoding="async" alt="BSI-Certified Products Logo"
             class="h-30 mx-auto mb-4 object-contain">
           <div class="font-bold text-[21px] text-[#1c2b26] mb-1.5">BSI-Certified Products</div>
           <div class="text-[20px] text-[#6f7a74] leading-snug">BSI-certified products and British Standards compliance
@@ -3109,7 +3463,7 @@
         </div>
         <div
           class="bg-[#faf8f4] rounded-xl p-6 text-center border border-[#e0ded4] transition-all hover:border-[#2d6a4f] hover:-translate-y-0.5 hover:bg-white">
-          <img src="images/optimized/environment-agency.webp" alt="Licensed Waste Carrier Logo"
+          <img src="images/optimized/environment-agency.webp" width="160" height="200" loading="lazy" decoding="async" alt="Licensed Waste Carrier Logo"
             class="h-30 mx-auto mb-4 object-contain">
           <div class="font-bold text-[21px] text-[#1c2b26] mb-1.5">Licensed Waste Carrier</div>
           <div class="text-[20px] text-[#6f7a74] leading-snug">All waste disposed of responsibly by our Environment
@@ -3117,7 +3471,7 @@
         </div>
         <div
           class="bg-[#faf8f4] rounded-xl p-6 text-center border border-[#e0ded4] transition-all hover:border-[#2d6a4f] hover:-translate-y-0.5 hover:bg-white">
-          <img src="images/optimized/city-and-guilds.webp" alt="City &amp; Guilds Qualified Logo"
+          <img src="images/optimized/city-and-guilds.webp" width="160" height="200" loading="lazy" decoding="async" alt="City &amp; Guilds Qualified Logo"
             class="h-30 mx-auto mb-4 object-contain">
           <div class="font-bold text-[21px] text-[#1c2b26] mb-1.5">City &amp; Guilds Qualified</div>
           <div class="text-[20px] text-[#6f7a74] leading-snug">Our director holds City &amp; Guilds qualifications in
@@ -3125,7 +3479,7 @@
         </div>
         <div
           class="bg-[#faf8f4] rounded-xl p-6 text-center border border-[#e0ded4] transition-all hover:border-[#2d6a4f] hover:-translate-y-0.5 hover:bg-white">
-          <img src="images/optimized/liability-insurance.webp" alt="£5M Public Liability Logo"
+          <img src="images/optimized/liability-insurance.webp" width="160" height="200" loading="lazy" decoding="async" alt="£5M Public Liability Logo"
             class="h-30 mx-auto mb-4 object-contain">
           <div class="font-bold text-[21px] text-[#1c2b26] mb-1.5">&pound;5M Public Liability</div>
           <div class="text-[20px] text-[#6f7a74] leading-snug">Full coverage on every project, protecting you,
@@ -3133,7 +3487,7 @@
         </div>
         <div
           class="bg-[#faf8f4] rounded-xl p-6 text-center border border-[#e0ded4] transition-all hover:border-[#2d6a4f] hover:-translate-y-0.5 hover:bg-white">
-          <img src="images/optimized/labour-warranty.webp" alt="12-Month Labour Warranty Logo"
+          <img src="images/optimized/labour-warranty.webp" width="160" height="200" loading="lazy" decoding="async" alt="12-Month Labour Warranty Logo"
             class="h-30 mx-auto mb-4 object-contain">
           <div class="font-bold text-[21px] text-[#1c2b26] mb-1.5">12-Month Labour Warranty</div>
           <div class="text-[20px] text-[#6f7a74] leading-snug">All workmanship guaranteed for one full year. If
@@ -3149,7 +3503,9 @@
       <div class="grid md:grid-cols-2 gap-16 md:gap-20 items-center">
 
         <div class="relative rounded-2xl overflow-hidden" style="aspect-ratio:4/3">
-          <img src="images/optimized/award-certificate-full.webp"
+          <img src="images/optimized/award-certificate-800.webp"
+            srcset="images/optimized/award-certificate-800.webp 800w, images/optimized/award-certificate-full.webp 1600w"
+            sizes="(max-width: 767px) calc(100vw - 48px), (max-width: 1168px) calc(50vw - 64px), 520px"
             alt="Andrius Grisanovas holding the Prestige Awards Certificate of Excellence for Kitchen and Bathroom Installation Firm of the Year, London and South East England 2026/27"
             class="w-full h-full object-cover" loading="lazy" decoding="async" width="1600" height="1200">
         </div>
@@ -3215,7 +3571,7 @@
       <div class="grid md:grid-cols-2 gap-16 md:gap-20 items-center">
         <div class="relative rounded-2xl overflow-hidden" style="aspect-ratio:4/5">
           <img src="images/optimized/owner.webp" alt="Andrius Grisanovas Managing Director A&G Renovations"
-            class="w-full h-full object-cover">
+            class="w-full h-full object-cover" width="1200" height="1122" loading="lazy" decoding="async">
           <div class="absolute bottom-6 left-6 bg-[rgba(18,39,31,0.9)] border border-white/10 rounded-xl p-4">
             <strong class="block text-[24px] font-bold text-white">Andrius Grisanovas</strong>
             <span class="text-[20px] text-white/75 uppercase tracking-wide">Managing Director &amp; Founder</span>
@@ -3347,7 +3703,7 @@
               .agf-label-opt {
                 font-size: 15px;
                 font-weight: 400;
-                color: #9ca3af;
+                color: #71767f; /* A11Y: was #9ca3af (2.5:1), now 4.57:1 on white */
                 text-transform: none;
                 letter-spacing: 0;
               }
@@ -3439,7 +3795,7 @@
               .agf-note {
                 text-align: center;
                 font-size: 15px;
-                color: #9ca3af;
+                color: #71767f; /* A11Y: was #9ca3af (2.5:1), now 4.57:1 on white */
                 margin-top: 10px;
                 line-height: 1.5;
               }
@@ -3484,7 +3840,7 @@
 
               .agf-success-note {
                 font-size: 16px;
-                color: #9ca3af;
+                color: #71767f; /* A11Y: was #9ca3af (2.5:1), now 4.57:1 on white */
                 margin-top: 16px;
               }
 
@@ -3747,8 +4103,7 @@
     <div class="max-w-[1120px] mx-auto px-6 relative z-10">
       <h2 class="text-white max-w-[660px] mx-auto mb-4 font-normal italic" style="font-size:clamp(40px, 5vw, 64px)">
         &ldquo;Do It Once. Do It Right.&rdquo;</h2>
-      <p class="text-white/55 max-w-[520px] mx-auto mb-11 text-[27px]">51 five-star reviews on Google. A decade of
-        London
+      <p class="text-white/55 max-w-[520px] mx-auto mb-11 text-[27px]">62 Google reviews. A decade of London
         renovations. A team that genuinely cares about the result, and a guarantee to prove it.</p>
       <div class="flex justify-center gap-4 flex-wrap mb-9">
         <a href="#enquiry"
@@ -3770,6 +4125,8 @@
           Policy</a></div>
     </div>
   </section>
+
+  </main>
 
   <script>
     // Nav scroll effect
