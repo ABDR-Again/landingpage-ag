@@ -2,16 +2,12 @@
 <html lang="en">
 
 <head>
-  <!-- Google Tag Manager -->
-  <script>(function (w, d, s, l, i) {
-      w[l] = w[l] || []; w[l].push({
-        'gtm.start':
-          new Date().getTime(), event: 'gtm.js'
-      }); var f = d.getElementsByTagName(s)[0],
-        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-    })(window, document, 'script', 'dataLayer', 'GTM-KGSBLMTC');</script>
-  <!-- End Google Tag Manager -->
+  <!-- Google Tag Manager: the queue starts here as before; gtm.js itself is
+       loaded by the tag loader below, after the page has loaded. -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bathroom Renovation London | A&G Renovations (Est. 2014)</title>
@@ -50,22 +46,46 @@
   </style>
   <link rel="stylesheet" href="dist/output.css?v=6">
 
-  <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "z7a9bycib9");
-</script>
+  <script>
+    /* Microsoft Clarity queue (project z7a9bycib9); the tag script is loaded
+       by the tag loader below. */
+    window.clarity = window.clarity || function () { (window.clarity.q = window.clarity.q || []).push(arguments); };
+  </script>
 
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JP1K1CL1BF"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
     gtag('config', 'G-JP1K1CL1BF');
     gtag('config', 'AW-17907613995');
+  </script>
+  <!-- PERF: tag loader. The queues above are ready from the first moment, so
+       nothing the page sends early is lost (it is sent when the scripts
+       arrive). The three tag scripts start after the page has loaded, or on
+       the visitor's first tap, scroll or key press if that comes first, with
+       a 5-second safety net, so they no longer compete with the hero photo. -->
+  <script>
+    (function () {
+      var loaded = false;
+      var triggers = ['pointerdown', 'touchstart', 'scroll', 'keydown'];
+      function add(src) {
+        var s = document.createElement('script'); s.async = true; s.src = src;
+        document.head.appendChild(s);
+      }
+      function loadTags() {
+        if (loaded) { return; }
+        loaded = true;
+        triggers.forEach(function (t) { window.removeEventListener(t, loadTags); });
+        add('https://www.googletagmanager.com/gtag/js?id=G-JP1K1CL1BF');
+        add('https://www.googletagmanager.com/gtm.js?id=GTM-KGSBLMTC');
+        add('https://www.clarity.ms/tag/z7a9bycib9');
+      }
+      triggers.forEach(function (t) { window.addEventListener(t, loadTags, { once: true, passive: true }); });
+      if (document.readyState === 'complete') { setTimeout(loadTags, 0); }
+      else { window.addEventListener('load', function () { setTimeout(loadTags, 0); }); }
+      setTimeout(loadTags, 5000);
+    })();
   </script>
   <!-- NOTE: GTM (GTM-KGSBLMTC) and gtag both load GA4 for G-JP1K1CL1BF.
        If the GTM container ALSO has a GA4 config tag for that property,
